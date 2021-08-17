@@ -4,31 +4,31 @@
 \alias{assign_esmo2016}
 \title{Assign ESMO 2016}
 \usage{
-assign_esmo2016(stage, grade, hist, myo, lvi)
+assign_esmo2016(stage, grade, hist_gr, myo, lvi)
 }
 \arguments{
-\item{stage}{FIGO stage}
+\item{stage}{FIGO stage: I, II, III, IV with substages}
 
-\item{grade}{tumour grade}
+\item{grade}{tumour grade: 1, 2, 3}
 
-\item{hist}{histotype}
+\item{hist_gr}{histological subtype group: endometrioid or non-endometrioid}
 
-\item{myo}{myometrial invasion}
+\item{myo}{myometrial invasion: none, 1-50\%, >50\%}
 
-\item{lvi}{lymphovascular space invasion}
+\item{lvi}{lymphovascular space invasion: negative, positive, focal, extensive}
 }
 \value{
 ESMO 2016 assigned into "low", "intermediate", "high-intermediate",
 "high", "advanced", or "metastatic". Unassignable cases are \code{NA}.
 }
 \description{
-Assign ESMO 2016 based on stage, grade, histotype, myometrial invasion, and
-LVSI.
+Assign ESMO 2016 based on stage, grade, histological subtype group,
+myometrial invasion, and LVSI.
 }
 \details{
-ESMO 2013 is assigned using stage, grade, histotype, myometrial invasion, and
-LVSI into low, intermediate, high-intermediate, high, advanced, and
-metastatic risk based on the following criteria:
+ESMO 2013 is assigned using stage, grade, histological subtype group,
+myometrial invasion, and LVSI into low, intermediate, high-intermediate,
+high, advanced, and metastatic risk based on the following criteria:
 \itemize{
 \item low:
 \itemize{

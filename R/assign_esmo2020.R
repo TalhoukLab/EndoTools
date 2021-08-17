@@ -1,0 +1,78 @@
+#' Assign ESMO 2020
+#'
+#' Assign ESMO 2020 based on stage, grade, histological subtype group,
+#' histological subtype, myometrial invasion, and LVSI.
+#'
+#' ESMO 2020 is assigned using stage, grade, histological subtype group,
+#' histological subtype, myometrial invasion, and LVSI into low, intermediate,
+#' high-intermediate, high, advanced, and metastatic risk based on the following
+#' criteria:
+#' * low:
+#'   * stage IA, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative or focal
+#' * intermediate:
+#'   * stage IB, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative or focal
+#'   * stage IA, grade 3, endometrioid, LVSI negative or focal
+#'   * stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), no myometrial invasion
+#' * high-intermediate:
+#'   * stage IA/IB, endometrioid, LVSI positive or extensive
+#'   * stage IB, grade 3, endometrioid
+#'   * stage II/IIA, endometrioid
+#' * high:
+#'   * stage III or higher, endometrioid
+#'   * stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), >0% myometrial invasion
+#'   * stage IB or higher, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated)
+#' * advanced:
+#'   * stage III or higher
+#' * metastatic:
+#'   * stage IVB
+#' @inheritParams assign_esmo2016
+#' @param hist histological subtype: detailed histotype
+#' @note Assignment starts from the low group first.
+#' @return ESMO 202020 assigned into "low", "intermediate", "high-intermediate",
+#'   "high", "advanced", or "metastatic". Unassignable cases are `NA`.
+#' @references Concin N, Matias-Guiu X, Vergote I, et al ESGO/ESTRO/ESP
+#'   guidelines for the management of patients with endometrial
+#'   carcinoma. International Journal of Gynecologic Cancer Published Online
+#'   First: 18 December 2020. doi: 10.1136/ijgc-2020-002230
+#' @author Derek Chiu
+#' @export
+assign_esmo2020 <- function(stage, grade, hist_gr, hist, myo, lvi) {
+  # low
+  if (stage == "IA" & grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) {
+    return(VC.LOW)
+  }
+
+  # intermediate
+  if ((stage == "IB" & grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) |
+      (stage == "IA" & grade == "grade 3" & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) |
+      (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated") & myo == "none")) {
+    return(VC.INTERM)
+  }
+
+  # high-intermediate
+  if ((stage %in% c("IA", "IB") & hist_gr == "endometrioid" & lvi %in% c("positive", "extensive") ) |
+      (stage == "IB" & grade == "grade 3" & hist_gr == "endometrioid") |
+      (stage %in% c("II", "IIA") & hist_gr == "endometrioid")) {
+    return(VC.HIGH.INTERM)
+  }
+
+  # high
+  if ((stage %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid") |
+      (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated") & myo != "none") |
+      (stage %in% c("IB", "II", "IIA", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated"))) {
+    return(VC.HIGH)
+  }
+
+  # advanced
+  if (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA")) {
+    return(VC.ADVANCED)
+  }
+
+  # metastatic
+  if (stage_full == "IVB") {
+    return(VC.METASTATIC)
+  }
+
+  # unassignable
+  return(NA)
+}

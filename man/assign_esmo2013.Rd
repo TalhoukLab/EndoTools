@@ -4,25 +4,25 @@
 \alias{assign_esmo2013}
 \title{Assign ESMO 2013}
 \usage{
-assign_esmo2013(stage, grade, hist)
+assign_esmo2013(stage, grade, hist_gr)
 }
 \arguments{
-\item{stage}{FIGO stage}
+\item{stage}{FIGO stage: I, II, III, IV with substages}
 
-\item{grade}{tumour grade}
+\item{grade}{tumour grade: 1, 2, 3}
 
-\item{hist}{histotype}
+\item{hist_gr}{histological subtype group: endometrioid or non-endometrioid}
 }
 \value{
 ESMO 2013 assigned into "low", "intermediate", or "high".
 Unassignable cases are \code{NA}.
 }
 \description{
-Assign ESMO 2013 based on stage, grade, and histotype.
+Assign ESMO 2013 based on stage, grade, and histological subtype group
 }
 \details{
-ESMO 2013 is assigned using stage, grade, and histotype into low,
-intermediate, and high risk based on the following criteria:
+ESMO 2013 is assigned using stage, grade, and histological subtype group into
+low, intermediate, and high risk based on the following criteria:
 \itemize{
 \item low:
 \itemize{

@@ -1,11 +1,11 @@
 #' Assign ESMO 2016
 #'
-#' Assign ESMO 2016 based on stage, grade, histotype, myometrial invasion, and
-#' LVSI.
+#' Assign ESMO 2016 based on stage, grade, histological subtype group,
+#' myometrial invasion, and LVSI.
 #'
-#' ESMO 2013 is assigned using stage, grade, histotype, myometrial invasion, and
-#' LVSI into low, intermediate, high-intermediate, high, advanced, and
-#' metastatic risk based on the following criteria:
+#' ESMO 2013 is assigned using stage, grade, histological subtype group,
+#' myometrial invasion, and LVSI into low, intermediate, high-intermediate,
+#' high, advanced, and metastatic risk based on the following criteria:
 #' * low:
 #'   * stage I, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative
 #' * intermediate:
@@ -25,8 +25,8 @@
 #'   * stage IVB
 #'
 #' @inheritParams assign_esmo2013
-#' @param myo myometrial invasion
-#' @param lvi lymphovascular space invasion
+#' @param myo myometrial invasion: none, 1-50%, >50%
+#' @param lvi lymphovascular space invasion: negative, positive, focal, extensive
 #' @note Assignment starts from the metastatic group first as the criteria are
 #'   not mutually exclusive. Residual disease is not available and so are not
 #'   used in criteria for high-intermediate and high.
@@ -35,7 +35,7 @@
 #' @references Colombo et al. Annals of Oncology 2016
 #' @author Derek Chiu, Samuel Leung
 #' @export
-assign_esmo2016 <- function(stage, grade, hist, myo, lvi) {
+assign_esmo2016 <- function(stage, grade, hist_gr, myo, lvi) {
   # metastatic
   if (stage == "IVB") {
     return(VC.METASTATIC)
@@ -48,22 +48,22 @@ assign_esmo2016 <- function(stage, grade, hist, myo, lvi) {
 
   # high
   if ((stage %in% all_stage1 &
-       hist == "endometrioid" &
+       hist_gr == "endometrioid" &
        grade == "grade 3" & myo == ">50%") |
       (stage %in% stage_2_or_higher) |
-      (hist == "non-endometrioid")) {
+      (hist_gr == "non-endometrioid")) {
     return(VC.HIGH)
   }
 
   # high-intermediate
   if ((
     stage %in% all_stage1 &
-    hist == "endometrioid" &
+    hist_gr == "endometrioid" &
     grade == "grade 3" & myo %in% c(VC.NONE, "1-50%")
   ) |
   (
     stage %in% all_stage1 &
-    hist == "endometrioid" &
+    hist_gr == "endometrioid" &
     grade %in% c("grade 1", "grade 2") & lvi == VC.POSITIVE
   )) {
     return(VC.HIGH.INTERM)
@@ -71,7 +71,7 @@ assign_esmo2016 <- function(stage, grade, hist, myo, lvi) {
 
   # intermediate
   if (stage %in% all_stage1 &
-      hist == "endometrioid" &
+      hist_gr == "endometrioid" &
       grade %in% c("grade 1", "grade 2") &
       myo == ">50%" & lvi == VC.NEGATIVE) {
     return(VC.INTERM)
@@ -79,7 +79,7 @@ assign_esmo2016 <- function(stage, grade, hist, myo, lvi) {
 
   # low
   if (stage %in% all_stage1 &
-      hist == "endometrioid" &
+      hist_gr == "endometrioid" &
       grade %in% c("grade 1", "grade 2") &
       myo %in% c(VC.NONE, "1-50%") & lvi == VC.NEGATIVE) {
     return(VC.LOW)
