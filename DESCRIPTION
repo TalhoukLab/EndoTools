@@ -1,0 +1,19 @@
+Package: EndoTools
+Title: Endometrial Cancer Helper Tools
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Derek",
+             family = "Chiu",
+             role = c("aut", "cre"),
+             email = "dchiu@bccrc.ca"),
+      person(given = "Samuel",
+             family = "Leung",
+             role = "aut",
+             email = "Samuel.Leung@vch.ca"))
+Description: Helper tools such as calculation of ProMisE classifications and
+    ESMO risk groups for endometrial cancers.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
