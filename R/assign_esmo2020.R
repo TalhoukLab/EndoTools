@@ -64,12 +64,12 @@ assign_esmo2020 <- function(stage, grade, hist_gr, hist, myo, lvi) {
   }
 
   # advanced
-  if (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA")) {
+  if (stage %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA")) {
     return(VC.ADVANCED)
   }
 
   # metastatic
-  if (stage_full == "IVB") {
+  if (stage == "IVB") {
     return(VC.METASTATIC)
   }
 
