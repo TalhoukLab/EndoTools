@@ -17,7 +17,6 @@
 #' @param stage FIGO stage: I, II, III, IV with substages
 #' @param grade tumour grade: 1, 2, 3
 #' @param hist_gr histological subtype group: endometrioid or non-endometrioid
-#'
 #' @note Assignment starts from the high group first as the criteria are not
 #'   mutually exclusive.
 #' @return ESMO 2013 assigned into "low", "intermediate", or "high".

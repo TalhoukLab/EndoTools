@@ -1,0 +1,34 @@
+#' Assign Poor-man's ProMisE
+#'
+#' Assign Poor-man's ProMisE based on POLE, MMR, p53, and histopathological
+#' features.
+#'
+#' Poor-man's ProMisE first assigns a low risk group based on histopathological
+#' features grade, histotype, MMR status determined by 2 and 4 IHC markers, and
+#' p53. The rest of the high risk cases are assigned as in ProMisE 2019.
+#'
+#' @param mmr2 MMR status determined by 2 IHCs: MSH6 and PMS2
+#' @param mmr4 MMR status determined by 4 IHCs: MSH6, PMS2, MLH1, and MSH2
+#' @inheritParams assign_promise2019
+#' @inheritParams assign_esmo2020
+#' @return Poor-man's ProMisE assigned into "Low-Risk", "POLEmut", "MMRd",
+#'   "p53abn", or "NSMP/p53wt"
+#' @author Derek Chiu, Samuel Leung
+#' @export
+assign_promisepoor <- function(mmr2, mmr4, pole, p53, grade, hist_gr) {
+  factor(
+    dplyr::case_when(
+      grade %in% c("grade 1", "grade 2") &
+        hist_gr == "endometrioid" &
+        mmr2 == "intact" &
+        (is.na(mmr4) | mmr4 == "intact") &
+        p53 == "wild type" ~ "Low-Risk",
+      pole == "mutated" ~ "POLEmut",
+      pole %in% c("mutated/non-path", "wild type") & mmr2 == "deficient" ~ "MMRd",
+      mmr2 == "intact" & grepl("mutated|abnormal|null|overexpression|cytoplasmic", p53) ~ "p53abn",
+      mmr2 == "intact" & p53 == "wild type" ~ "NSMP/p53wt",
+      TRUE ~ NA_character_
+    ),
+    levels = c("Low-Risk", "POLEmut", "MMRd", "p53abn", "NSMP/p53wt")
+  )
+}

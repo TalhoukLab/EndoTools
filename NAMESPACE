@@ -3,3 +3,6 @@
 export(assign_esmo2013)
 export(assign_esmo2016)
 export(assign_esmo2020)
+export(assign_promise2015)
+export(assign_promise2019)
+export(assign_promisepoor)
