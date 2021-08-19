@@ -28,14 +28,14 @@ assign_esmo2013 <- function(stage, grade, hist_gr) {
   dplyr::case_when(
     # high
     (hist_gr == "non-endometrioid") |
-      (stage %in% c("IB", "IC") &
+      (grepl("^(IB|IC)", stage) &
          grade == "grade 3" & hist_gr == "endometrioid") |
       (stage %in% stage_2_or_higher) ~ VC.HIGH,
 
     # intermediate
     (stage %in% c("I", "IA") &
        grade == "grade 3" & hist_gr == "endometrioid") |
-      (stage %in% c("IB", "IC") &
+      (grepl("^(IB|IC)", stage) &
          grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid") ~ VC.INTERM,
 
     # low
