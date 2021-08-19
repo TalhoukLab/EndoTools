@@ -37,42 +37,35 @@
 #' @author Derek Chiu
 #' @export
 assign_esmo2020 <- function(stage, grade, hist_gr, hist, myo, lvi) {
-  # low
-  if (stage == "IA" & grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) {
-    return(VC.LOW)
-  }
+  dplyr::case_when(
+    # low
+    stage == "IA" &
+      grade %in% c("grade 1", "grade 2") &
+      hist_gr == "endometrioid" &
+      lvi %in% c("negative", "focal") ~ VC.LOW,
 
-  # intermediate
-  if ((stage == "IB" & grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) |
+    # intermediate
+    (stage == "IB" & grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) |
       (stage == "IA" & grade == "grade 3" & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) |
-      (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated") & myo == "none")) {
-    return(VC.INTERM)
-  }
+      (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated") & myo == "none") ~ VC.INTERM,
 
-  # high-intermediate
-  if ((stage %in% c("IA", "IB") & hist_gr == "endometrioid" & lvi %in% c("positive", "extensive") ) |
+    # high-intermediate
+    (stage %in% c("IA", "IB") & hist_gr == "endometrioid" & lvi %in% c("positive", "extensive") ) |
       (stage == "IB" & grade == "grade 3" & hist_gr == "endometrioid") |
-      (stage %in% c("II", "IIA") & hist_gr == "endometrioid")) {
-    return(VC.HIGH.INTERM)
-  }
+      (stage %in% c("II", "IIA") & hist_gr == "endometrioid") ~ VC.HIGH.INTERM,
 
-  # high
-  if ((stage %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid") |
+    # high
+    (stage %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid") |
       (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated") & myo != "none") |
-      (stage %in% c("IB", "II", "IIA", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated"))) {
-    return(VC.HIGH)
-  }
+      (stage %in% c("IB", "II", "IIA", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated")) ~ VC.HIGH,
 
-  # advanced
-  if (stage %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA")) {
-    return(VC.ADVANCED)
-  }
+    # advanced
+    stage %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") ~ VC.ADVANCED,
 
-  # metastatic
-  if (stage == "IVB") {
-    return(VC.METASTATIC)
-  }
+    # metastatic
+    stage == "IVB" ~ VC.METASTATIC,
 
-  # unassignable
-  return(NA)
+    # unassignable
+    TRUE ~ NA_character_
+  )
 }

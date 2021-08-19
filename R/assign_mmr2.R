@@ -13,9 +13,5 @@
 #' @author Samuel Leung, Derek Chiu
 #' @export
 assign_mmr2 <- function(msh6, pms2) {
-  if (msh6 == "intact" & pms2 == "intact") {
-    return("intact")
-  } else {
-    return("deficient")
-  }
+  dplyr::if_else(msh6 == "intact" & pms2 == "intact", "intact", "deficient")
 }

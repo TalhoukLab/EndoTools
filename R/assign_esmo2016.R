@@ -36,55 +36,41 @@
 #' @author Derek Chiu, Samuel Leung
 #' @export
 assign_esmo2016 <- function(stage, grade, hist_gr, myo, lvi) {
-  # metastatic
-  if (stage == "IVB") {
-    return(VC.METASTATIC)
-  }
+  dplyr::case_when(
+    # metastatic
+    stage == "IVB" ~ VC.METASTATIC,
 
-  # advanced
-  if (stage == "IVA") {
-    return(VC.ADVANCED)
-  }
+    # advanced
+    stage == "IVA" ~ VC.ADVANCED,
 
-  # high
-  if ((stage %in% all_stage1 &
+    # high
+    (stage %in% all_stage1 &
        hist_gr == "endometrioid" &
        grade == "grade 3" & myo == ">50%") |
       (stage %in% stage_2_or_higher) |
-      (hist_gr == "non-endometrioid")) {
-    return(VC.HIGH)
-  }
+      (hist_gr == "non-endometrioid") ~ VC.HIGH,
 
-  # high-intermediate
-  if ((
-    stage %in% all_stage1 &
-    hist_gr == "endometrioid" &
-    grade == "grade 3" & myo %in% c(VC.NONE, "1-50%")
-  ) |
-  (
-    stage %in% all_stage1 &
-    hist_gr == "endometrioid" &
-    grade %in% c("grade 1", "grade 2") & lvi == VC.POSITIVE
-  )) {
-    return(VC.HIGH.INTERM)
-  }
+    # high-intermediate
+    (stage %in% all_stage1 &
+       hist_gr == "endometrioid" &
+       grade == "grade 3" & myo %in% c(VC.NONE, "1-50%")) |
+      (stage %in% all_stage1 &
+         hist_gr == "endometrioid" &
+         grade %in% c("grade 1", "grade 2") & lvi == VC.POSITIVE) ~ VC.HIGH.INTERM,
 
-  # intermediate
-  if (stage %in% all_stage1 &
+    # intermediate
+    stage %in% all_stage1 &
       hist_gr == "endometrioid" &
       grade %in% c("grade 1", "grade 2") &
-      myo == ">50%" & lvi == VC.NEGATIVE) {
-    return(VC.INTERM)
-  }
+      myo == ">50%" & lvi == VC.NEGATIVE ~ VC.INTERM,
 
-  # low
-  if (stage %in% all_stage1 &
+    # low
+    stage %in% all_stage1 &
       hist_gr == "endometrioid" &
       grade %in% c("grade 1", "grade 2") &
-      myo %in% c(VC.NONE, "1-50%") & lvi == VC.NEGATIVE) {
-    return(VC.LOW)
-  }
+      myo %in% c(VC.NONE, "1-50%") & lvi == VC.NEGATIVE ~ VC.LOW,
 
-  # unassignable
-  return(NA)
+    # unassignable
+    TRUE ~ NA_character_
+  )
 }

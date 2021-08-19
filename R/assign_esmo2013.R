@@ -25,28 +25,24 @@
 #' @author Derek Chiu, Samuel Leung
 #' @export
 assign_esmo2013 <- function(stage, grade, hist_gr) {
-  # high
-  if ((hist_gr == "non-endometrioid") |
+  dplyr::case_when(
+    # high
+    (hist_gr == "non-endometrioid") |
       (stage %in% c("IB", "IC") &
+         grade == "grade 3" & hist_gr == "endometrioid") |
+      (stage %in% stage_2_or_higher) ~ VC.HIGH,
+
+    # intermediate
+    (stage %in% c("I", "IA") &
        grade == "grade 3" & hist_gr == "endometrioid") |
-      (stage %in% stage_2_or_higher)) {
-    return(VC.HIGH)
-  }
+      (stage %in% c("IB", "IC") &
+         grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid") ~ VC.INTERM,
 
-  # intermediate
-  if ((stage %in% c("I", "IA") &
-              grade == "grade 3" & hist_gr == "endometrioid") |
-             (stage %in% c("IB", "IC") &
-              grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid")) {
-    return(VC.INTERM)
-  }
+    # low
+    stage %in% c("I", "IA") &
+      grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" ~ VC.LOW,
 
-  # low
-  if (stage %in% c("I", "IA") &
-      grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid") {
-    return(VC.LOW)
-  }
-
-  # unassignable
-  return(NA)
+    # unassignable
+    TRUE ~ NA_character_
+  )
 }
