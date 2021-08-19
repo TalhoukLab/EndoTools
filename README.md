@@ -2,6 +2,7 @@
 # EndoTools
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/TalhoukLab/EndoTools/workflows/R-CMD-check/badge.svg)](https://github.com/TalhoukLab/EndoTools/actions)
 <!-- badges: end -->
 
 The goal of EndoTools is to provide helper tools for calculating commonly used variables in endometrial cancer projects such as:
