@@ -44,28 +44,28 @@ assign_esmo2016 <- function(stage, grade, hist_gr, myo, lvi) {
     stage == "IVA" ~ VC.ADVANCED,
 
     # high
-    (stage %in% all_stage1 &
+    (grepl("^I[A-C]?$", stage) &
        hist_gr == "endometrioid" &
        grade == "grade 3" & myo == ">50%") |
-      (stage %in% stage_2_or_higher) |
+      (grepl("^(II|III|IV)[A-C]?[1-2]?$", stage)) |
       (hist_gr == "non-endometrioid") ~ VC.HIGH,
 
     # high-intermediate
-    (stage %in% all_stage1 &
+    (grepl("^I[A-C]?$", stage) &
        hist_gr == "endometrioid" &
        grade == "grade 3" & myo %in% c(VC.NONE, "1-50%")) |
-      (stage %in% all_stage1 &
+      (grepl("^I[A-C]?$", stage) &
          hist_gr == "endometrioid" &
          grade %in% c("grade 1", "grade 2") & lvi == VC.POSITIVE) ~ VC.HIGH.INTERM,
 
     # intermediate
-    stage %in% all_stage1 &
+    grepl("^I[A-C]?$", stage) &
       hist_gr == "endometrioid" &
       grade %in% c("grade 1", "grade 2") &
       myo == ">50%" & lvi == VC.NEGATIVE ~ VC.INTERM,
 
     # low
-    stage %in% all_stage1 &
+    grepl("^I[A-C]?$", stage) &
       hist_gr == "endometrioid" &
       grade %in% c("grade 1", "grade 2") &
       myo %in% c(VC.NONE, "1-50%") & lvi == VC.NEGATIVE ~ VC.LOW,

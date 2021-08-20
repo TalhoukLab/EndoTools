@@ -30,7 +30,7 @@ assign_esmo2013 <- function(stage, grade, hist_gr) {
     (hist_gr == "non-endometrioid") |
       (grepl("^(IB|IC)", stage) &
          grade == "grade 3" & hist_gr == "endometrioid") |
-      (stage %in% stage_2_or_higher) ~ VC.HIGH,
+      (grepl("^(II|III|IV)[A-C]?[1-2]?$", stage)) ~ VC.HIGH,
 
     # intermediate
     (stage %in% c("I", "IA") &
