@@ -92,7 +92,31 @@ emdb <- tibble(
   p53_mut = fct_collapse(
     p53,
     mutated = c("null", "abnormal", "cytoplasmic", "overexpression")
+  ),
+  msh6 = sample(
+    x = c("intact", "loss"),
+    size = n,
+    replace = TRUE,
+    prob = c(0.9, 0.1)
+  ),
+  pms2 = sample(
+    x = c("intact", "loss"),
+    size = n,
+    replace = TRUE,
+    prob = c(0.85, 0.15)
+  ),
+  mlh1 = sample(
+    x = c("intact", "loss"),
+    size = n,
+    replace = TRUE,
+    prob = c(0.6, 0.4)
+  ),
+  msh2 = sample(
+    x = c("intact", "loss"),
+    size = n,
+    replace = TRUE,
+    prob = c(0.6, 0.4)
   )
 )
 
-use_data(emdb)
+use_data(emdb, overwrite = TRUE)
