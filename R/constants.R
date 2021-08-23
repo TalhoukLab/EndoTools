@@ -1,4 +1,4 @@
-VC.NONE<- "none"
+VC.NONE <- "none"
 VC.NEGATIVE <- "negative"
 VC.POSITIVE <- "positive"
 
