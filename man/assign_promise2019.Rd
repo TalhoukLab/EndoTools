@@ -28,6 +28,10 @@ among POLE non-pathogenic mutations or wild type cases
 \item p53 IHC wild type or mutated among MMR intact cases
 }
 }
+\examples{
+promise2019 <- with(emdb, assign_promise2019(mmr_ihc_2, pole_mut, p53))
+table(promise2019)
+}
 \author{
 Derek Chiu, Samuel Leung
 }

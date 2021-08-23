@@ -45,6 +45,10 @@ low, intermediate, and high risk based on the following criteria:
 Assignment starts from the high group first as the criteria are not
 mutually exclusive.
 }
+\examples{
+esmo2013 <- with(emdb, assign_esmo2013(stage_full, grade_rev, hist_rev_gr))
+table(esmo2013)
+}
 \references{
 Colombo et al. Ann Oncol 2013
 }

@@ -35,6 +35,10 @@
 #' @references Colombo et al. Annals of Oncology 2016
 #' @author Derek Chiu, Samuel Leung
 #' @export
+#' @examples
+#' esmo2016 <- with(emdb, assign_esmo2016(stage_full, grade_rev, hist_rev_gr,
+#' myo, lvi))
+#' table(esmo2016)
 assign_esmo2016 <- function(stage, grade, hist_gr, myo, lvi) {
   dplyr::case_when(
     # metastatic

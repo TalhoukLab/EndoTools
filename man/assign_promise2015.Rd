@@ -27,6 +27,10 @@ ProMisE 2015 is assigned in the following order:
 \item p53 IHC wild type or mutated among POLE wild type cases
 }
 }
+\examples{
+promise2015 <- with(emdb, assign_promise2015(mmr_ihc_2, pole_mut, p53))
+table(promise2015)
+}
 \author{
 Derek Chiu, Samuel Leung
 }

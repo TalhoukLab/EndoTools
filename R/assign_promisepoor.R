@@ -15,6 +15,10 @@
 #'   "p53abn", or "NSMP/p53wt"
 #' @author Derek Chiu, Samuel Leung
 #' @export
+#' @examples
+#' promisepoor <- with(emdb, assign_promisepoor(mmr_ihc_2, mmr_ihc_4, pole_mut,
+#' p53, grade_rev, hist_rev_gr))
+#' table(promisepoor)
 assign_promisepoor <- function(mmr2, mmr4, pole, p53, grade, hist_gr) {
   factor(
     dplyr::case_when(

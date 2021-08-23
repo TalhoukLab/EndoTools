@@ -23,6 +23,10 @@ consolidated from TMA scoring. If both markers are intact, then MMR status is
 intact. Otherwise, MMR status is deficient (including subclonal and unknown
 markers).
 }
+\examples{
+mmr_ihc_2 <- with(emdb, assign_mmr2(msh6, pms2))
+table(mmr_ihc_2)
+}
 \author{
 Samuel Leung, Derek Chiu
 }

@@ -63,6 +63,17 @@
 #'   First: 18 December 2020. doi: 10.1136/ijgc-2020-002230
 #' @author Derek Chiu
 #' @export
+#' @examples
+#' # without molecular classification
+#' esmo2020_wo_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
+#' hist_rev_gr, hist, myo, lvi))
+#' table(esmo2020_wo_eclass)
+#'
+#' # with molecular classification
+#' eclass <- with(emdb, assign_promise2015(mmr_ihc_2, pole_mut, p53))
+#' esmo2020_w_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
+#' hist_rev_gr, hist, myo, lvi, eclass))
+#' table(esmo2020_w_eclass)
 assign_esmo2020 <- function(stage, grade, hist_gr, hist, myo, lvi,
                             eclass = NULL) {
   # Molecular classification unknown

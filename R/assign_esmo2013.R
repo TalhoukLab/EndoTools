@@ -24,6 +24,9 @@
 #' @references Colombo et al. Ann Oncol 2013
 #' @author Derek Chiu, Samuel Leung
 #' @export
+#' @examples
+#' esmo2013 <- with(emdb, assign_esmo2013(stage_full, grade_rev, hist_rev_gr))
+#' table(esmo2013)
 assign_esmo2013 <- function(stage, grade, hist_gr) {
   dplyr::case_when(
     # high

@@ -110,6 +110,18 @@ criteria with and without molecular classification:
 \note{
 Assignment starts from the low group first.
 }
+\examples{
+# without molecular classification
+esmo2020_wo_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
+hist_rev_gr, hist, myo, lvi))
+table(esmo2020_wo_eclass)
+
+# with molecular classification
+eclass <- with(emdb, assign_promise2015(mmr_ihc_2, pole_mut, p53))
+esmo2020_w_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
+hist_rev_gr, hist, myo, lvi, eclass))
+table(esmo2020_w_eclass)
+}
 \references{
 Concin N, Matias-Guiu X, Vergote I, et al ESGO/ESTRO/ESP
 guidelines for the management of patients with endometrial

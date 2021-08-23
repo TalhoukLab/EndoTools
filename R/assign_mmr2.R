@@ -12,6 +12,9 @@
 #' @return MMR status, either "intact" or "deficient"
 #' @author Samuel Leung, Derek Chiu
 #' @export
+#' @examples
+#' mmr_ihc_2 <- with(emdb, assign_mmr2(msh6, pms2))
+#' table(mmr_ihc_2)
 assign_mmr2 <- function(msh6, pms2) {
   dplyr::if_else(msh6 == "intact" & pms2 == "intact", "intact", "deficient")
 }

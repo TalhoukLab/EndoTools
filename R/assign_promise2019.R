@@ -12,6 +12,9 @@
 #' @return ProMisE 2019 assigned into "POLEmut", "MMRd", "p53abn", or "NSMP/p53wt"
 #' @author Derek Chiu, Samuel Leung
 #' @export
+#' @examples
+#' promise2019 <- with(emdb, assign_promise2019(mmr_ihc_2, pole_mut, p53))
+#' table(promise2019)
 assign_promise2019 <- function(mmr, pole, p53) {
   factor(
     dplyr::case_when(

@@ -66,6 +66,11 @@ Assignment starts from the metastatic group first as the criteria are
 not mutually exclusive. Residual disease is not available and so are not
 used in criteria for high-intermediate and high.
 }
+\examples{
+esmo2016 <- with(emdb, assign_esmo2016(stage_full, grade_rev, hist_rev_gr,
+myo, lvi))
+table(esmo2016)
+}
 \references{
 Colombo et al. Annals of Oncology 2016
 }
