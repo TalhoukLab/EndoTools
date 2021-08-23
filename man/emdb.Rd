@@ -16,5 +16,62 @@ Simulated endometrial cancer database used for testing functions.
 \details{
 Each clinical variable has a distribution simulated from the proportions seen
 in the Vancouver endometrial cancer database.
+\itemize{
+\item stage_full
+\itemize{
+\item full FIGO staging
+}
+\item stage
+\itemize{
+\item stage without substages: I, II, III, IV
+}
+\item grade_rev
+\itemize{
+\item tumour grade
+}
+\item hist_rev_gr
+\itemize{
+\item histological subtype group
+}
+\item hist
+\itemize{
+\item histological subtype
+}
+\item myo
+\itemize{
+\item myometrial invasion
+}
+\item lvi
+\itemize{
+\item lymphovascular invasion (LVSI)
+}
+\item mmr_ihc_2
+\itemize{
+\item MMR status determined by 2 IHC markers
+}
+\item mmr_ihc_4
+\itemize{
+\item MMR status determined by 4 IHC markers
+}
+\item pole_mut
+\itemize{
+\item POLE mutation status
+}
+\item p53
+\itemize{
+\item p53 IHC
+}
+\item p53_mut
+\itemize{
+\item p53 mutation status
+}
+\item msh6, pms2, mlh1, msh2
+\itemize{
+\item MMR IHC markers
+}
+}
+}
+\examples{
+emdb
 }
 \keyword{datasets}
