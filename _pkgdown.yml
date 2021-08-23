@@ -1,0 +1,20 @@
+url: https://talhouklab.github.io/EndoTools
+
+template:
+  params:
+    bootswatch: cerulean
+
+navbar:
+  title: ~
+  right:
+  - icon: fa-github
+    href: https://github.com/TalhoukLab/EndoTools
+
+reference:
+- title: Functions
+  contents:
+  - starts_with("assign")
+
+- title: Data
+  contents:
+  - emdb
