@@ -7,8 +7,8 @@ set.seed(2021)
 
 emdb <- tibble(
   stage_full = sample(
-    x = c("I", "IA", "IB", "IC", "II", "IIA", "IIB", "III", "IIIA", "IIIB",
-          "IIIC", "IIIC1", "IIIC2", "IV", "IVA", "IVB"),
+    x = factor(c("I", "IA", "IB", "IC", "II", "IIA", "IIB", "III", "IIIA",
+                 "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA", "IVB")),
     size = n,
     replace = TRUE,
     prob = c(
@@ -24,19 +24,19 @@ emdb <- tibble(
     IV = c("IV", "IVA", "IVB")
   ),
   grade_rev = sample(
-    x = c("grade 1", "grade 2", "grade 3"),
+    x = factor(c("grade 1", "grade 2", "grade 3")),
     size = n,
     replace = TRUE,
     prob = c(0.4, 0.15, 0.45)
   ),
   hist_rev_gr = sample(
-    x = c("endometrioid", "non-endometrioid"),
+    x = factor(c("endometrioid", "non-endometrioid")),
     size = n,
     replace = TRUE,
     prob = c(0.7, 0.3)
   ),
   hist = sample(
-    x = c(
+    x = fct_inorder(c(
       "adenocarcinoma, NOS", "carcinosarcoma (MMMT)",
       "clear cell", "dedifferentiated", "endometrioid", "endometrioid (squamous)",
       "endometrioid (villoglandular)", "high grade NOS", "large cell neuroendocrine",
@@ -45,7 +45,7 @@ emdb <- tibble(
       "mixed endometrioid, clear cell and mucinous", "mixed serous and carcinosarcoma",
       "mixed serous and clear cell", "mucinous", "other", "serous",
       "small cell", "undifferentiated"
-    ),
+    )),
     size = n,
     replace = TRUE,
     prob = c(
@@ -55,19 +55,19 @@ emdb <- tibble(
     )
   ),
   myo = sample(
-    x = c("none", "1-50%", ">50%"),
+    x = fct_inorder(c("none", "1-50%", ">50%")),
     size = n,
     replace = TRUE,
     prob = c(0.2, 0.4, 0.4)
   ),
   lvi = sample(
-    x = c("negative", "positive"),
+    x = factor(c("negative", "positive")),
     size = n,
     replace = TRUE,
     prob = c(0.7, 0.3)
   ),
   mmr_ihc_2 = sample(
-    x = c("intact", "deficient"),
+    x = fct_inorder(c("intact", "deficient")),
     size = n,
     replace = TRUE,
     prob = c(0.75, 0.25)
@@ -78,13 +78,13 @@ emdb <- tibble(
     values = "deficient"
   ),
   pole_mut = sample(
-    x = c("wild type", "mutated/non-path", "mutated"),
+    x = fct_inorder(c("wild type", "mutated/non-path", "mutated")),
     size = n,
     replace = TRUE,
     prob = c(0.9, 0.03, 0.07)
   ),
   p53 = sample(
-    x = c("wild type", "null", "abnormal", "cytoplasmic", "overexpression"),
+    x = fct_inorder(c("wild type", "null", "abnormal", "cytoplasmic", "overexpression")),
     size = n,
     replace = TRUE,
     prob = c(0.8, 0.03, 0.02, 0.01, 0.14)
@@ -94,25 +94,25 @@ emdb <- tibble(
     mutated = c("null", "abnormal", "cytoplasmic", "overexpression")
   ),
   msh6 = sample(
-    x = c("intact", "loss"),
+    x = factor(c("intact", "loss")),
     size = n,
     replace = TRUE,
     prob = c(0.9, 0.1)
   ),
   pms2 = sample(
-    x = c("intact", "loss"),
+    x = factor(c("intact", "loss")),
     size = n,
     replace = TRUE,
     prob = c(0.85, 0.15)
   ),
   mlh1 = sample(
-    x = c("intact", "loss"),
+    x = factor(c("intact", "loss")),
     size = n,
     replace = TRUE,
     prob = c(0.6, 0.4)
   ),
   msh2 = sample(
-    x = c("intact", "loss"),
+    x = factor(c("intact", "loss")),
     size = n,
     replace = TRUE,
     prob = c(0.6, 0.4)
