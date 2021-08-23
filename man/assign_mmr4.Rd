@@ -28,7 +28,7 @@ MMR status is intact. Otherwise, MMR status is deficient (including subclonal
 and unknown markers).
 }
 \examples{
-mmr_ihc_4 <- with(emdb, assign_mmr2(msh6, pms2, mlh1, msh2))
+mmr_ihc_4 <- with(emdb, assign_mmr4(msh6, pms2, mlh1, msh2))
 table(mmr_ihc_4)
 }
 \author{
