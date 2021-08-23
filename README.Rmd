@@ -38,13 +38,12 @@ remotes::install_github("TalhoukLab/EndoTools")
 
 ## Example
 
-This is a basic example which shows you to assign different ESMO risk groups:
+This is a basic example which shows you how to assign and compare different ESMO risk groups:
 
-```{r example}
+```{r example, message=FALSE}
 library(EndoTools)
 library(dplyr)
-library(knitr)
-data("emdb")
+
 df <- emdb %>%
   mutate(
     esmo2013 = assign_esmo2013(stage_full, grade_rev, hist_rev_gr),
@@ -53,23 +52,14 @@ df <- emdb %>%
   )
 
 df %>% 
+  count(esmo2013)
+
+df %>% 
+  count(esmo2016)
+
+df %>% 
+  count(esmo2020)
+
+df %>% 
   count(esmo2013, esmo2016, esmo2020)
-```
-
-```{r esmo2013}
-df %>% 
-  count(esmo2013) %>% 
-  kable(caption = "ESMO 2013 risk gruops")
-```
-
-```{r esmo2016}
-df %>% 
-  count(esmo2016) %>% 
-  kable(caption = "ESMO 2016 risk gruops")
-```
-
-```{r esmo2020}
-df %>% 
-  count(esmo2020) %>% 
-  kable(caption = "ESMO 2020 risk gruops")
 ```
