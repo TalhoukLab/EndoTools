@@ -1,13 +1,13 @@
 #' Assign ESMO 2020
 #'
 #' Assign ESMO 2020 based on stage, grade, histological subtype group,
-#' histological subtype, myometrial invasion, and LVSI. Molecular classification
-#' can be used if available.
+#' myometrial invasion, and LVSI. Molecular classification can be used if
+#' available.
 #'
 #' ESMO 2020 is assigned using stage, grade, histological subtype group,
-#' histological subtype, myometrial invasion, and LVSI into low, intermediate,
-#' high-intermediate, high, advanced, and metastatic risk based on the following
-#' criteria with and without molecular classification:
+#' myometrial invasion, and LVSI into low, intermediate, high-intermediate,
+#' high, advanced, and metastatic risk based on the following criteria with and
+#' without molecular classification:
 #'
 #' **With molecular classification**
 #' * low:
@@ -16,7 +16,7 @@
 #' * intermediate:
 #'   * stage IB, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative or focal, MMRd/NSMP
 #'   * stage IA, grade 3, endometrioid, LVSI negative or focal, MMRd/NSMP
-#'   * stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), no myometrial invasion, p53abn
+#'   * stage IA, non-endometrioid or mixed subtype, no myometrial invasion, p53abn
 #' * high-intermediate:
 #'   * stage IA/IB, endometrioid, LVSI positive or extensive, MMRd/NSMP
 #'   * stage IB, grade 3, endometrioid, MMRd/NSMP
@@ -24,8 +24,8 @@
 #' * high:
 #'   * stage III-IVA, endometrioid, MMRd/NSMP
 #'   * stage I-IVA, endometrioid, >0% myometrial invasion, p53abn
-#'   * stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), >0% myometrial invasion, MMRd/NSMP
-#'   * stage IB-IVA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), MMRd/NSMP
+#'   * stage IA, non-endometrioid or mixed subtype, >0% myometrial invasion, MMRd/NSMP
+#'   * stage IB-IVA, non-endometrioid or mixed subtype, MMRd/NSMP
 #' * advanced:
 #'   * stage III-IVA, any molecular type
 #' * metastatic:
@@ -37,21 +37,20 @@
 #' * intermediate:
 #'   * stage IB, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative or focal
 #'   * stage IA, grade 3, endometrioid, LVSI negative or focal
-#'   * stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), no myometrial invasion
+#'   * stage IA, non-endometrioid or mixed subtype), no myometrial invasion
 #' * high-intermediate:
 #'   * stage IA/IB, endometrioid, LVSI positive or extensive
 #'   * stage IB, grade 3, endometrioid
 #'   * stage II/IIA, endometrioid
 #' * high:
 #'   * stage III-IVA, endometrioid
-#'   * stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), >0% myometrial invasion
-#'   * stage IB-IVA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated)
+#'   * stage IA, non-endometrioid or mixed subtype, >0% myometrial invasion
+#'   * stage IB-IVA, non-endometrioid or mixed subtype
 #' * advanced:
 #'   * stage III-IVA
 #' * metastatic:
 #'   * stage IVB
 #' @inheritParams assign_esmo2016
-#' @param hist histological subtype: detailed histotype
 #' @param eclass molecular classification: "MMRd", "POLEmut", "p53abn", or
 #'   "NSMP/p53wt"
 #' @note Assignment starts from the low group first.
@@ -66,15 +65,15 @@
 #' @examples
 #' # without molecular classification
 #' esmo2020_wo_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
-#' hist_rev_gr, hist, myo, lvi))
+#' hist_rev_gr, myo, lvi))
 #' table(esmo2020_wo_eclass)
 #'
 #' # with molecular classification
 #' eclass <- with(emdb, assign_promise2015(mmr_ihc_2, pole_mut, p53))
 #' esmo2020_w_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
-#' hist_rev_gr, hist, myo, lvi, eclass))
+#' hist_rev_gr, myo, lvi, eclass))
 #' table(esmo2020_w_eclass)
-assign_esmo2020 <- function(stage, grade, hist_gr, hist, myo, lvi,
+assign_esmo2020 <- function(stage, grade, hist_gr, myo, lvi,
                             eclass = NULL) {
   # Molecular classification unknown
   if (is.null(eclass)) {
@@ -88,7 +87,7 @@ assign_esmo2020 <- function(stage, grade, hist_gr, hist, myo, lvi,
       # intermediate
       (stage == "IB" & grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) |
         (stage == "IA" & grade == "grade 3" & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) |
-        (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated") & myo == "none") ~ VC.INTERM,
+        (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo == "none") ~ VC.INTERM,
 
       # high-intermediate
       (stage %in% c("I", "IA", "IB") & hist_gr == "endometrioid" & lvi %in% c("positive", "extensive") ) |
@@ -97,8 +96,8 @@ assign_esmo2020 <- function(stage, grade, hist_gr, hist, myo, lvi,
 
       # high
       (stage %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid") |
-        (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated") & myo != "none") |
-        (stage %in% c("I", "IB", "II", "IIA", "IIB", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated")) ~ VC.HIGH,
+        (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo != "none") |
+        (stage %in% c("I", "IB", "II", "IIA", "IIB", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr)) ~ VC.HIGH,
 
       # advanced
       stage %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") ~ VC.ADVANCED,
@@ -122,7 +121,7 @@ assign_esmo2020 <- function(stage, grade, hist_gr, hist, myo, lvi,
       # intermediate
       (stage == "IB" & grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" & lvi %in% c("negative", "focal") & eclass %in% c("MMRd", "NSMP/p53wt")) |
         (stage == "IA" & grade == "grade 3" & hist_gr == "endometrioid" & lvi %in% c("negative", "focal") & eclass %in% c("MMRd", "NSMP/p53wt")) |
-        (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated") & myo == "none" & eclass == "p53abn") ~ VC.INTERM,
+        (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo == "none" & eclass == "p53abn") ~ VC.INTERM,
 
       # high-intermediate
       (stage %in% c("I", "IA", "IB") & hist_gr == "endometrioid" & lvi %in% c("positive", "extensive") & eclass %in% c("MMRd", "NSMP/p53wt")) |
@@ -132,8 +131,8 @@ assign_esmo2020 <- function(stage, grade, hist_gr, hist, myo, lvi,
       # high
       (stage %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid" & eclass %in% c("MMRd", "NSMP/p53wt")) |
         (stage != "IVB" & hist_gr == "endometrioid" & myo != "none" & eclass == "p53abn") |
-        (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated") & myo != "none"& eclass %in% c("MMRd", "NSMP/p53wt")) |
-        (stage %in% c("I", "IB", "II", "IIA", "IIB", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & hist %in% c("serous", "carcinosarcoma (MMMT)", "undifferentiated") & eclass %in% c("MMRd", "NSMP/p53wt")) ~ VC.HIGH,
+        (stage == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo != "none"& eclass %in% c("MMRd", "NSMP/p53wt")) |
+        (stage %in% c("I", "IB", "II", "IIA", "IIB", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & eclass %in% c("MMRd", "NSMP/p53wt")) ~ VC.HIGH,
 
       # advanced
       stage %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") ~ VC.ADVANCED,

@@ -4,7 +4,7 @@
 \alias{assign_esmo2020}
 \title{Assign ESMO 2020}
 \usage{
-assign_esmo2020(stage, grade, hist_gr, hist, myo, lvi, eclass = NULL)
+assign_esmo2020(stage, grade, hist_gr, myo, lvi, eclass = NULL)
 }
 \arguments{
 \item{stage}{FIGO stage: I, II, III, IV with substages}
@@ -12,8 +12,6 @@ assign_esmo2020(stage, grade, hist_gr, hist, myo, lvi, eclass = NULL)
 \item{grade}{tumour grade: 1, 2, 3}
 
 \item{hist_gr}{histological subtype group: endometrioid or non-endometrioid}
-
-\item{hist}{histological subtype: detailed histotype}
 
 \item{myo}{myometrial invasion: none, 1-50\%, >50\%}
 
@@ -28,14 +26,14 @@ ESMO 202020 assigned into "low", "intermediate", "high-intermediate",
 }
 \description{
 Assign ESMO 2020 based on stage, grade, histological subtype group,
-histological subtype, myometrial invasion, and LVSI. Molecular classification
-can be used if available.
+myometrial invasion, and LVSI. Molecular classification can be used if
+available.
 }
 \details{
 ESMO 2020 is assigned using stage, grade, histological subtype group,
-histological subtype, myometrial invasion, and LVSI into low, intermediate,
-high-intermediate, high, advanced, and metastatic risk based on the following
-criteria with and without molecular classification:
+myometrial invasion, and LVSI into low, intermediate, high-intermediate,
+high, advanced, and metastatic risk based on the following criteria with and
+without molecular classification:
 
 \strong{With molecular classification}
 \itemize{
@@ -48,7 +46,7 @@ criteria with and without molecular classification:
 \itemize{
 \item stage IB, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal, MMRd/NSMP
 \item stage IA, grade 3, endometrioid, LVSI negative or focal, MMRd/NSMP
-\item stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), no myometrial invasion, p53abn
+\item stage IA, non-endometrioid or mixed subtype, no myometrial invasion, p53abn
 }
 \item high-intermediate:
 \itemize{
@@ -60,8 +58,8 @@ criteria with and without molecular classification:
 \itemize{
 \item stage III-IVA, endometrioid, MMRd/NSMP
 \item stage I-IVA, endometrioid, >0\% myometrial invasion, p53abn
-\item stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), >0\% myometrial invasion, MMRd/NSMP
-\item stage IB-IVA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), MMRd/NSMP
+\item stage IA, non-endometrioid or mixed subtype, >0\% myometrial invasion, MMRd/NSMP
+\item stage IB-IVA, non-endometrioid or mixed subtype, MMRd/NSMP
 }
 \item advanced:
 \itemize{
@@ -83,7 +81,7 @@ criteria with and without molecular classification:
 \itemize{
 \item stage IB, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal
 \item stage IA, grade 3, endometrioid, LVSI negative or focal
-\item stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), no myometrial invasion
+\item stage IA, non-endometrioid or mixed subtype), no myometrial invasion
 }
 \item high-intermediate:
 \itemize{
@@ -94,8 +92,8 @@ criteria with and without molecular classification:
 \item high:
 \itemize{
 \item stage III-IVA, endometrioid
-\item stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), >0\% myometrial invasion
-\item stage IB-IVA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated)
+\item stage IA, non-endometrioid or mixed subtype, >0\% myometrial invasion
+\item stage IB-IVA, non-endometrioid or mixed subtype
 }
 \item advanced:
 \itemize{
@@ -113,13 +111,13 @@ Assignment starts from the low group first.
 \examples{
 # without molecular classification
 esmo2020_wo_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
-hist_rev_gr, hist, myo, lvi))
+hist_rev_gr, myo, lvi))
 table(esmo2020_wo_eclass)
 
 # with molecular classification
 eclass <- with(emdb, assign_promise2015(mmr_ihc_2, pole_mut, p53))
 esmo2020_w_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
-hist_rev_gr, hist, myo, lvi, eclass))
+hist_rev_gr, myo, lvi, eclass))
 table(esmo2020_w_eclass)
 }
 \references{

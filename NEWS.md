@@ -1,3 +1,7 @@
+# EndoTools 0.3.0
+
+* Remove `hist` input to `assign_esmo2020()`
+
 # EndoTools 0.2.0
 
 * Add examples in documentation
