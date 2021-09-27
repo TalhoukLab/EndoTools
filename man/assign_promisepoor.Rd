@@ -11,8 +11,6 @@ assign_promisepoor(mmr2, mmr4, pole, p53, grade, hist_gr)
 
 \item{mmr4}{MMR status determined by 4 IHCs: MSH6, PMS2, MLH1, and MSH2}
 
-\item{pole}{POLE mutation status}
-
 \item{p53}{p53 IHC}
 
 \item{grade}{tumour grade: 1, 2, 3}

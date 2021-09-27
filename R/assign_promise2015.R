@@ -7,8 +7,8 @@
 #' 2. POLE all mutations (pathogenic and non-pathogenic) among MMR intact cases
 #' 3. p53 IHC wild type or mutated among POLE wild type cases
 #'
-#' @param mmr MMR status determined by 2 IHCs: MSH6 and PMS2
-#' @param pole POLE mutation status
+#' @param mmr_ihc_2 MMR status determined by 2 IHCs: MSH6 and PMS2
+#' @param pole_mut POLE mutation status
 #' @param p53 p53 IHC
 #' @return ProMisE 2015 assigned into "MMRd", "POLEmut", "p53abn", or "NSMP/p53wt"
 #' @author Derek Chiu, Samuel Leung
@@ -16,14 +16,14 @@
 #' @examples
 #' promise2015 <- with(emdb, assign_promise2015(mmr_ihc_2, pole_mut, p53))
 #' table(promise2015)
-assign_promise2015 <- function(mmr, pole, p53) {
+assign_promise2015 <- function(mmr_ihc_2, pole_mut, p53) {
   factor(
     dplyr::case_when(
-      mmr == "deficient" ~ "MMRd",
-      mmr == "intact" & grepl("mutated", pole) ~ "POLEmut",
-      pole == "wild type" &
+      mmr_ihc_2 == "deficient" ~ "MMRd",
+      mmr_ihc_2 == "intact" & grepl("mutated", pole_mut) ~ "POLEmut",
+      pole_mut == "wild type" &
         grepl("mutated|abnormal|null|overexpression|cytoplasmic", p53) ~ "p53abn",
-      pole == "wild type" & p53 == "wild type" ~ "NSMP/p53wt",
+      pole_mut == "wild type" & p53 == "wild type" ~ "NSMP/p53wt",
       TRUE ~ NA_character_
     ),
     levels = c("MMRd", "POLEmut", "p53abn", "NSMP/p53wt")

@@ -4,12 +4,12 @@
 \alias{assign_promise2015}
 \title{Assign ProMisE 2015}
 \usage{
-assign_promise2015(mmr, pole, p53)
+assign_promise2015(mmr_ihc_2, pole_mut, p53)
 }
 \arguments{
-\item{mmr}{MMR status determined by 2 IHCs: MSH6 and PMS2}
+\item{mmr_ihc_2}{MMR status determined by 2 IHCs: MSH6 and PMS2}
 
-\item{pole}{POLE mutation status}
+\item{pole_mut}{POLE mutation status}
 
 \item{p53}{p53 IHC}
 }

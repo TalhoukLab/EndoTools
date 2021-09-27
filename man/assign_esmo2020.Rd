@@ -5,7 +5,7 @@
 \title{Assign ESMO 2020}
 \usage{
 assign_esmo2020(
-  stage,
+  stage_full,
   grade,
   hist_gr,
   myo,
@@ -15,7 +15,7 @@ assign_esmo2020(
 )
 }
 \arguments{
-\item{stage}{FIGO stage: I, II, III, IV with substages}
+\item{stage_full}{FIGO stage: I, II, III, IV with substages}
 
 \item{grade}{tumour grade: 1, 2, 3}
 
