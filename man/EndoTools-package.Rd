@@ -6,8 +6,8 @@
 \alias{EndoTools-package}
 \title{EndoTools: Endometrial Cancer Helper Tools}
 \description{
-Helper tools such as calculation of ProMisE classifications and
-    ESMO risk groups for endometrial cancers.
+Helper tools such as calculation of ProMisE classifications
+    and ESMO risk groups for endometrial cancers.
 }
 \seealso{
 Useful links:
