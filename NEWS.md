@@ -1,6 +1,8 @@
 # EndoTools 0.3.0
 
-* Remove `hist` input to `assign_esmo2020()`
+* Use standardized variable names, (#7)
+* Add optional parameter for residual disease in `assign_esmo2020()`, (#6)
+* Remove `hist` input to `assign_esmo2020()`, (#5)
 
 # EndoTools 0.2.0
 
