@@ -18,7 +18,9 @@ URL: https://talhouklab.github.io/EndoTools
 Depends: 
     R (>= 3.6)
 Imports: 
-    dplyr
+    assertthat,
+    dplyr,
+    rlang
 Suggests: 
     covr,
     testthat (>= 3.0.0)
