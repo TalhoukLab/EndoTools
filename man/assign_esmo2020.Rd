@@ -4,16 +4,22 @@
 \alias{assign_esmo2020}
 \title{Assign ESMO 2020}
 \usage{
-assign_esmo2020(stage, grade, hist_gr, hist, myo, lvi, eclass = NULL)
+assign_esmo2020(
+  stage_full,
+  grade,
+  hist_gr,
+  myo,
+  lvi,
+  eclass = NULL,
+  residual = NULL
+)
 }
 \arguments{
-\item{stage}{FIGO stage: I, II, III, IV with substages}
+\item{stage_full}{FIGO stage: I, II, III, IV with substages}
 
 \item{grade}{tumour grade: 1, 2, 3}
 
 \item{hist_gr}{histological subtype group: endometrioid or non-endometrioid}
-
-\item{hist}{histological subtype: detailed histotype}
 
 \item{myo}{myometrial invasion: none, 1-50\%, >50\%}
 
@@ -21,6 +27,9 @@ assign_esmo2020(stage, grade, hist_gr, hist, myo, lvi, eclass = NULL)
 
 \item{eclass}{molecular classification: "MMRd", "POLEmut", "p53abn", or
 "NSMP/p53wt"}
+
+\item{residual}{residual disease: "<1cm", ">=1cm", "microscopic", or "no
+residual"}
 }
 \value{
 ESMO 202020 assigned into "low", "intermediate", "high-intermediate",
@@ -28,27 +37,27 @@ ESMO 202020 assigned into "low", "intermediate", "high-intermediate",
 }
 \description{
 Assign ESMO 2020 based on stage, grade, histological subtype group,
-histological subtype, myometrial invasion, and LVSI. Molecular classification
+myometrial invasion, and LVSI. Molecular classification and residual disease
 can be used if available.
 }
 \details{
 ESMO 2020 is assigned using stage, grade, histological subtype group,
-histological subtype, myometrial invasion, and LVSI into low, intermediate,
-high-intermediate, high, advanced, and metastatic risk based on the following
-criteria with and without molecular classification:
+myometrial invasion, and LVSI into low, intermediate, high-intermediate,
+high, advanced, and metastatic risk based on the following criteria with and
+without molecular classification/residual disease:
 
 \strong{With molecular classification}
 \itemize{
 \item low:
 \itemize{
-\item stage I-II, POLEmut
+\item stage I-II, POLEmut, (no residual disease if known)
 \item stage IA, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal, MMRd/NSMP
 }
 \item intermediate:
 \itemize{
 \item stage IB, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal, MMRd/NSMP
 \item stage IA, grade 3, endometrioid, LVSI negative or focal, MMRd/NSMP
-\item stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), no myometrial invasion, p53abn
+\item stage IA, non-endometrioid or mixed subtype, no myometrial invasion, p53abn
 }
 \item high-intermediate:
 \itemize{
@@ -58,14 +67,14 @@ criteria with and without molecular classification:
 }
 \item high:
 \itemize{
-\item stage III-IVA, endometrioid, MMRd/NSMP
-\item stage I-IVA, endometrioid, >0\% myometrial invasion, p53abn
-\item stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), >0\% myometrial invasion, MMRd/NSMP
-\item stage IB-IVA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), MMRd/NSMP
+\item stage III-IVA, endometrioid, MMRd/NSMP, (no residual disease if known)
+\item stage I-IVA, endometrioid, >0\% myometrial invasion, p53abn, (no residual disease if known)
+\item stage IA, non-endometrioid or mixed subtype, >0\% myometrial invasion, MMRd/NSMP, (no residual disease if known)
+\item stage IB-IVA, non-endometrioid or mixed subtype, MMRd/NSMP, (no residual disease if known)
 }
 \item advanced:
 \itemize{
-\item stage III-IVA, any molecular type
+\item stage III-IVA, any molecular type, (with residual disease if known)
 }
 \item metastatic:
 \itemize{
@@ -83,7 +92,7 @@ criteria with and without molecular classification:
 \itemize{
 \item stage IB, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal
 \item stage IA, grade 3, endometrioid, LVSI negative or focal
-\item stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), no myometrial invasion
+\item stage IA, non-endometrioid or mixed subtype), no myometrial invasion
 }
 \item high-intermediate:
 \itemize{
@@ -93,13 +102,13 @@ criteria with and without molecular classification:
 }
 \item high:
 \itemize{
-\item stage III-IVA, endometrioid
-\item stage IA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated), >0\% myometrial invasion
-\item stage IB-IVA, non-endometrioid or mixed subtype (serous, carcinosarcoma (MMMT), or undifferentiated)
+\item stage III-IVA, endometrioid, (no residual disease if known)
+\item stage IA, non-endometrioid or mixed subtype, >0\% myometrial invasion, (no residual disease if known)
+\item stage IB-IVA, non-endometrioid or mixed subtype, (no residual disease if known)
 }
 \item advanced:
 \itemize{
-\item stage III-IVA
+\item stage III-IVA, (with residual disease if known)
 }
 \item metastatic:
 \itemize{
@@ -113,13 +122,13 @@ Assignment starts from the low group first.
 \examples{
 # without molecular classification
 esmo2020_wo_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
-hist_rev_gr, hist, myo, lvi))
+hist_rev_gr, myo, lvi))
 table(esmo2020_wo_eclass)
 
 # with molecular classification
 eclass <- with(emdb, assign_promise2015(mmr_ihc_2, pole_mut, p53))
 esmo2020_w_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
-hist_rev_gr, hist, myo, lvi, eclass))
+hist_rev_gr, myo, lvi, eclass))
 table(esmo2020_w_eclass)
 }
 \references{

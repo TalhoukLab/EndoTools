@@ -15,13 +15,18 @@
 #' @examples
 #' promise2019 <- with(emdb, assign_promise2019(mmr_ihc_2, pole_mut, p53))
 #' table(promise2019)
-assign_promise2019 <- function(mmr, pole, p53) {
+assign_promise2019 <- function(mmr_ihc_2, pole_mut, p53) {
+  # Validate inputs
+  check_input(mmr_ihc_2, MMR_STD)
+  check_input(pole_mut, POLE_STD)
+  check_input(p53, P53_STD)
+
   factor(
     dplyr::case_when(
-      pole == "mutated" ~ "POLEmut",
-      pole %in% c("mutated/non-path", "wild type") & mmr == "deficient" ~ "MMRd",
-      mmr == "intact" & grepl("mutated|abnormal|null|overexpression|cytoplasmic", p53) ~ "p53abn",
-      mmr == "intact" & p53 == "wild type" ~ "NSMP/p53wt",
+      pole_mut == "mutated" ~ "POLEmut",
+      pole_mut %in% c("mutated/non-path", "wild type") & mmr_ihc_2 == "deficient" ~ "MMRd",
+      mmr_ihc_2 == "intact" & grepl("mutated|abnormal|null|overexpression|cytoplasmic", p53) ~ "p53abn",
+      mmr_ihc_2 == "intact" & p53 == "wild type" ~ "NSMP/p53wt",
       TRUE ~ NA_character_
     ),
     levels = c("POLEmut", "MMRd", "p53abn", "NSMP/p53wt")

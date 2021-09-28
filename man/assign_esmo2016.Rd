@@ -4,10 +4,10 @@
 \alias{assign_esmo2016}
 \title{Assign ESMO 2016}
 \usage{
-assign_esmo2016(stage, grade, hist_gr, myo, lvi)
+assign_esmo2016(stage_full, grade, hist_gr, myo, lvi)
 }
 \arguments{
-\item{stage}{FIGO stage: I, II, III, IV with substages}
+\item{stage_full}{FIGO stage: I, II, III, IV with substages}
 
 \item{grade}{tumour grade: 1, 2, 3}
 

@@ -4,14 +4,14 @@
 \alias{assign_promisepoor}
 \title{Assign Poor-man's ProMisE}
 \usage{
-assign_promisepoor(mmr2, mmr4, pole, p53, grade, hist_gr)
+assign_promisepoor(mmr_ihc_2, mmr_ihc_4, pole_mut, p53, grade, hist_gr)
 }
 \arguments{
-\item{mmr2}{MMR status determined by 2 IHCs: MSH6 and PMS2}
+\item{mmr_ihc_2}{MMR status determined by 2 IHCs: MSH6 and PMS2}
 
-\item{mmr4}{MMR status determined by 4 IHCs: MSH6, PMS2, MLH1, and MSH2}
+\item{mmr_ihc_4}{MMR status determined by 4 IHCs: MSH6, PMS2, MLH1, and MSH2}
 
-\item{pole}{POLE mutation status}
+\item{pole_mut}{POLE mutation status}
 
 \item{p53}{p53 IHC}
 

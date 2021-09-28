@@ -1,7 +1,7 @@
 Package: EndoTools
 Title: Endometrial Cancer Helper Tools
-Version: 0.2.0
-Date: 2021-08-20
+Version: 0.3.0
+Date: 2021-09-28
 Authors@R: 
     c(person(given = "Derek",
              family = "Chiu",
@@ -11,19 +11,21 @@ Authors@R:
              family = "Leung",
              role = "aut",
              email = "Samuel.Leung@vch.ca"))
-Description: Helper tools such as calculation of ProMisE classifications and
-    ESMO risk groups for endometrial cancers.
+Description: Helper tools such as calculation of ProMisE classifications
+    and ESMO risk groups for endometrial cancers.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+URL: https://talhouklab.github.io/EndoTools
+Depends: 
+    R (>= 3.6)
 Imports: 
-    dplyr
+    assertthat,
+    dplyr,
+    rlang
 Suggests: 
     covr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Depends: 
-    R (>= 2.10)
-URL: https://talhouklab.github.io/EndoTools
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2

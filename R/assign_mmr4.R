@@ -17,6 +17,13 @@
 #' mmr_ihc_4 <- with(emdb, assign_mmr4(msh6, pms2, mlh1, msh2))
 #' table(mmr_ihc_4)
 assign_mmr4 <- function(msh6, pms2, mlh1, msh2) {
+  # Validate inputs
+  check_input(msh6, IHC_MARKER_STD)
+  check_input(pms2, IHC_MARKER_STD)
+  check_input(mlh1, IHC_MARKER_STD)
+  check_input(msh2, IHC_MARKER_STD)
+
+  # Assign MMR
   dplyr::if_else(
     msh6 == "intact" &
       pms2 == "intact" &

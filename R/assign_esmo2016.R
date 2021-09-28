@@ -39,37 +39,45 @@
 #' esmo2016 <- with(emdb, assign_esmo2016(stage_full, grade_rev, hist_rev_gr,
 #' myo, lvi))
 #' table(esmo2016)
-assign_esmo2016 <- function(stage, grade, hist_gr, myo, lvi) {
+assign_esmo2016 <- function(stage_full, grade, hist_gr, myo, lvi) {
+  # Validate inputs
+  check_input(stage_full, STAGE_STD)
+  check_input(grade, GRADE_STD)
+  check_input(hist_gr, HIST_STD)
+  check_input(myo, MYO_STD)
+  check_input(lvi, LVI_STD)
+
+  # Assign risk groups
   dplyr::case_when(
     # metastatic
-    stage == "IVB" ~ VC.METASTATIC,
+    stage_full == "IVB" ~ VC.METASTATIC,
 
     # advanced
-    stage == "IVA" ~ VC.ADVANCED,
+    stage_full == "IVA" ~ VC.ADVANCED,
 
     # high
-    (grepl("^I[A-C]?$", stage) &
+    (grepl("^I[A-C]?$", stage_full) &
        hist_gr == "endometrioid" &
        grade == "grade 3" & myo == ">50%") |
-      (grepl("^(II|III|IV)[A-C]?[1-2]?$", stage)) |
+      (grepl("^(II|III|IV)[A-C]?[1-2]?$", stage_full)) |
       (hist_gr == "non-endometrioid") ~ VC.HIGH,
 
     # high-intermediate
-    (grepl("^I[A-C]?$", stage) &
+    (grepl("^I[A-C]?$", stage_full) &
        hist_gr == "endometrioid" &
        grade == "grade 3" & myo %in% c(VC.NONE, "1-50%")) |
-      (grepl("^I[A-C]?$", stage) &
+      (grepl("^I[A-C]?$", stage_full) &
          hist_gr == "endometrioid" &
          grade %in% c("grade 1", "grade 2") & lvi == VC.POSITIVE) ~ VC.HIGH.INTERM,
 
     # intermediate
-    grepl("^I[A-C]?$", stage) &
+    grepl("^I[A-C]?$", stage_full) &
       hist_gr == "endometrioid" &
       grade %in% c("grade 1", "grade 2") &
       myo == ">50%" & lvi == VC.NEGATIVE ~ VC.INTERM,
 
     # low
-    grepl("^I[A-C]?$", stage) &
+    grepl("^I[A-C]?$", stage_full) &
       hist_gr == "endometrioid" &
       grade %in% c("grade 1", "grade 2") &
       myo %in% c(VC.NONE, "1-50%") & lvi == VC.NEGATIVE ~ VC.LOW,
