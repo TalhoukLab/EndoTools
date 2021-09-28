@@ -77,8 +77,19 @@
 #' table(esmo2020_w_eclass)
 assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
                             eclass = NULL, residual = NULL) {
-  # Check if residual disease is provided
-  residual <- residual %||% rep(TRUE, length(stage_full))
+  # Validate inputs
+  check_input(stage_full, STAGE_STD)
+  check_input(grade, GRADE_STD)
+  check_input(hist_gr, HIST_STD)
+  check_input(myo, MYO_STD)
+  check_input(lvi, LVI_STD)
+
+  # Validate residual disease if provided
+  if (is.null(residual)) {
+    residual <- rep(TRUE, length(stage_full))
+  } else {
+    check_input(residual, RESIDUAL_STD)
+  }
 
   # Molecular classification unknown
   if (is.null(eclass)) {
@@ -114,6 +125,9 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
       TRUE ~ NA_character_
     )
   } else {  # molecular classification known
+    # Validate molecular classification
+    check_input(eclass, ECLASS_STD)
+
     dplyr::case_when(
       # low
       (grepl("^(I|II)[A-C]?(/C)?$", stage_full) & eclass == "POLEmut" & (residual | residual == "no residual")) |

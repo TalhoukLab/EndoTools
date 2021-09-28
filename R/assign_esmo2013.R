@@ -30,6 +30,10 @@
 assign_esmo2013 <- function(stage_full, grade, hist_gr) {
   # Validate inputs
   check_input(stage_full, STAGE_STD)
+  check_input(grade, GRADE_STD)
+  check_input(hist_gr, HIST_STD)
+
+  # Assign risk groups
   dplyr::case_when(
     # high
     (hist_gr == "non-endometrioid") |

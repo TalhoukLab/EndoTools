@@ -16,6 +16,11 @@
 #' promise2019 <- with(emdb, assign_promise2019(mmr_ihc_2, pole_mut, p53))
 #' table(promise2019)
 assign_promise2019 <- function(mmr_ihc_2, pole_mut, p53) {
+  # Validate inputs
+  check_input(mmr_ihc_2, MMR_STD)
+  check_input(pole_mut, POLE_STD)
+  check_input(p53, P53_STD)
+
   factor(
     dplyr::case_when(
       pole_mut == "mutated" ~ "POLEmut",

@@ -40,6 +40,14 @@
 #' myo, lvi))
 #' table(esmo2016)
 assign_esmo2016 <- function(stage_full, grade, hist_gr, myo, lvi) {
+  # Validate inputs
+  check_input(stage_full, STAGE_STD)
+  check_input(grade, GRADE_STD)
+  check_input(hist_gr, HIST_STD)
+  check_input(myo, MYO_STD)
+  check_input(lvi, LVI_STD)
+
+  # Assign risk groups
   dplyr::case_when(
     # metastatic
     stage_full == "IVB" ~ VC.METASTATIC,

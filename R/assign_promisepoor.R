@@ -19,6 +19,14 @@
 #' p53, grade_rev, hist_rev_gr))
 #' table(promisepoor)
 assign_promisepoor <- function(mmr_ihc_2, mmr_ihc_4, pole_mut, p53, grade, hist_gr) {
+  # Validate inputs
+  check_input(mmr_ihc_2, MMR_STD)
+  check_input(mmr_ihc_4, MMR_STD)
+  check_input(pole_mut, POLE_STD)
+  check_input(p53, P53_STD)
+  check_input(grade, GRADE_STD)
+  check_input(hist_gr, HIST_STD)
+
   factor(
     dplyr::case_when(
       grade %in% c("grade 1", "grade 2") &
