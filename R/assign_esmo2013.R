@@ -28,6 +28,8 @@
 #' esmo2013 <- with(emdb, assign_esmo2013(stage_full, grade_rev, hist_rev_gr))
 #' table(esmo2013)
 assign_esmo2013 <- function(stage_full, grade, hist_gr) {
+  # Validate inputs
+  check_input(stage_full, STAGE_STD)
   dplyr::case_when(
     # high
     (hist_gr == "non-endometrioid") |
