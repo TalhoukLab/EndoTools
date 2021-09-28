@@ -1,7 +1,7 @@
 Package: EndoTools
 Title: Endometrial Cancer Helper Tools
 Version: 0.3.0
-Date: 2021-08-20
+Date: 2021-09-28
 Authors@R: 
     c(person(given = "Derek",
              family = "Chiu",
