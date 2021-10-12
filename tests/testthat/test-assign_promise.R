@@ -6,10 +6,10 @@ test_that("promise2015 works", {
     pole_mut = emdb$pole_mut,
     p53 = emdb$p53
   )
-  expect_equal(sum(emdb$promise2015 == "MMRd"), 213)
-  expect_equal(sum(emdb$promise2015 == "POLEmut"), 62)
-  expect_equal(sum(emdb$promise2015 == "p53abn"), 125)
-  expect_equal(sum(emdb$promise2015 == "NSMP/p53wt"), 400)
+  expect_equal(sum(emdb$promise2015 == "MMRd"), 196)
+  expect_equal(sum(emdb$promise2015 == "POLEmut"), 67)
+  expect_equal(sum(emdb$promise2015 == "p53abn"), 119)
+  expect_equal(sum(emdb$promise2015 == "NSMP/p53wt"), 418)
 })
 
 test_that("promise2019 works", {
@@ -18,10 +18,10 @@ test_that("promise2019 works", {
     pole_mut = emdb$pole_mut,
     p53 = emdb$p53
   )
-  expect_equal(sum(emdb$promise2019 == "POLEmut"), 49)
-  expect_equal(sum(emdb$promise2019 == "MMRd"), 204)
-  expect_equal(sum(emdb$promise2019 == "p53abn"), 129)
-  expect_equal(sum(emdb$promise2019 == "NSMP/p53wt"), 418)
+  expect_equal(sum(emdb$promise2019 == "POLEmut"), 63)
+  expect_equal(sum(emdb$promise2019 == "MMRd"), 182)
+  expect_equal(sum(emdb$promise2019 == "p53abn"), 124)
+  expect_equal(sum(emdb$promise2019 == "NSMP/p53wt"), 431)
 })
 
 test_that("promisepoor works", {
@@ -33,11 +33,11 @@ test_that("promisepoor works", {
     grade = emdb$grade_rev,
     hist_gr = emdb$hist_rev_gr
   )
-  expect_equal(sum(emdb$promisepoor == "Low-Risk"), 162)
-  expect_equal(sum(emdb$promisepoor == "POLEmut"), 36)
-  expect_equal(sum(emdb$promisepoor == "MMRd"), 204)
-  expect_equal(sum(emdb$promisepoor == "p53abn"), 129)
-  expect_equal(sum(emdb$promisepoor == "NSMP/p53wt"), 269)
+  expect_equal(sum(emdb$promisepoor == "Low-Risk"), 190)
+  expect_equal(sum(emdb$promisepoor == "POLEmut"), 49)
+  expect_equal(sum(emdb$promisepoor == "MMRd"), 182)
+  expect_equal(sum(emdb$promisepoor == "p53abn"), 124)
+  expect_equal(sum(emdb$promisepoor == "NSMP/p53wt"), 255)
 })
 
 test_that("p53 can be used raw or consolidated", {

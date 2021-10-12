@@ -58,9 +58,9 @@ test_that("esmo2020 with eclass works", {
     eclass = emdb$promise2015
   )
   expect_equal(sum(emdb$esmo2020 == "low", na.rm = TRUE), 134)
-  expect_equal(sum(emdb$esmo2020 == "intermediate", na.rm = TRUE), 92)
-  expect_equal(sum(emdb$esmo2020 == "high-intermediate", na.rm = TRUE), 144)
-  expect_equal(sum(emdb$esmo2020 == "high", na.rm = TRUE), 332)
-  expect_equal(sum(emdb$esmo2020 == "advanced", na.rm = TRUE), 22)
+  expect_equal(sum(emdb$esmo2020 == "intermediate", na.rm = TRUE), 96)
+  expect_equal(sum(emdb$esmo2020 == "high-intermediate", na.rm = TRUE), 134)
+  expect_equal(sum(emdb$esmo2020 == "high", na.rm = TRUE), 338)
+  expect_equal(sum(emdb$esmo2020 == "advanced", na.rm = TRUE), 23)
   expect_equal(sum(emdb$esmo2020 == "metastatic", na.rm = TRUE), 6)
 })
