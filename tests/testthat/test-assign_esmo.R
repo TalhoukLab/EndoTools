@@ -64,3 +64,26 @@ test_that("esmo2020 with eclass works", {
   expect_equal(sum(emdb$esmo2020 == "advanced", na.rm = TRUE), 23)
   expect_equal(sum(emdb$esmo2020 == "metastatic", na.rm = TRUE), 6)
 })
+
+test_that("esmo2020 with residual disease works", {
+  emdb$promise2015 <- assign_promise2015(
+    mmr = emdb$mmr_ihc_2,
+    pole = emdb$pole_mut,
+    p53 = emdb$p53
+  )
+  emdb$esmo2020 <- assign_esmo2020(
+    stage = emdb$stage_full,
+    grade = emdb$grade_rev,
+    hist_gr = emdb$hist_rev_gr,
+    myo = emdb$myo,
+    lvi = emdb$lvi,
+    eclass = emdb$promise2015,
+    residual = emdb$residual
+  )
+  expect_equal(sum(emdb$esmo2020 == "low", na.rm = TRUE), 123)
+  expect_equal(sum(emdb$esmo2020 == "intermediate", na.rm = TRUE), 96)
+  expect_equal(sum(emdb$esmo2020 == "high-intermediate", na.rm = TRUE), 134)
+  expect_equal(sum(emdb$esmo2020 == "high", na.rm = TRUE), 292)
+  expect_equal(sum(emdb$esmo2020 == "advanced", na.rm = TRUE), 28)
+  expect_equal(sum(emdb$esmo2020 == "metastatic", na.rm = TRUE), 6)
+})
