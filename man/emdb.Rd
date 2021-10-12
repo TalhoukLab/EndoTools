@@ -5,7 +5,7 @@
 \alias{emdb}
 \title{Simulated endometrial cancer Database}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 800 rows and 16 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 800 rows and 17 columns.
 }
 \usage{
 emdb
@@ -44,6 +44,10 @@ in the Vancouver endometrial cancer database.
 \item lvi
 \itemize{
 \item lymphovascular invasion (LVSI)
+}
+\item residual
+\itemize{
+\item residual disease
 }
 \item mmr_ihc_2
 \itemize{

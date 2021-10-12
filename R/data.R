@@ -19,6 +19,8 @@
 #'   * myometrial invasion
 #' * lvi
 #'   * lymphovascular invasion (LVSI)
+#' * residual
+#'   * residual disease
 #' * mmr_ihc_2
 #'   * MMR status determined by 2 IHC markers
 #' * mmr_ihc_4

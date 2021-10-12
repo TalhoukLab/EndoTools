@@ -66,6 +66,12 @@ emdb <- tibble(
     replace = TRUE,
     prob = c(0.7, 0.3)
   ),
+  residual = sample(
+    x = factor(c("no residual", "microscopic", "<1cm", ">=1cm")),
+    size = n,
+    replace = TRUE,
+    prob = c(0.85, 0.05, 0.05, 0.05)
+  ),
   mmr_ihc_2 = sample(
     x = fct_inorder(c("intact", "deficient")),
     size = n,
