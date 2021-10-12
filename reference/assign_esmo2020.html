@@ -74,7 +74,7 @@ can be used if available." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EndoTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -265,9 +265,18 @@ First: 18 December 2020. doi: 10.1136/ijgc-2020-002230</p>
 <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_w_eclass</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; esmo2020_w_eclass
 #&gt;          advanced              high high-intermediate      intermediate 
-#&gt;                22               332               144                92 
+#&gt;                23               338               134                96 
 #&gt;               low        metastatic 
-#&gt;               134                 6 </div></pre>
+#&gt;               134                 6 </div><div class='input'>
+<span class='co'># with molecular classification and residual disease</span>
+<span class='va'>esmo2020_w_eclass_res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'>assign_esmo2020</span><span class='op'>(</span><span class='va'>stage_full</span>, <span class='va'>grade_rev</span>,
+<span class='va'>hist_rev_gr</span>, <span class='va'>myo</span>, <span class='va'>lvi</span>, <span class='va'>eclass</span>, <span class='va'>residual</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_w_eclass_res</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; esmo2020_w_eclass_res
+#&gt;          advanced              high high-intermediate      intermediate 
+#&gt;                28               292               134                96 
+#&gt;               low        metastatic 
+#&gt;               123                 6 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

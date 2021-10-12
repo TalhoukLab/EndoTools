@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EndoTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 800 rows and 16 columns.</p>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 800 rows and 17 columns.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Each clinical variable has a distribution simulated from the proportions seen
@@ -151,6 +151,9 @@ in the Vancouver endometrial cancer database.</p><ul>
 <li><p>lvi</p><ul>
 <li><p>lymphovascular invasion (LVSI)</p></li>
 </ul></li>
+<li><p>residual</p><ul>
+<li><p>residual disease</p></li>
+</ul></li>
 <li><p>mmr_ihc_2</p><ul>
 <li><p>MMR status determined by 2 IHC markers</p></li>
 </ul></li>
@@ -174,21 +177,21 @@ in the Vancouver endometrial cancer database.</p><ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>emdb</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 800 × 16</span>
-#&gt;    stage_full stage grade_rev hist_rev_gr  hist  myo   lvi   mmr_ihc_2 mmr_ihc_4
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span> IA         I     grade 3   non-endomet… endo… none  nega… intact    intact   
-#&gt; <span style='color: #BCBCBC;'> 2</span> III        III   grade 3   endometrioid endo… 1-50% nega… intact    intact   
-#&gt; <span style='color: #BCBCBC;'> 3</span> IV         IV    grade 1   endometrioid sero… &gt;50%  posi… intact    intact   
-#&gt; <span style='color: #BCBCBC;'> 4</span> IA         I     grade 3   endometrioid sero… 1-50% nega… intact    intact   
-#&gt; <span style='color: #BCBCBC;'> 5</span> II         II    grade 1   non-endomet… clea… none  nega… intact    intact   
-#&gt; <span style='color: #BCBCBC;'> 6</span> IV         IV    grade 1   endometrioid clea… 1-50% nega… intact    intact   
-#&gt; <span style='color: #BCBCBC;'> 7</span> II         II    grade 3   non-endomet… endo… 1-50% nega… deficient deficient
-#&gt; <span style='color: #BCBCBC;'> 8</span> IA         I     grade 3   endometrioid sero… 1-50% nega… intact    intact   
-#&gt; <span style='color: #BCBCBC;'> 9</span> III        III   grade 1   non-endomet… endo… 1-50% posi… intact    intact   
-#&gt; <span style='color: #BCBCBC;'>10</span> IVB        IV    grade 3   non-endomet… endo… &gt;50%  nega… intact    intact   
-#&gt; <span style='color: #949494;'># … with 790 more rows, and 7 more variables: pole_mut &lt;fct&gt;, p53 &lt;fct&gt;,</span>
-#&gt; <span style='color: #949494;'>#   p53_mut &lt;fct&gt;, msh6 &lt;fct&gt;, pms2 &lt;fct&gt;, mlh1 &lt;fct&gt;, msh2 &lt;fct&gt;</span></div></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 800 × 17</span>
+#&gt;    stage_full stage grade_rev hist_rev_gr  hist   myo   lvi   residual mmr_ihc_2
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'> 1</span> IA         I     grade 3   non-endomet… endom… none  nega… no resi… intact   
+#&gt; <span style='color: #BCBCBC;'> 2</span> III        III   grade 3   endometrioid endom… 1-50% nega… no resi… intact   
+#&gt; <span style='color: #BCBCBC;'> 3</span> IV         IV    grade 1   endometrioid serous &gt;50%  posi… no resi… intact   
+#&gt; <span style='color: #BCBCBC;'> 4</span> IA         I     grade 3   endometrioid serous 1-50% nega… no resi… intact   
+#&gt; <span style='color: #BCBCBC;'> 5</span> II         II    grade 1   non-endomet… clear… none  nega… no resi… intact   
+#&gt; <span style='color: #BCBCBC;'> 6</span> IV         IV    grade 1   endometrioid clear… 1-50% nega… no resi… intact   
+#&gt; <span style='color: #BCBCBC;'> 7</span> II         II    grade 3   non-endomet… endom… 1-50% nega… &gt;=1cm    intact   
+#&gt; <span style='color: #BCBCBC;'> 8</span> IA         I     grade 3   endometrioid serous 1-50% nega… no resi… deficient
+#&gt; <span style='color: #BCBCBC;'> 9</span> III        III   grade 1   non-endomet… endom… 1-50% posi… no resi… intact   
+#&gt; <span style='color: #BCBCBC;'>10</span> IVB        IV    grade 3   non-endomet… endom… &gt;50%  nega… no resi… intact   
+#&gt; <span style='color: #949494;'># … with 790 more rows, and 8 more variables: mmr_ihc_4 &lt;fct&gt;, pole_mut &lt;fct&gt;,</span>
+#&gt; <span style='color: #949494;'>#   p53 &lt;fct&gt;, p53_mut &lt;fct&gt;, msh6 &lt;fct&gt;, pms2 &lt;fct&gt;, mlh1 &lt;fct&gt;, msh2 &lt;fct&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
