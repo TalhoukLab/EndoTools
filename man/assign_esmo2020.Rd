@@ -130,6 +130,11 @@ eclass <- with(emdb, assign_promise2015(mmr_ihc_2, pole_mut, p53))
 esmo2020_w_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
 hist_rev_gr, myo, lvi, eclass))
 table(esmo2020_w_eclass)
+
+# with molecular classification and residual disease
+esmo2020_w_eclass_res <- with(emdb, assign_esmo2020(stage_full, grade_rev,
+hist_rev_gr, myo, lvi, eclass, residual))
+table(esmo2020_w_eclass_res)
 }
 \references{
 Concin N, Matias-Guiu X, Vergote I, et al ESGO/ESTRO/ESP

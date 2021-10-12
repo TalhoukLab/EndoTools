@@ -75,6 +75,11 @@
 #' esmo2020_w_eclass <- with(emdb, assign_esmo2020(stage_full, grade_rev,
 #' hist_rev_gr, myo, lvi, eclass))
 #' table(esmo2020_w_eclass)
+#'
+#' # with molecular classification and residual disease
+#' esmo2020_w_eclass_res <- with(emdb, assign_esmo2020(stage_full, grade_rev,
+#' hist_rev_gr, myo, lvi, eclass, residual))
+#' table(esmo2020_w_eclass_res)
 assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
                             eclass = NULL, residual = NULL) {
   # Validate inputs
@@ -86,8 +91,9 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
 
   # Validate residual disease if provided
   if (is.null(residual)) {
-    residual <- rep(TRUE, length(stage_full))
+    no_residual <- residual <- rep(TRUE, length(stage_full))
   } else {
+    no_residual <- rep(FALSE, length(stage_full))
     check_input(residual, RESIDUAL_STD)
   }
 
@@ -111,12 +117,12 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
         (stage_full %in% c("II", "IIA", "IIB") & hist_gr == "endometrioid") ~ VC.HIGH.INTERM,
 
       # high
-      (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid" & (residual | residual == "no residual")) |
-        (stage_full == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo != "none" & (residual | residual == "no residual")) |
-        (stage_full %in% c("I", "IB", "II", "IIA", "IIB", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & (residual | residual == "no residual")) ~ VC.HIGH,
+      (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid" & ifelse(no_residual, residual, residual == "no residual")) |
+        (stage_full == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo != "none" & ifelse(no_residual, residual, residual == "no residual")) |
+        (stage_full %in% c("I", "IB", "II", "IIA", "IIB", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & ifelse(no_residual, residual, residual == "no residual")) ~ VC.HIGH,
 
       # advanced
-      stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & (residual | residual != "no residual") ~ VC.ADVANCED,
+      stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & ifelse(no_residual, residual, residual != "no residual") ~ VC.ADVANCED,
 
       # metastatic
       stage_full == "IVB" ~ VC.METASTATIC,
@@ -130,7 +136,7 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
 
     dplyr::case_when(
       # low
-      (grepl("^(I|II)[A-C]?(/C)?$", stage_full) & eclass == "POLEmut" & (residual | residual == "no residual")) |
+      (grepl("^(I|II)[A-C]?(/C)?$", stage_full) & eclass == "POLEmut" & ifelse(no_residual, residual, residual == "no residual")) |
         (stage_full == "IA" &
            grade %in% c("grade 1", "grade 2") &
            hist_gr == "endometrioid" &
@@ -148,13 +154,13 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
         (stage_full %in% c("II", "IIA", "IIB") & hist_gr == "endometrioid" & eclass %in% c("MMRd", "NSMP/p53wt")) ~ VC.HIGH.INTERM,
 
       # high
-      (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid" & eclass %in% c("MMRd", "NSMP/p53wt") & (residual | residual == "no residual")) |
-        (stage_full != "IVB" & hist_gr == "endometrioid" & myo != "none" & eclass == "p53abn" & (residual | residual == "no residual")) |
-        (stage_full == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo != "none" & eclass %in% c("MMRd", "NSMP/p53wt") & (residual | residual == "no residual")) |
-        (stage_full %in% c("I", "IB", "II", "IIA", "IIB", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & eclass %in% c("MMRd", "NSMP/p53wt") & (residual | residual == "no residual")) ~ VC.HIGH,
+      (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid" & eclass %in% c("MMRd", "NSMP/p53wt") & ifelse(no_residual, residual, residual == "no residual")) |
+        (stage_full != "IVB" & hist_gr == "endometrioid" & myo != "none" & eclass == "p53abn" & ifelse(no_residual, residual, residual == "no residual")) |
+        (stage_full == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo != "none" & eclass %in% c("MMRd", "NSMP/p53wt") & ifelse(no_residual, residual, residual == "no residual")) |
+        (stage_full %in% c("I", "IB", "II", "IIA", "IIB", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & eclass %in% c("MMRd", "NSMP/p53wt") & ifelse(no_residual, residual, residual == "no residual")) ~ VC.HIGH,
 
       # advanced
-      stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & (residual | residual != "no residual") ~ VC.ADVANCED,
+      stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & ifelse(no_residual, residual, residual != "no residual") ~ VC.ADVANCED,
 
       # metastatic
       stage_full == "IVB" ~ VC.METASTATIC,
