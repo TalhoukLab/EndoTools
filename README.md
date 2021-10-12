@@ -40,7 +40,7 @@ df <- emdb %>%
   mutate(
     esmo2013 = assign_esmo2013(stage_full, grade_rev, hist_rev_gr),
     esmo2016 = assign_esmo2016(stage_full, grade_rev, hist_rev_gr, myo, lvi),
-    esmo2020 = assign_esmo2020(stage_full, grade_rev, hist_rev_gr, hist, myo, lvi)
+    esmo2020 = assign_esmo2020(stage_full, grade_rev, hist_rev_gr, myo, lvi)
   )
 
 df %>% 
@@ -66,31 +66,30 @@ df %>%
 
 df %>% 
   count(esmo2020)
-#> # A tibble: 7 × 2
+#> # A tibble: 6 × 2
 #>   esmo2020              n
 #>   <chr>             <int>
-#> 1 advanced             45
-#> 2 high                156
-#> 3 high-intermediate   181
-#> 4 intermediate        124
-#> 5 low                 110
-#> 6 metastatic            6
-#> 7 <NA>                178
+#> 1 high                345
+#> 2 high-intermediate   181
+#> 3 intermediate        135
+#> 4 low                 110
+#> 5 metastatic            6
+#> 6 <NA>                 23
 
 df %>% 
   count(esmo2013, esmo2016, esmo2020)
-#> # A tibble: 24 × 4
-#>    esmo2013 esmo2016          esmo2020              n
-#>    <chr>    <chr>             <chr>             <int>
-#>  1 high     advanced          advanced              2
-#>  2 high     advanced          high                 10
-#>  3 high     high              advanced             43
-#>  4 high     high              high                146
-#>  5 high     high              high-intermediate    59
-#>  6 high     high              intermediate          4
-#>  7 high     high              <NA>                160
-#>  8 high     high-intermediate high-intermediate    14
-#>  9 high     high-intermediate <NA>                  1
-#> 10 high     metastatic        metastatic            6
-#> # … with 14 more rows
+#> # A tibble: 22 × 4
+#>    esmo2013     esmo2016          esmo2020              n
+#>    <chr>        <chr>             <chr>             <int>
+#>  1 high         advanced          high                 12
+#>  2 high         high              high                333
+#>  3 high         high              high-intermediate    59
+#>  4 high         high              intermediate         15
+#>  5 high         high              <NA>                  5
+#>  6 high         high-intermediate high-intermediate    14
+#>  7 high         high-intermediate <NA>                  1
+#>  8 high         metastatic        metastatic            6
+#>  9 intermediate high              high-intermediate    15
+#> 10 intermediate high              intermediate         35
+#> # … with 12 more rows
 ```

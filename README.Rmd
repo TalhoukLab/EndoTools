@@ -48,7 +48,7 @@ df <- emdb %>%
   mutate(
     esmo2013 = assign_esmo2013(stage_full, grade_rev, hist_rev_gr),
     esmo2016 = assign_esmo2016(stage_full, grade_rev, hist_rev_gr, myo, lvi),
-    esmo2020 = assign_esmo2020(stage_full, grade_rev, hist_rev_gr, hist, myo, lvi)
+    esmo2020 = assign_esmo2020(stage_full, grade_rev, hist_rev_gr, myo, lvi)
   )
 
 df %>% 
