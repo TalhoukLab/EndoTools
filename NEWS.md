@@ -1,3 +1,7 @@
+# EndoTools 0.3.1
+
+* Fix conditions for residual disease
+
 # EndoTools 0.3.0
 
 * Add parameter validation using standardized vocabulary, (#3)
