@@ -13,6 +13,7 @@ coverage](https://codecov.io/gh/TalhoukLab/EndoTools/branch/master/graph/badge.s
 The goal of EndoTools is to provide helper tools for calculating
 commonly used variables in endometrial cancer projects such as:
 
+-   MMR
 -   ProMisE
 -   ESMO
 
@@ -74,14 +75,14 @@ df %>%
 #> 1 low                 132
 #> 2 intermediate        105
 #> 3 high-intermediate   133
-#> 4 high                303
+#> 4 high                335
 #> 5 advanced             20
 #> 6 metastatic            6
-#> 7 <NA>                101
+#> 7 <NA>                 69
 
 df %>% 
   count(esmo2013, esmo2016, esmo2020)
-#> # A tibble: 41 x 4
+#> # A tibble: 40 x 4
 #>    esmo2013 esmo2016          esmo2020              n
 #>    <fct>    <fct>             <fct>             <int>
 #>  1 low      low               low                  53
@@ -94,5 +95,5 @@ df %>%
 #>  8 low      high-intermediate low                   6
 #>  9 low      high-intermediate intermediate          3
 #> 10 low      high-intermediate high-intermediate    37
-#> # ... with 31 more rows
+#> # ... with 30 more rows
 ```

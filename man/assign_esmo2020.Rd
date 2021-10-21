@@ -55,11 +55,11 @@ without molecular classification/residual disease:
 \itemize{
 \item missing residual disease is regarded as no residual disease
 }
-\item stage IA, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal, MMRd/NSMP
+\item stage IA, grade 1/2, endometrioid, LVSI negative or focal, MMRd/NSMP
 }
 \item intermediate:
 \itemize{
-\item stage IB, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal, MMRd/NSMP
+\item stage IB, grade 1/2, endometrioid, LVSI negative or focal, MMRd/NSMP
 \item stage IA, grade 3, endometrioid, LVSI negative or focal, MMRd/NSMP
 \item stage IA, no myometrial invasion, p53abn
 }
@@ -72,7 +72,7 @@ without molecular classification/residual disease:
 \item high:
 \itemize{
 \item stage III-IVA, endometrioid, MMRd/NSMP, (no residual disease if known)
-\item stage I-IVA, endometrioid, >0\% myometrial invasion, p53abn, (no residual disease if known)
+\item stage I-IVA, >0\% myometrial invasion, p53abn, (no residual disease if known)
 \itemize{
 \item for stage I-II, missing residual disease is regarded as no residual disease
 }
@@ -99,11 +99,11 @@ without molecular classification/residual disease:
 \itemize{
 \item low:
 \itemize{
-\item stage IA, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal
+\item stage IA, grade 1/2, endometrioid, LVSI negative or focal
 }
 \item intermediate:
 \itemize{
-\item stage IB, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal
+\item stage IB, grade 1/2, endometrioid, LVSI negative or focal
 \item stage IA, grade 3, endometrioid, LVSI negative or focal
 \item stage IA, no myometrial invasion
 }

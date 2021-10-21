@@ -1,5 +1,6 @@
 # EndoTools 0.3.2
 
+* Change criteria "Stage I–IVA p53abn endometrial carcinoma with myometrial invasion, with no residual disease" to be irrespective of histotype
 * Add optional parameter for residual disease in `assign_esmo2016()` for high and advanced risk groups
 * Microscopic residual disease is regarded as no residual disease
 * Add residual disease condition for non-endometrioids in ESMO 2016 "high" case

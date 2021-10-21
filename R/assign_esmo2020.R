@@ -13,9 +13,9 @@
 #' * low:
 #'   * stage I-II, POLEmut, (no residual disease if known)
 #'     * missing residual disease is regarded as no residual disease
-#'   * stage IA, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative or focal, MMRd/NSMP
+#'   * stage IA, grade 1/2, endometrioid, LVSI negative or focal, MMRd/NSMP
 #' * intermediate:
-#'   * stage IB, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative or focal, MMRd/NSMP
+#'   * stage IB, grade 1/2, endometrioid, LVSI negative or focal, MMRd/NSMP
 #'   * stage IA, grade 3, endometrioid, LVSI negative or focal, MMRd/NSMP
 #'   * stage IA, no myometrial invasion, p53abn
 #' * high-intermediate:
@@ -24,7 +24,7 @@
 #'   * stage II/IIA, endometrioid, MMRd/NSMP
 #' * high:
 #'   * stage III-IVA, endometrioid, MMRd/NSMP, (no residual disease if known)
-#'   * stage I-IVA, endometrioid, >0% myometrial invasion, p53abn, (no residual disease if known)
+#'   * stage I-IVA, >0% myometrial invasion, p53abn, (no residual disease if known)
 #'     * for stage I-II, missing residual disease is regarded as no residual disease
 #'   * stage IA, non-endometrioid or mixed subtype, >0% myometrial invasion, MMRd/NSMP, (no residual disease if known)
 #'     * missing residual disease is regarded as no residual disease
@@ -37,9 +37,9 @@
 #'
 #' **Without molecular classification**
 #' * low:
-#'   * stage IA, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative or focal
+#'   * stage IA, grade 1/2, endometrioid, LVSI negative or focal
 #' * intermediate:
-#'   * stage IB, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative or focal
+#'   * stage IB, grade 1/2, endometrioid, LVSI negative or focal
 #'   * stage IA, grade 3, endometrioid, LVSI negative or focal
 #'   * stage IA, no myometrial invasion
 #' * high-intermediate:
@@ -171,7 +171,7 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
       (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid" & eclass %in% c("MMRd", "NSMP/p53wt") & rd_no) |
         (((grepl("^(I|II)[A-C]?$", stage_full) & rd_no_or_miss) |
             (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & rd_no)
-        ) & hist_gr == "endometrioid" & myo != "none" & eclass == "p53abn") |
+        ) & myo != "none" & eclass == "p53abn") |
         (stage_full == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo != "none" & eclass %in% c("MMRd", "NSMP/p53wt") & rd_no_or_miss) |
         (((stage_full %in% c("I", "IB", "IC", "IC", "II", "IIA", "IIB") & rd_no_or_miss) |
             (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & rd_no)
