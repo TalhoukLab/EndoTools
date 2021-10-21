@@ -182,7 +182,9 @@ high, advanced, and metastatic risk based on the following criteria with and
 without molecular classification/residual disease:</p>
 <p><strong>With molecular classification</strong></p><ul>
 <li><p>low:</p><ul>
-<li><p>stage I-II, POLEmut, (no residual disease if known)</p></li>
+<li><p>stage I-II, POLEmut, (no residual disease if known)</p><ul>
+<li><p>missing residual disease is regarded as no residual disease</p></li>
+</ul></li>
 <li><p>stage IA, grade 1/2, endometrioid, &lt;50% myometrial invasion, LVSI negative or focal, MMRd/NSMP</p></li>
 </ul></li>
 <li><p>intermediate:</p><ul>
@@ -200,8 +202,12 @@ without molecular classification/residual disease:</p>
 <li><p>stage I-IVA, endometrioid, &gt;0% myometrial invasion, p53abn, (no residual disease if known)</p><ul>
 <li><p>for stage I-II, missing residual disease is regarded as no residual disease</p></li>
 </ul></li>
-<li><p>stage IA, non-endometrioid or mixed subtype, &gt;0% myometrial invasion, MMRd/NSMP, (no residual disease if known)</p></li>
-<li><p>stage IB-IVA, non-endometrioid or mixed subtype, MMRd/NSMP, (no residual disease if known)</p></li>
+<li><p>stage IA, non-endometrioid or mixed subtype, &gt;0% myometrial invasion, MMRd/NSMP, (no residual disease if known)</p><ul>
+<li><p>missing residual disease is regarded as no residual disease</p></li>
+</ul></li>
+<li><p>stage IB-IVA, non-endometrioid or mixed subtype, MMRd/NSMP, (no residual disease if known)</p><ul>
+<li><p>for stage IB-II, missing residual disease is regarded as no residual disease</p></li>
+</ul></li>
 </ul></li>
 <li><p>advanced:</p><ul>
 <li><p>stage III-IVA, any molecular type, (with residual disease if known)</p></li>
@@ -227,8 +233,12 @@ without molecular classification/residual disease:</p>
 </ul></li>
 <li><p>high:</p><ul>
 <li><p>stage III-IVA, endometrioid, (no residual disease if known)</p></li>
-<li><p>stage IA, non-endometrioid or mixed subtype, &gt;0% myometrial invasion, (no residual disease if known)</p></li>
-<li><p>stage IB-IVA, non-endometrioid or mixed subtype, (no residual disease if known)</p></li>
+<li><p>stage IA, non-endometrioid or mixed subtype, &gt;0% myometrial invasion, (no residual disease if known)</p><ul>
+<li><p>missing residual disease is regarded as no residual disease</p></li>
+</ul></li>
+<li><p>stage IB-IVA, non-endometrioid or mixed subtype, (no residual disease if known)</p><ul>
+<li><p>for stage IB-II, missing residual disease is regarded as no residual disease</p></li>
+</ul></li>
 </ul></li>
 <li><p>advanced:</p><ul>
 <li><p>stage III-IVA, (with residual disease if known)</p></li>
@@ -258,7 +268,7 @@ First: 18 December 2020. doi: 10.1136/ijgc-2020-002230</p>
 <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_wo_eclass</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; esmo2020_wo_eclass
 #&gt;               low      intermediate high-intermediate              high 
-#&gt;               110               154               162               345 
+#&gt;               110               154               162               349 
 #&gt;          advanced        metastatic 
 #&gt;                 0                 6 </div><div class='input'>
 <span class='co'># with molecular classification</span>
@@ -268,7 +278,7 @@ First: 18 December 2020. doi: 10.1136/ijgc-2020-002230</p>
 <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_w_eclass</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; esmo2020_w_eclass
 #&gt;               low      intermediate high-intermediate              high 
-#&gt;               134               107               134               338 
+#&gt;               134               107               134               341 
 #&gt;          advanced        metastatic 
 #&gt;                23                 6 </div><div class='input'>
 <span class='co'># with molecular classification and residual disease</span>
@@ -277,7 +287,7 @@ First: 18 December 2020. doi: 10.1136/ijgc-2020-002230</p>
 <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_w_eclass_res</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; esmo2020_w_eclass_res
 #&gt;               low      intermediate high-intermediate              high 
-#&gt;               125               107               134               307 
+#&gt;               125               107               134               309 
 #&gt;          advanced        metastatic 
 #&gt;                20                 6 </div></pre>
   </div>
