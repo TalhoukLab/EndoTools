@@ -28,7 +28,8 @@
 #' @param myo myometrial invasion: none, 1-50%, >50%
 #' @param lvi lymphovascular space invasion: negative, positive, focal, extensive
 #' @param residual residual disease: "<1cm", ">=1cm", "microscopic", or "no
-#'   residual". Use if available.
+#'   residual". Use if available. Microscopic residual is regarded as no
+#'   residual disease.
 #' @note Assignment starts from the metastatic group first as the criteria are
 #'   not mutually exclusive.
 #' @return ESMO 2016 assigned into "low", "intermediate", "high-intermediate",
