@@ -36,8 +36,8 @@ test_that("esmo2020 works", {
     lvi = emdb$lvi
   )
   expect_equal(sum(emdb$esmo2020 == "low", na.rm = TRUE), 110)
-  expect_equal(sum(emdb$esmo2020 == "intermediate", na.rm = TRUE), 135)
-  expect_equal(sum(emdb$esmo2020 == "high-intermediate", na.rm = TRUE), 181)
+  expect_equal(sum(emdb$esmo2020 == "intermediate", na.rm = TRUE), 154)
+  expect_equal(sum(emdb$esmo2020 == "high-intermediate", na.rm = TRUE), 162)
   expect_equal(sum(emdb$esmo2020 == "high", na.rm = TRUE), 345)
   expect_equal(sum(emdb$esmo2020 == "advanced", na.rm = TRUE), 0)
   expect_equal(sum(emdb$esmo2020 == "metastatic", na.rm = TRUE), 6)
@@ -58,7 +58,7 @@ test_that("esmo2020 with eclass works", {
     eclass = emdb$promise2015
   )
   expect_equal(sum(emdb$esmo2020 == "low", na.rm = TRUE), 134)
-  expect_equal(sum(emdb$esmo2020 == "intermediate", na.rm = TRUE), 96)
+  expect_equal(sum(emdb$esmo2020 == "intermediate", na.rm = TRUE), 107)
   expect_equal(sum(emdb$esmo2020 == "high-intermediate", na.rm = TRUE), 134)
   expect_equal(sum(emdb$esmo2020 == "high", na.rm = TRUE), 338)
   expect_equal(sum(emdb$esmo2020 == "advanced", na.rm = TRUE), 23)
@@ -80,10 +80,10 @@ test_that("esmo2020 with residual disease works", {
     eclass = emdb$promise2015,
     residual = emdb$residual
   )
-  expect_equal(sum(emdb$esmo2020 == "low", na.rm = TRUE), 123)
-  expect_equal(sum(emdb$esmo2020 == "intermediate", na.rm = TRUE), 96)
+  expect_equal(sum(emdb$esmo2020 == "low", na.rm = TRUE), 125)
+  expect_equal(sum(emdb$esmo2020 == "intermediate", na.rm = TRUE), 107)
   expect_equal(sum(emdb$esmo2020 == "high-intermediate", na.rm = TRUE), 134)
-  expect_equal(sum(emdb$esmo2020 == "high", na.rm = TRUE), 292)
-  expect_equal(sum(emdb$esmo2020 == "advanced", na.rm = TRUE), 28)
+  expect_equal(sum(emdb$esmo2020 == "high", na.rm = TRUE), 307)
+  expect_equal(sum(emdb$esmo2020 == "advanced", na.rm = TRUE), 20)
   expect_equal(sum(emdb$esmo2020 == "metastatic", na.rm = TRUE), 6)
 })
