@@ -16,7 +16,7 @@
 #' * intermediate:
 #'   * stage IB, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative or focal, MMRd/NSMP
 #'   * stage IA, grade 3, endometrioid, LVSI negative or focal, MMRd/NSMP
-#'   * stage IA, non-endometrioid or mixed subtype, no myometrial invasion, p53abn
+#'   * stage IA, no myometrial invasion, p53abn
 #' * high-intermediate:
 #'   * stage IA/IB, endometrioid, LVSI positive or extensive, MMRd/NSMP
 #'   * stage IB, grade 3, endometrioid, MMRd/NSMP
@@ -37,7 +37,7 @@
 #' * intermediate:
 #'   * stage IB, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative or focal
 #'   * stage IA, grade 3, endometrioid, LVSI negative or focal
-#'   * stage IA, non-endometrioid or mixed subtype), no myometrial invasion
+#'   * stage IA, no myometrial invasion
 #' * high-intermediate:
 #'   * stage IA/IB, endometrioid, LVSI positive or extensive
 #'   * stage IB, grade 3, endometrioid
@@ -107,7 +107,7 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
       # intermediate
       (stage_full == "IB" & grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) |
         (stage_full == "IA" & grade == "grade 3" & hist_gr == "endometrioid" & lvi %in% c("negative", "focal")) |
-        (stage_full == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo == "none") ~ VC.INTERM,
+        (stage_full == "IA" & myo == "none") ~ VC.INTERM,
 
       # high-intermediate
       (stage_full %in% c("I", "IA", "IB") & hist_gr == "endometrioid" & lvi %in% c("positive", "extensive")) |
@@ -144,7 +144,7 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
       # intermediate
       (stage_full == "IB" & grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" & lvi %in% c("negative", "focal") & eclass %in% c("MMRd", "NSMP/p53wt")) |
         (stage_full == "IA" & grade == "grade 3" & hist_gr == "endometrioid" & lvi %in% c("negative", "focal") & eclass %in% c("MMRd", "NSMP/p53wt")) |
-        (stage_full == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo == "none" & eclass == "p53abn") ~ VC.INTERM,
+        (stage_full == "IA" & myo == "none" & eclass == "p53abn") ~ VC.INTERM,
 
       # high-intermediate
       (stage_full %in% c("I", "IA", "IB") & hist_gr == "endometrioid" & lvi %in% c("positive", "extensive") & eclass %in% c("MMRd", "NSMP/p53wt")) |
