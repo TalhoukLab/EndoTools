@@ -185,10 +185,10 @@ without molecular classification/residual disease:</p>
 <li><p>stage I-II, POLEmut, (no residual disease if known)</p><ul>
 <li><p>missing residual disease is regarded as no residual disease</p></li>
 </ul></li>
-<li><p>stage IA, grade 1/2, endometrioid, &lt;50% myometrial invasion, LVSI negative or focal, MMRd/NSMP</p></li>
+<li><p>stage IA, grade 1/2, endometrioid, LVSI negative or focal, MMRd/NSMP</p></li>
 </ul></li>
 <li><p>intermediate:</p><ul>
-<li><p>stage IB, grade 1/2, endometrioid, &lt;50% myometrial invasion, LVSI negative or focal, MMRd/NSMP</p></li>
+<li><p>stage IB, grade 1/2, endometrioid, LVSI negative or focal, MMRd/NSMP</p></li>
 <li><p>stage IA, grade 3, endometrioid, LVSI negative or focal, MMRd/NSMP</p></li>
 <li><p>stage IA, no myometrial invasion, p53abn</p></li>
 </ul></li>
@@ -199,7 +199,7 @@ without molecular classification/residual disease:</p>
 </ul></li>
 <li><p>high:</p><ul>
 <li><p>stage III-IVA, endometrioid, MMRd/NSMP, (no residual disease if known)</p></li>
-<li><p>stage I-IVA, endometrioid, &gt;0% myometrial invasion, p53abn, (no residual disease if known)</p><ul>
+<li><p>stage I-IVA, &gt;0% myometrial invasion, p53abn, (no residual disease if known)</p><ul>
 <li><p>for stage I-II, missing residual disease is regarded as no residual disease</p></li>
 </ul></li>
 <li><p>stage IA, non-endometrioid or mixed subtype, &gt;0% myometrial invasion, MMRd/NSMP, (no residual disease if known)</p><ul>
@@ -219,10 +219,10 @@ without molecular classification/residual disease:</p>
 
 <p><strong>Without molecular classification</strong></p><ul>
 <li><p>low:</p><ul>
-<li><p>stage IA, grade 1/2, endometrioid, &lt;50% myometrial invasion, LVSI negative or focal</p></li>
+<li><p>stage IA, grade 1/2, endometrioid, LVSI negative or focal</p></li>
 </ul></li>
 <li><p>intermediate:</p><ul>
-<li><p>stage IB, grade 1/2, endometrioid, &lt;50% myometrial invasion, LVSI negative or focal</p></li>
+<li><p>stage IB, grade 1/2, endometrioid, LVSI negative or focal</p></li>
 <li><p>stage IA, grade 3, endometrioid, LVSI negative or focal</p></li>
 <li><p>stage IA, no myometrial invasion</p></li>
 </ul></li>
@@ -278,16 +278,16 @@ First: 18 December 2020. doi: 10.1136/ijgc-2020-002230</p>
 <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_w_eclass</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; esmo2020_w_eclass
 #&gt;               low      intermediate high-intermediate              high 
-#&gt;               134               107               134               341 
+#&gt;               134               107               134               369 
 #&gt;          advanced        metastatic 
-#&gt;                23                 6 </div><div class='input'>
+#&gt;                17                 6 </div><div class='input'>
 <span class='co'># with molecular classification and residual disease</span>
 <span class='va'>esmo2020_w_eclass_res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'>assign_esmo2020</span><span class='op'>(</span><span class='va'>stage_full</span>, <span class='va'>grade_rev</span>,
 <span class='va'>hist_rev_gr</span>, <span class='va'>myo</span>, <span class='va'>lvi</span>, <span class='va'>eclass</span>, <span class='va'>residual</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_w_eclass_res</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; esmo2020_w_eclass_res
 #&gt;               low      intermediate high-intermediate              high 
-#&gt;               125               107               134               309 
+#&gt;               125               107               134               336 
 #&gt;          advanced        metastatic 
 #&gt;                20                 6 </div></pre>
   </div>
