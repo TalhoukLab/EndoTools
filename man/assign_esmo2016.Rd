@@ -4,7 +4,7 @@
 \alias{assign_esmo2016}
 \title{Assign ESMO 2016}
 \usage{
-assign_esmo2016(stage_full, grade, hist_gr, myo, lvi)
+assign_esmo2016(stage_full, grade, hist_gr, myo, lvi, residual = NULL)
 }
 \arguments{
 \item{stage_full}{FIGO stage: I, II, III, IV with substages}
@@ -16,6 +16,10 @@ assign_esmo2016(stage_full, grade, hist_gr, myo, lvi)
 \item{myo}{myometrial invasion: none, 1-50\%, >50\%}
 
 \item{lvi}{lymphovascular space invasion: negative, positive, focal, extensive}
+
+\item{residual}{residual disease: "<1cm", ">=1cm", "microscopic", or "no
+residual". Use if available. Microscopic residual is regarded as no
+residual disease.}
 }
 \value{
 ESMO 2016 assigned into "low", "intermediate", "high-intermediate",
@@ -23,10 +27,10 @@ ESMO 2016 assigned into "low", "intermediate", "high-intermediate",
 }
 \description{
 Assign ESMO 2016 based on stage, grade, histological subtype group,
-myometrial invasion, and LVSI.
+myometrial invasion, and LVSI. Residual disease can be used if available.
 }
 \details{
-ESMO 2013 is assigned using stage, grade, histological subtype group,
+ESMO 2016 is assigned using stage, grade, histological subtype group,
 myometrial invasion, and LVSI into low, intermediate, high-intermediate,
 high, advanced, and metastatic risk based on the following criteria:
 \itemize{
@@ -63,12 +67,11 @@ high, advanced, and metastatic risk based on the following criteria:
 }
 \note{
 Assignment starts from the metastatic group first as the criteria are
-not mutually exclusive. Residual disease is not available and so are not
-used in criteria for high-intermediate and high.
+not mutually exclusive.
 }
 \examples{
 esmo2016 <- with(emdb, assign_esmo2016(stage_full, grade_rev, hist_rev_gr,
-myo, lvi))
+myo, lvi, residual))
 table(esmo2016)
 }
 \references{

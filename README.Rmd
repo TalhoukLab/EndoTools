@@ -46,9 +46,11 @@ library(dplyr)
 
 df <- emdb %>%
   mutate(
+    eclass2 = assign_promise2019(mmr_ihc_2, pole_mut, p53),
     esmo2013 = assign_esmo2013(stage_full, grade_rev, hist_rev_gr),
     esmo2016 = assign_esmo2016(stage_full, grade_rev, hist_rev_gr, myo, lvi),
-    esmo2020 = assign_esmo2020(stage_full, grade_rev, hist_rev_gr, myo, lvi)
+    esmo2020 = assign_esmo2020(stage_full, grade_rev, hist_rev_gr, myo, lvi, eclass2,
+                               residual)
   )
 
 df %>% 

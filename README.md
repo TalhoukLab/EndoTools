@@ -38,58 +38,61 @@ library(dplyr)
 
 df <- emdb %>%
   mutate(
+    eclass2 = assign_promise2019(mmr_ihc_2, pole_mut, p53),
     esmo2013 = assign_esmo2013(stage_full, grade_rev, hist_rev_gr),
     esmo2016 = assign_esmo2016(stage_full, grade_rev, hist_rev_gr, myo, lvi),
-    esmo2020 = assign_esmo2020(stage_full, grade_rev, hist_rev_gr, myo, lvi)
+    esmo2020 = assign_esmo2020(stage_full, grade_rev, hist_rev_gr, myo, lvi, eclass2,
+                               residual)
   )
 
 df %>% 
   count(esmo2013)
-#> # A tibble: 3 × 2
+#> # A tibble: 3 x 2
 #>   esmo2013         n
-#>   <chr>        <int>
-#> 1 high           445
+#>   <fct>        <int>
+#> 1 low            168
 #> 2 intermediate   187
-#> 3 low            168
+#> 3 high           445
 
 df %>% 
   count(esmo2016)
-#> # A tibble: 6 × 2
+#> # A tibble: 6 x 2
 #>   esmo2016              n
-#>   <chr>             <int>
-#> 1 advanced             12
-#> 2 high                464
+#>   <fct>             <int>
+#> 1 low                  88
+#> 2 intermediate         56
 #> 3 high-intermediate   174
-#> 4 intermediate         56
-#> 5 low                  88
+#> 4 high                464
+#> 5 advanced             12
 #> 6 metastatic            6
 
 df %>% 
   count(esmo2020)
-#> # A tibble: 6 × 2
+#> # A tibble: 7 x 2
 #>   esmo2020              n
-#>   <chr>             <int>
-#> 1 high                345
-#> 2 high-intermediate   181
-#> 3 intermediate        135
-#> 4 low                 110
-#> 5 metastatic            6
-#> 6 <NA>                 23
+#>   <fct>             <int>
+#> 1 low                 132
+#> 2 intermediate        105
+#> 3 high-intermediate   133
+#> 4 high                303
+#> 5 advanced             20
+#> 6 metastatic            6
+#> 7 <NA>                101
 
 df %>% 
   count(esmo2013, esmo2016, esmo2020)
-#> # A tibble: 22 × 4
-#>    esmo2013     esmo2016          esmo2020              n
-#>    <chr>        <chr>             <chr>             <int>
-#>  1 high         advanced          high                 12
-#>  2 high         high              high                333
-#>  3 high         high              high-intermediate    59
-#>  4 high         high              intermediate         15
-#>  5 high         high              <NA>                  5
-#>  6 high         high-intermediate high-intermediate    14
-#>  7 high         high-intermediate <NA>                  1
-#>  8 high         metastatic        metastatic            6
-#>  9 intermediate high              high-intermediate    15
-#> 10 intermediate high              intermediate         35
-#> # … with 12 more rows
+#> # A tibble: 41 x 4
+#>    esmo2013 esmo2016          esmo2020              n
+#>    <fct>    <fct>             <fct>             <int>
+#>  1 low      low               low                  53
+#>  2 low      low               intermediate          2
+#>  3 low      low               high                  6
+#>  4 low      low               <NA>                  4
+#>  5 low      intermediate      low                  39
+#>  6 low      intermediate      high                  7
+#>  7 low      intermediate      <NA>                  2
+#>  8 low      high-intermediate low                   6
+#>  9 low      high-intermediate intermediate          3
+#> 10 low      high-intermediate high-intermediate    37
+#> # ... with 31 more rows
 ```

@@ -29,10 +29,11 @@ assign_esmo2020(
 "NSMP/p53wt"}
 
 \item{residual}{residual disease: "<1cm", ">=1cm", "microscopic", or "no
-residual"}
+residual". Use if available. Microscopic residual is regarded as no
+residual disease.}
 }
 \value{
-ESMO 202020 assigned into "low", "intermediate", "high-intermediate",
+ESMO 2020 assigned into "low", "intermediate", "high-intermediate",
 "high", "advanced", or "metastatic". Unassignable cases are \code{NA}.
 }
 \description{
@@ -57,7 +58,7 @@ without molecular classification/residual disease:
 \itemize{
 \item stage IB, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal, MMRd/NSMP
 \item stage IA, grade 3, endometrioid, LVSI negative or focal, MMRd/NSMP
-\item stage IA, non-endometrioid or mixed subtype, no myometrial invasion, p53abn
+\item stage IA, no myometrial invasion, p53abn
 }
 \item high-intermediate:
 \itemize{
@@ -69,6 +70,9 @@ without molecular classification/residual disease:
 \itemize{
 \item stage III-IVA, endometrioid, MMRd/NSMP, (no residual disease if known)
 \item stage I-IVA, endometrioid, >0\% myometrial invasion, p53abn, (no residual disease if known)
+\itemize{
+\item for stage I-II, missing residual disease is regarded as no residual disease
+}
 \item stage IA, non-endometrioid or mixed subtype, >0\% myometrial invasion, MMRd/NSMP, (no residual disease if known)
 \item stage IB-IVA, non-endometrioid or mixed subtype, MMRd/NSMP, (no residual disease if known)
 }
@@ -92,7 +96,7 @@ without molecular classification/residual disease:
 \itemize{
 \item stage IB, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal
 \item stage IA, grade 3, endometrioid, LVSI negative or focal
-\item stage IA, non-endometrioid or mixed subtype), no myometrial invasion
+\item stage IA, no myometrial invasion
 }
 \item high-intermediate:
 \itemize{
