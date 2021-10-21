@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EndoTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -114,6 +114,18 @@
       
     </div>
 
+    <div id="endotools-032" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.2">
+<a href="#endotools-032" class="anchor"></a>EndoTools 0.3.2</h1>
+<ul>
+<li>Add optional parameter for residual disease in <code><a href="../reference/assign_esmo2016.html">assign_esmo2016()</a></code> for high and advanced risk groups</li>
+<li>Microscopic residual disease is regarded as no residual disease</li>
+<li>Add residual disease condition for non-endometrioids in ESMO 2016 “high” case</li>
+<li>Remove non-endometrioid condition in ESMO 2020 “intermediate” case for Stage IA, no myometrial invasion</li>
+<li>In ESMO 2020 “high” case Stage I-IVA, endometrioid, &gt;0% myometrial invasion, p53abn, (no residual disease if known), allow residual disease to also be missing if stage is low (I-II). If high stage, residual disease must be explicitly none.</li>
+<li>Return value of all <code>assign_esmo*()</code> functions are now factors with levels appropriately ordered</li>
+</ul>
+</div>
     <div id="endotools-031" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.1">
 <a href="#endotools-031" class="anchor"></a>EndoTools 0.3.1</h1>
