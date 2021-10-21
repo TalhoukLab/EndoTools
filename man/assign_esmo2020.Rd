@@ -52,6 +52,9 @@ without molecular classification/residual disease:
 \item low:
 \itemize{
 \item stage I-II, POLEmut, (no residual disease if known)
+\itemize{
+\item missing residual disease is regarded as no residual disease
+}
 \item stage IA, grade 1/2, endometrioid, <50\% myometrial invasion, LVSI negative or focal, MMRd/NSMP
 }
 \item intermediate:
@@ -74,7 +77,13 @@ without molecular classification/residual disease:
 \item for stage I-II, missing residual disease is regarded as no residual disease
 }
 \item stage IA, non-endometrioid or mixed subtype, >0\% myometrial invasion, MMRd/NSMP, (no residual disease if known)
+\itemize{
+\item missing residual disease is regarded as no residual disease
+}
 \item stage IB-IVA, non-endometrioid or mixed subtype, MMRd/NSMP, (no residual disease if known)
+\itemize{
+\item for stage IB-II, missing residual disease is regarded as no residual disease
+}
 }
 \item advanced:
 \itemize{
@@ -108,7 +117,13 @@ without molecular classification/residual disease:
 \itemize{
 \item stage III-IVA, endometrioid, (no residual disease if known)
 \item stage IA, non-endometrioid or mixed subtype, >0\% myometrial invasion, (no residual disease if known)
+\itemize{
+\item missing residual disease is regarded as no residual disease
+}
 \item stage IB-IVA, non-endometrioid or mixed subtype, (no residual disease if known)
+\itemize{
+\item for stage IB-II, missing residual disease is regarded as no residual disease
+}
 }
 \item advanced:
 \itemize{
