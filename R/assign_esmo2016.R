@@ -79,9 +79,11 @@ assign_esmo2016 <- function(stage_full, grade, hist_gr, myo, lvi,
       (hist_gr == "non-endometrioid") ~ VC.HIGH,
 
     if (!no_residual) {
-      stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2") &
-        hist_gr == "endometrioid" &
-        residual %in% c("no residual", "microscopic")
+      (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2") &
+         hist_gr == "endometrioid" &
+         residual %in% c("no residual", "microscopic")) |
+        (hist_gr == "non-endometrioid" &
+           residual %in% c("no residual", "microscopic"))
     } ~ VC.HIGH,
 
     # high-intermediate
