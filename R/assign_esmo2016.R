@@ -16,10 +16,10 @@
 #' * high:
 #'   * stage I, grade 3, endometrioid, >=50% myometrial invasion, regardless of LVSI status
 #'   * stage II or higher
-#'   * stage III, endometrioid, no residual disease
-#'   * non-endometrioid (serous or clear-cell or undifferentiated carcinoma, or carcinosarcoma)
+#'   * stage III, endometrioid, (no residual disease if known)
+#'   * non-endometrioid (serous or clear-cell or undifferentiated carcinoma, or carcinosarcoma), (no residual disease if known)
 #' * advanced:
-#'   * stage III residual disease
+#'   * stage III, (with residual disease if known)
 #'   * stage IVA
 #' * metastatic:
 #'   * stage IVB

@@ -51,12 +51,12 @@ high, advanced, and metastatic risk based on the following criteria:
 \itemize{
 \item stage I, grade 3, endometrioid, >=50\% myometrial invasion, regardless of LVSI status
 \item stage II or higher
-\item stage III, endometrioid, no residual disease
-\item non-endometrioid (serous or clear-cell or undifferentiated carcinoma, or carcinosarcoma)
+\item stage III, endometrioid, (no residual disease if known)
+\item non-endometrioid (serous or clear-cell or undifferentiated carcinoma, or carcinosarcoma), (no residual disease if known)
 }
 \item advanced:
 \itemize{
-\item stage III residual disease
+\item stage III, (with residual disease if known)
 \item stage IVA
 }
 \item metastatic:
