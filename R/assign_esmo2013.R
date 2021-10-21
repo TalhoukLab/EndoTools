@@ -34,7 +34,7 @@ assign_esmo2013 <- function(stage_full, grade, hist_gr) {
   check_input(hist_gr, HIST_STD)
 
   # Assign risk groups
-  dplyr::case_when(
+  esmo2013 <- dplyr::case_when(
     # high
     (hist_gr == "non-endometrioid") |
       (grepl("^(IB|IC)", stage_full) &
@@ -54,4 +54,7 @@ assign_esmo2013 <- function(stage_full, grade, hist_gr) {
     # unassignable
     TRUE ~ NA_character_
   )
+
+  # Set factor level order
+  factor(esmo2013, levels = c(VC.LOW, VC.INTERM, VC.HIGH))
 }

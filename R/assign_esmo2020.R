@@ -98,7 +98,7 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
 
   # Molecular classification unknown
   if (is.null(eclass)) {
-    dplyr::case_when(
+    esmo2020 <- dplyr::case_when(
       # low
       stage_full == "IA" &
         grade %in% c("grade 1", "grade 2") &
@@ -133,14 +133,14 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
     # Validate molecular classification
     check_input(eclass, ECLASS_STD)
 
-    dplyr::case_when(
+    esmo2020 <- dplyr::case_when(
       # low
       (grepl("^(I|II)[A-C]?(/C)?$", stage_full) & eclass == "POLEmut" & ifelse(no_residual, keep, residual %in% c("no residual", "microscopic"))) |
         (stage_full == "IA" &
            grade %in% c("grade 1", "grade 2") &
            hist_gr == "endometrioid" &
            lvi %in% c("negative", "focal") &
-         eclass %in% c("MMRd", "NSMP/p53wt")) ~ VC.LOW,
+           eclass %in% c("MMRd", "NSMP/p53wt")) ~ VC.LOW,
 
       # intermediate
       (stage_full == "IB" & grade %in% c("grade 1", "grade 2") & hist_gr == "endometrioid" & lvi %in% c("negative", "focal") & eclass %in% c("MMRd", "NSMP/p53wt")) |
@@ -172,4 +172,7 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
       TRUE ~ NA_character_
     )
   }
+
+  # Set factor level order
+  factor(esmo2020, levels = c(VC.LOW, VC.INTERM, VC.HIGH.INTERM, VC.HIGH, VC.ADVANCED, VC.METASTATIC))
 }

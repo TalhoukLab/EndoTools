@@ -59,7 +59,7 @@ assign_esmo2016 <- function(stage_full, grade, hist_gr, myo, lvi,
   }
 
   # Assign risk groups
-  dplyr::case_when(
+  esmo2016 <- dplyr::case_when(
     # metastatic
     stage_full == "IVB" ~ VC.METASTATIC,
 
@@ -109,4 +109,7 @@ assign_esmo2016 <- function(stage_full, grade, hist_gr, myo, lvi,
     # unassignable
     TRUE ~ NA_character_
   )
+
+  # Set factor level order
+  factor(esmo2016, levels = c(VC.LOW, VC.INTERM, VC.HIGH.INTERM, VC.HIGH, VC.ADVANCED, VC.METASTATIC))
 }

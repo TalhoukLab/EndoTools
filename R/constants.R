@@ -4,8 +4,8 @@ VC.POSITIVE <- "positive"
 
 VC.LOW <- "low"
 VC.INTERM <- "intermediate"
-VC.HIGH <- "high"
 VC.HIGH.INTERM <- "high-intermediate"
+VC.HIGH <- "high"
 VC.ADVANCED <- "advanced"
 VC.METASTATIC <- "metastatic"
 
