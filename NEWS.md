@@ -1,3 +1,7 @@
+# EndoTools 0.3.3
+
+* Randomly add 10% missing data to each variable in `emdb`
+
 # EndoTools 0.3.2
 
 * Change criteria "Stage I–IVA p53abn endometrial carcinoma with myometrial invasion, with no residual disease" to be irrespective of histotype
