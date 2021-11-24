@@ -201,14 +201,15 @@ not mutually exclusive.</p>
     <p>Derek Chiu, Samuel Leung</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>esmo2016</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'>assign_esmo2016</span><span class='op'>(</span><span class='va'>stage_full</span>, <span class='va'>grade_rev</span>, <span class='va'>hist_rev_gr</span>,
-<span class='va'>myo</span>, <span class='va'>lvi</span>, <span class='va'>residual</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2016</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; esmo2016
-#&gt;               low      intermediate high-intermediate              high 
-#&gt;                88                56               174               448 
-#&gt;          advanced        metastatic 
-#&gt;                28                 6 </div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>esmo2016</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'>assign_esmo2016</span><span class='op'>(</span><span class='va'>stage_full</span>, <span class='va'>grade_rev</span>, <span class='va'>hist_rev_gr</span>,</span>
+<span class='r-in'><span class='va'>myo</span>, <span class='va'>lvi</span>, <span class='va'>residual</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2016</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> esmo2016</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               low      intermediate high-intermediate              high </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                36                21                99               398 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          advanced        metastatic </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                35                 6 </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -262,34 +262,37 @@ First: 18 December 2020. doi: 10.1136/ijgc-2020-002230</p>
     <p>Derek Chiu</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># without molecular classification</span>
-<span class='va'>esmo2020_wo_eclass</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'>assign_esmo2020</span><span class='op'>(</span><span class='va'>stage_full</span>, <span class='va'>grade_rev</span>,
-<span class='va'>hist_rev_gr</span>, <span class='va'>myo</span>, <span class='va'>lvi</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_wo_eclass</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; esmo2020_wo_eclass
-#&gt;               low      intermediate high-intermediate              high 
-#&gt;               110               154               162               349 
-#&gt;          advanced        metastatic 
-#&gt;                 0                 6 </div><div class='input'>
-<span class='co'># with molecular classification</span>
-<span class='va'>eclass</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'><a href='assign_promise2015.html'>assign_promise2015</a></span><span class='op'>(</span><span class='va'>mmr_ihc_2</span>, <span class='va'>pole_mut</span>, <span class='va'>p53</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>esmo2020_w_eclass</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'>assign_esmo2020</span><span class='op'>(</span><span class='va'>stage_full</span>, <span class='va'>grade_rev</span>,
-<span class='va'>hist_rev_gr</span>, <span class='va'>myo</span>, <span class='va'>lvi</span>, <span class='va'>eclass</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_w_eclass</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; esmo2020_w_eclass
-#&gt;               low      intermediate high-intermediate              high 
-#&gt;               134               107               134               369 
-#&gt;          advanced        metastatic 
-#&gt;                17                 6 </div><div class='input'>
-<span class='co'># with molecular classification and residual disease</span>
-<span class='va'>esmo2020_w_eclass_res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'>assign_esmo2020</span><span class='op'>(</span><span class='va'>stage_full</span>, <span class='va'>grade_rev</span>,
-<span class='va'>hist_rev_gr</span>, <span class='va'>myo</span>, <span class='va'>lvi</span>, <span class='va'>eclass</span>, <span class='va'>residual</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_w_eclass_res</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; esmo2020_w_eclass_res
-#&gt;               low      intermediate high-intermediate              high 
-#&gt;               125               107               134               336 
-#&gt;          advanced        metastatic 
-#&gt;                20                 6 </div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># without molecular classification</span></span>
+<span class='r-in'><span class='va'>esmo2020_wo_eclass</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'>assign_esmo2020</span><span class='op'>(</span><span class='va'>stage_full</span>, <span class='va'>grade_rev</span>,</span>
+<span class='r-in'><span class='va'>hist_rev_gr</span>, <span class='va'>myo</span>, <span class='va'>lvi</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_wo_eclass</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> esmo2020_wo_eclass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               low      intermediate high-intermediate              high </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                51               100               130               285 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          advanced        metastatic </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                17                 6 </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># with molecular classification</span></span>
+<span class='r-in'><span class='va'>eclass</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'><a href='assign_promise2015.html'>assign_promise2015</a></span><span class='op'>(</span><span class='va'>mmr_ihc_2</span>, <span class='va'>pole_mut</span>, <span class='va'>p53</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>esmo2020_w_eclass</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'>assign_esmo2020</span><span class='op'>(</span><span class='va'>stage_full</span>, <span class='va'>grade_rev</span>,</span>
+<span class='r-in'><span class='va'>hist_rev_gr</span>, <span class='va'>myo</span>, <span class='va'>lvi</span>, <span class='va'>eclass</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_w_eclass</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> esmo2020_w_eclass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               low      intermediate high-intermediate              high </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                75                53                89               265 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          advanced        metastatic </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                38                 6 </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># with molecular classification and residual disease</span></span>
+<span class='r-in'><span class='va'>esmo2020_w_eclass_res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>emdb</span>, <span class='fu'>assign_esmo2020</span><span class='op'>(</span><span class='va'>stage_full</span>, <span class='va'>grade_rev</span>,</span>
+<span class='r-in'><span class='va'>hist_rev_gr</span>, <span class='va'>myo</span>, <span class='va'>lvi</span>, <span class='va'>eclass</span>, <span class='va'>residual</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>esmo2020_w_eclass_res</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> esmo2020_w_eclass_res</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               low      intermediate high-intermediate              high </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                70                53                89               239 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          advanced        metastatic </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                32                 6 </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
