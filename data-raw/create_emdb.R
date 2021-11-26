@@ -5,6 +5,7 @@ library(tidyr)
 library(dplyr)
 library(usethis)
 n <- 800
+ace_prob <- c(0.01, 0.02, 0.1)
 set.seed(2021)
 
 emdb <- tibble(
@@ -134,7 +135,33 @@ emdb <- emdb %>%
     p53_mut = fct_collapse(
       p53,
       mutated = c("null", "abnormal", "cytoplasmic", "overexpression")
-    )
+    ),
+    ace_mi = simulate_ace(ACE_MI, size = n, prob = ace_prob),
+    ace_cad = simulate_ace(ACE_CAD, size = n, prob = ace_prob),
+    ace_chf = simulate_ace(ACE_CHF, size = n, prob = ace_prob),
+    ace_arr = simulate_ace(ACE_ARR, size = n, prob = ace_prob),
+    ace_htn = simulate_ace(ACE_HTN, size = n, prob = ace_prob),
+    ace_vd = simulate_ace(ACE_VD, size = n, prob = ace_prob),
+    ace_pad = simulate_ace(ACE_PAD, size = n, prob = ace_prob),
+    ace_res = simulate_ace(ACE_RES, size = n, prob = ace_prob),
+    ace_hep = simulate_ace(ACE_HEP, size = n, prob = ace_prob),
+    ace_sto = simulate_ace(ACE_STO, size = n, prob = ace_prob),
+    ace_pan = simulate_ace(ACE_PAN, size = n, prob = ace_prob),
+    ace_rd = simulate_ace(ACE_RD, size = n, prob = ace_prob),
+    ace_dm = simulate_ace(ACE_DM, size = n, prob = ace_prob),
+    ace_str = simulate_ace(ACE_STR, size = n, prob = ace_prob),
+    ace_dem = simulate_ace(ACE_DEM, size = n, prob = ace_prob),
+    ace_par = simulate_ace(ACE_PAR, size = n, prob = ace_prob),
+    ace_neu = simulate_ace(ACE_NEU, size = n, prob = ace_prob),
+    ace_psy = simulate_ace(ACE_PSY, size = n, prob = ace_prob),
+    ace_rhe = simulate_ace(ACE_RHE, size = n, prob = ace_prob),
+    ace_aid = simulate_ace(ACE_AID, size = n, prob = ace_prob),
+    ace_st = simulate_ace(ACE_ST, size = n, prob = ace_prob),
+    ace_lm = simulate_ace(ACE_LM, size = n, prob = ace_prob),
+    ace_lym = simulate_ace(ACE_LYM, size = n, prob = ace_prob),
+    ace_alc = simulate_ace(ACE_ALC, size = n, prob = ace_prob),
+    ace_id = simulate_ace(ACE_ID, size = n, prob = ace_prob),
+    ace_obe = simulate_ace(ACE_OBE, size = n, prob = sum(ace_prob))
   )
 
 use_data(emdb, overwrite = TRUE)
