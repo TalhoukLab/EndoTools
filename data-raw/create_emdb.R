@@ -1,6 +1,8 @@
 # Simulated clinical data
 library(forcats)
 library(tibble)
+library(tidyr)
+library(dplyr)
 library(usethis)
 n <- 800
 set.seed(2021)
@@ -124,5 +126,15 @@ emdb <- tibble(
     prob = c(0.6, 0.4)
   )
 )
+
+set.seed(2021)
+emdb <- emdb %>%
+  mutate(across(.fns = ~ if_else(runif(length(.)) > 0.1, ., factor(NA)))) %>%
+  mutate(
+    p53_mut = fct_collapse(
+      p53,
+      mutated = c("null", "abnormal", "cytoplasmic", "overexpression")
+    )
+  )
 
 use_data(emdb, overwrite = TRUE)

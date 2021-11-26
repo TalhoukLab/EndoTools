@@ -1,6 +1,7 @@
 # EndoTools 0.3.2.9000
 
 * Add `assign_ace27()` to assign ACE-27 score
+* Randomly add 10% missing data to each variable in `emdb`
 
 # EndoTools 0.3.2
 
