@@ -1,3 +1,7 @@
+# EndoTools 0.3.2.9000
+
+* Add `assign_ace27()` to assign ACE-27 score
+
 # EndoTools 0.3.2
 
 * Change criteria "Stage I–IVA p53abn endometrial carcinoma with myometrial invasion, with no residual disease" to be irrespective of histotype
