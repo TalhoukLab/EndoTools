@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">EndoTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2.9000</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://talhouklab.github.io/EndoTools">EndoTools</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">emdb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="va">emdb</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     eclass2 <span class="op">=</span> <span class="fu"><a href="reference/assign_promise2019.html">assign_promise2019</a></span><span class="op">(</span><span class="va">mmr_ihc_2</span>, <span class="va">pole_mut</span>, <span class="va">p53</span><span class="op">)</span>,
     esmo2013 <span class="op">=</span> <span class="fu"><a href="reference/assign_esmo2013.html">assign_esmo2013</a></span><span class="op">(</span><span class="va">stage_full</span>, <span class="va">grade_rev</span>, <span class="va">hist_rev_gr</span><span class="op">)</span>,
@@ -107,7 +107,7 @@
                                <span class="va">residual</span><span class="op">)</span>
   <span class="op">)</span>
 
-<span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+<span class="va">df</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">esmo2013</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 2</span>
 <span class="co">#&gt;   esmo2013         n</span>
@@ -116,7 +116,7 @@
 <span class="co">#&gt; 2 intermediate   187</span>
 <span class="co">#&gt; 3 high           445</span>
 
-<span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+<span class="va">df</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">esmo2016</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 2</span>
 <span class="co">#&gt;   esmo2016              n</span>
@@ -128,7 +128,7 @@
 <span class="co">#&gt; 5 advanced             12</span>
 <span class="co">#&gt; 6 metastatic            6</span>
 
-<span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+<span class="va">df</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">esmo2020</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 7 x 2</span>
 <span class="co">#&gt;   esmo2020              n</span>
@@ -141,7 +141,7 @@
 <span class="co">#&gt; 6 metastatic            6</span>
 <span class="co">#&gt; 7 &lt;NA&gt;                 69</span>
 
-<span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+<span class="va">df</span> <span class="op"><a href="reference/%&gt;%.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">esmo2013</span>, <span class="va">esmo2016</span>, <span class="va">esmo2020</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 40 x 4</span>
 <span class="co">#&gt;    esmo2013 esmo2016          esmo2020              n</span>

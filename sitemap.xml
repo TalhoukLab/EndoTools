@@ -7,6 +7,9 @@
     <loc>https://talhouklab.github.io/EndoTools/reference/EndoTools-package.html</loc>
   </url>
   <url>
+    <loc>https://talhouklab.github.io/EndoTools/reference/assign_ace27.html</loc>
+  </url>
+  <url>
     <loc>https://talhouklab.github.io/EndoTools/reference/assign_esmo2013.html</loc>
   </url>
   <url>
@@ -35,5 +38,8 @@
   </url>
   <url>
     <loc>https://talhouklab.github.io/EndoTools/reference/emdb.html</loc>
+  </url>
+  <url>
+    <loc>https://talhouklab.github.io/EndoTools/reference/pipe.html</loc>
   </url>
 </urlset>
