@@ -103,232 +103,32 @@ assign_ace27 <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
   # Recode into risk scores
   d <- d %>%
     dplyr::mutate(
-      ace_mi_score = dplyr::case_when(
-        ace_mi == "none" ~ 0,
-        ace_mi %in% c("ECG only, age unk", "Myocardial Infarct, NOS") ~ 1,
-        ace_mi == "> 6 months" ~ 2,
-        TRUE ~ NA_real_
-      ),
-      ace_cad_score = dplyr::case_when(
-        ace_cad == "none" ~ 0,
-        ace_cad %in% c(
-          "CABG or PTCA (> 6 months)",
-          "Coronary stent (> 6 months)",
-          "CABG or PTCA (> 6 months)+Coronary stent (> 6 months)",
-          "Angina / Coronary Artery Disease, NOS"
-        ) ~ 1,
-        ace_cad %in% c(
-          "Chronic exertional angina",
-          "Chronic exertional angina+Angina / Coronary Artery Disease, NOS",
-          "Recent (<= 6 months) coronary stent+none",
-          "Recent (<= 6 months) Coronary Artery Bypass Graft (CABG) or Percutaneous Transluminal Coronary Angioplasty (PTCA)+Angina / Coronary Artery Disease, NOS"
-        ) ~ 2,
-        TRUE ~ NA_real_
-      ),
-      ace_chf_score = dplyr::case_when(
-        ace_chf == "none" ~ 0,
-        ace_chf %in% c("CHF with dyspnea which has responded to treatment", "CHF, NOS") ~ 1,
-        TRUE ~ NA_real_
-      ),
-      ace_arr_score = dplyr::case_when(
-        ace_arr == "none" ~ 0,
-        ace_arr == "Supraventricular tachycardia" ~ 1,
-        ace_arr %in% c(
-          "Chronic atrial fibrillation or flutter",
-          "Chronic atrial fibrillation or flutter+Sick Sinus Syndrome",
-          "Chronic atrial fibrillation or flutter+Pacemaker+Sick Sinus Syndrome",
-          "Pacemaker",
-          "Arrhythmias, NOS"
-        ) ~ 2,
-        TRUE ~ NA_real_
-      ),
-      ace_htn_score = dplyr::case_when(
-        ace_htn == "none" ~ 0,
-        ace_htn %in% c(
-          "DBP 90-114 mm Hg w/o antihypertensive meds",
-          "DBP 90-114 mm Hg w/o antihypertensive meds+Hypertension, NOS",
-          "DBP < 90 mm Hg w/ antihypertensive meds",
-          "Hypertension, NOS"
-        ) ~ 1,
-        ace_htn %in% c("DBP 90-114 mm Hg w/ antihypertensive meds") ~ 2,
-        ace_htn %in% c("DBP > 130 mm Hg") ~ 3,
-        TRUE ~ NA_real_
-      ),
-      ace_vd_score = dplyr::case_when(
-        ace_vd == "none" ~ 0,
-        ace_vd %in% c(
-          "Old DVT no longer treated with Coumadin or Heparin",
-          "Venous Disease, NOS"
-        ) ~ 1,
-        ace_vd %in% c(
-          "DVT controlled with Coumadin or heparin",
-          "DVT controlled with Coumadin or heparin+Old PE > 6 months",
-          "DVT controlled with Coumadin or heparin+Venous Disease, NOS",
-          "Old PE > 6 months",
-          "Old PE > 6 months+Old DVT no longer treated with Coumadin or Heparin"
-        ) ~ 2,
-        ace_vd %in% c(
-          "Recent PE (<= 6 months)",
-          "Recent PE (<= 6 months)+Use of venous filter for PEs",
-          "Recent PE (<= 6 months)+Use of venous filter for PEs+DVT controlled with Coumadin or heparin",
-          "Recent PE (<= 6 months)+DVT controlled with Coumadin or heparin",
-          "Use of venous filter for PEs+DVT controlled with Coumadin or heparin"
-        ) ~ 3,
-        TRUE ~ NA_real_
-      ),
-      ace_pad_score = dplyr::case_when(
-        ace_pad == "none" ~ 0,
-        ace_pad %in% c("s/p abdominal or thoracic aortic aneurysm repair", "Peripheral Arterial Disease, NOS") ~ 1,
-        ace_pad == "Bypass or amputation for gangrene or arterial insufficiency > 6 months ago" ~ 2,
-        TRUE ~ NA_real_
-      ),
-      ace_res_score = dplyr::case_when(
-        ace_res == "none" ~ 0,
-        ace_res %in% c("Restrictive Lung Disease or COPD (chronic bronchitis, emphysema, or asthma) with dyspnea which has responded to treatment",
-                       "Respiratory system disease, NOS") ~ 1,
-        ace_res == "Restrictive Lung Disease or COPD (chronic bronchitis, emphysema, or asthma) with dyspnea which limits activities" ~ 2,
-        TRUE ~ NA_real_
-      ),
-      ace_hep_score = dplyr::case_when(
-        ace_hep == "none" ~ 0,
-        ace_hep %in% c("Chronic hepatitis or cirrhosis without portal hypertension+Hepatic disease, NOS",
-                       "Hepatic disease, NOS") ~ 1,
-        TRUE ~ NA_real_
-      ),
-      ace_sto_score = dplyr::case_when(
-        ace_sto == "none" ~ 0,
-        ace_sto %in% c(
-          "Diagnosis of ulcers treated with meds",
-          "Inflammatory bowel disease (IBD) on meds or h/o with complications and/or surgery",
-          "Stomach / Intestine disease, NOS"
-        ) ~ 1,
-        TRUE ~ NA_real_
-      ),
-      ace_pan_score = dplyr::case_when(
-        ace_pan == "none" ~ 0,
-        ace_pan == "Pancreatic disease, NOS" ~ 1,
-        ace_pan == "Chronic pancreatitis with minor complications (malabsorption, impaired glucose tolerance, or GI bleeding)" ~ 2,
-        TRUE ~ NA_real_
-      ),
-      ace_rd_score = dplyr::case_when(
-        ace_rd == "none" ~ 0,
-        ace_rd %in% c("Chronic Renal Insufficiency with creatinine 2-3 mg%",
-                      "End-stage renal disease, NOS") ~ 1,
-        ace_rd == "Chronic dialysis" ~ 2,
-        ace_rd == "Acute dialysis" ~ 3,
-        TRUE ~ NA_real_
-      ),
-      ace_dm_score = dplyr::case_when(
-        ace_dm == "none" ~ 0,
-        ace_dm %in% c("AODM controlled by oral agents only",
-                      "Diabetes Mellitus, NOS") ~ 1,
-        ace_dm %in% c(
-          "IDDM without complications",
-          "Poorly controlled AODM with oral agents"
-        ) ~ 2,
-        ace_dm %in% c(
-          "retinopathy",
-          "retinopathy+nephropathy+AODM controlled by oral agents only",
-          "retinopathy+Diabetes Mellitus, NOS",
-          "neuropathy",
-          "neuropathy+AODM controlled by oral agents only",
-          "neuropathy+Diabetes Mellitus, NOS",
-          "nephropathy+Diabetes Mellitus, NOS"
-        ) ~ 3,
-        TRUE ~ NA_real_
-      ),
-      ace_str_score = dplyr::case_when(
-        ace_str == "none" ~ 0,
-        ace_str %in% c("Past or recent TIA", "Stroke, NOS") ~ 1,
-        ace_str == "Old stroke with neurologic residual" ~ 2,
-        TRUE ~ NA_real_
-      ),
-      ace_dem_score = dplyr::case_when(
-        ace_dem == "none" ~ 0,
-        ace_dem %in% c("Mild dementia (can take care of self)", "Dementia, NOS") ~ 1,
-        TRUE ~ NA_real_
-      ),
-      ace_par_score = dplyr::case_when(
-        ace_par == "none" ~ 0,
-        ace_par == "Paralysis, NOS" ~ 1,
-        TRUE ~ NA_real_
-      ),
-      ace_neu_score = dplyr::case_when(
-        ace_neu == "none" ~ 0,
-        ace_neu %in% c(
-          "MS, Parkinson's, Myasthenia Gravis, or other chronic neuromuscular disorder, but ambulatory and providing most of self care",
-          "Neuromuscular disorders, NOS"
-        ) ~ 1,
-        ace_neu == "MS, Parkinson's, Myasthenia Gravis, or other chronic neuromuscular disorder, but able to do some self care" ~ 2,
-        TRUE ~ NA_real_
-      ),
-      ace_psy_score = dplyr::case_when(
-        ace_psy == "none" ~ 0,
-        ace_psy %in% c(
-          "Depression or bipolar disorder controlled w/ medication",
-          "Depression or bipolar disorder controlled w/ medication+Psychiatric disorders, NOS",
-          "Psychiatric disorders, NOS"
-        ) ~ 1,
-        ace_psy %in% c(
-          "Depression or bipolar disorder uncontrolled",
-          "Schizophrenia controlled w/ meds",
-          "Schizophrenia controlled w/ meds+Psychiatric disorders, NOS"
-        ) ~ 2,
-        ace_psy == "Active schizophrenia" ~ 3,
-        TRUE ~ NA_real_
-      ),
-      ace_rhe_score = dplyr::case_when(
-        ace_rhe == "none" ~ 0,
-        ace_rhe %in% c(
-          "Connective Tissue Disorder on NSAIDS or no treatment",
-          "Connective Tissue Disorder on NSAIDS or no treatment+Rheumatologic, NOS",
-          "Rheumatologic, NOS"
-        ) ~ 1,
-        ace_rhe == "Connective Tissue Disorder on steroids or immunosuppressant medications" ~ 2,
-        TRUE ~ NA_real_
-      ),
-      ace_aid_score = dplyr::case_when(
-        ace_aid == "none" ~ 0,
-        TRUE ~ NA_real_
-      ),
-      ace_st_score = dplyr::case_when(
-        ace_st == "none" ~ 0,
-        ace_st %in% c("Any controlled solid tumor without documented metastases, but initially diagnosed and treated > 5 years ago",
-                      "Solid Tumor, NOS") ~ 1,
-        ace_st %in% c("Any controlled solid tumor without documented metastases, but initially diagnosed and treated within the last 5 years",
-                      "Any controlled solid tumor without documented metastases, but initially diagnosed and treated within the last 5 years+Any controlled solid tumor without documented metastases, but initially diagnosed and treated > 5 years ago") ~ 2,
-        ace_st %in% c("Newly diagnosed but not yet treated",
-                      "Newly diagnosed but not yet treated+Any controlled solid tumor without documented metastases, but initially diagnosed and treated within the last 5 years",
-                      "Metastatic solid tumor") ~ 3,
-        TRUE ~ NA_real_
-      ),
-      ace_lm_score = dplyr::case_when(
-        ace_lm == "none" ~ 0,
-        TRUE ~ NA_real_
-      ),
-      ace_lym_score = dplyr::case_when(
-        ace_lym == "none" ~ 0,
-        ace_lym %in% c("H/o lymphoma w/ last Rx >1 yr prior",
-                       "Lymphoma, NOS") ~ 1,
-        ace_lym == "1st remission or new dx < 1yr" ~ 2,
-        TRUE ~ NA_real_
-      ),
-      ace_alc_score = dplyr::case_when(
-        ace_alc == "none" ~ 0,
-        ace_alc %in% c("H/o alcohol abuse but not presently drinking",
-                       "Alcohol abuse, NOS") ~ 1,
-        TRUE ~ NA_real_
-      ),
-      ace_id_score = dplyr::case_when(
-        ace_id == "none" ~ 0,
-        ace_id == "H/o substance abuse but not presently using" ~ 1,
-        TRUE ~ NA_real_
-      ),
-      ace_obe_score = dplyr::case_when(
-        ace_obe == "none" ~ 0,
-        ace_obe %in% c("Morbid (i.e., BMI >= 38)", "Obesity, NOS") ~ 2,
-        TRUE ~ NA_real_
-      )
+      ace_mi_score = score_ace(ace_mi, ACE_MI),
+      ace_cad_score = score_ace(ace_cad, ACE_CAD),
+      ace_chf_score = score_ace(ace_chf, ACE_CHF),
+      ace_arr_score = score_ace(ace_arr, ACE_ARR),
+      ace_htn_score = score_ace(ace_htn, ACE_HTN),
+      ace_vd_score = score_ace(ace_vd, ACE_VD),
+      ace_pad_score = score_ace(ace_pad, ACE_PAD),
+      ace_res_score = score_ace(ace_res, ACE_RES),
+      ace_hep_score = score_ace(ace_hep, ACE_HEP),
+      ace_sto_score = score_ace(ace_sto, ACE_STO),
+      ace_pan_score = score_ace(ace_pan, ACE_PAN),
+      ace_rd_score = score_ace(ace_rd, ACE_RD),
+      ace_dm_score = score_ace(ace_dm, ACE_DM),
+      ace_str_score = score_ace(ace_str, ACE_STR),
+      ace_dem_score = score_ace(ace_dem, ACE_DEM),
+      ace_par_score = score_ace(ace_par, ACE_PAR),
+      ace_neu_score = score_ace(ace_neu, ACE_NEU),
+      ace_psy_score = score_ace(ace_psy, ACE_PSY),
+      ace_rhe_score = score_ace(ace_rhe, ACE_RHE),
+      ace_aid_score = score_ace(ace_aid, ACE_AID),
+      ace_st_score = score_ace(ace_st, ACE_ST),
+      ace_lm_score = score_ace(ace_lm, ACE_LM),
+      ace_lym_score = score_ace(ace_lym, ACE_LYM),
+      ace_alc_score = score_ace(ace_alc, ACE_ALC),
+      ace_id_score = score_ace(ace_id, ACE_ID),
+      ace_obe_score = score_ace(ace_obe, ACE_OBE)
     )
 
   # Aggregate max scores within each body system
@@ -384,4 +184,16 @@ assign_ace27 <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
     )
 
   d[["ace_27"]]
+}
+
+#' Score ACE variables based on highest grade from standard symptoms list
+#' @noRd
+score_ace <- function(ace, symptoms) {
+  symptoms %>%
+    purrr::map(~ gsub("\\(", "\\\\(", .) %>%
+                 gsub("\\)", "\\\\)", .) %>%
+                 paste(collapse = "|")) %>%
+    rlang::list2(!!!., `0` = "none") %>%
+    purrr::imap(~ ifelse(grepl(.x, ace), as.numeric(.y), NA_real_)) %>%
+    purrr::pmap_dbl(pmax, na.rm = TRUE)
 }
