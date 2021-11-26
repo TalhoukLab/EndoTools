@@ -334,27 +334,52 @@ assign_ace27 <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
   # Aggregate max scores within each body system
   d <- d %>%
     dplyr::mutate(
-      ace_sys_car = purrr::pmap_dbl(dplyr::select(., ace_mi_score:ace_pad_score), pmax, na.rm = TRUE),
-      ace_sys_res = ace_res_score,
-      ace_sys_gi = purrr::pmap_dbl(dplyr::select(., ace_hep_score:ace_pan_score), pmax, na.rm = TRUE),
-      ace_sys_ren = ace_rd_score,
-      ace_sys_end = ace_dm_score,
-      ace_sys_neu = purrr::pmap_dbl(dplyr::select(., ace_str_score:ace_neu_score), pmax, na.rm = TRUE),
-      ace_sys_psy = ace_psy_score,
-      ace_sys_rhe = ace_rhe_score,
-      ace_sys_imm = ace_aid_score,
-      ace_sys_mal = purrr::pmap_dbl(dplyr::select(., ace_st_score:ace_lym_score), pmax, na.rm = TRUE),
-      ace_sys_sub = purrr::pmap_dbl(dplyr::select(., ace_alc_score:ace_id_score), pmax, na.rm = TRUE),
-      ace_sys_bod = ace_obe_score
+      ace_sys_car = purrr::pmap_dbl(dplyr::select(
+        .,
+        c(
+          "ace_mi_score",
+          "ace_cad_score",
+          "ace_chf_score",
+          "ace_arr_score",
+          "ace_htn_score",
+          "ace_vd_score",
+          "ace_pad_score"
+        )
+      ), pmax, na.rm = TRUE),
+      ace_sys_res = .data$ace_res_score,
+      ace_sys_gi = purrr::pmap_dbl(dplyr::select(., c(
+        "ace_hep_score", "ace_sto_score", "ace_pan_score"
+      )), pmax, na.rm = TRUE),
+      ace_sys_ren = .data$ace_rd_score,
+      ace_sys_end = .data$ace_dm_score,
+      ace_sys_neu = purrr::pmap_dbl(dplyr::select(
+        .,
+        c(
+          "ace_str_score",
+          "ace_dem_score",
+          "ace_par_score",
+          "ace_neu_score"
+        )
+      ), pmax, na.rm = TRUE),
+      ace_sys_psy = .data$ace_psy_score,
+      ace_sys_rhe = .data$ace_rhe_score,
+      ace_sys_imm = .data$ace_aid_score,
+      ace_sys_mal = purrr::pmap_dbl(dplyr::select(., c(
+        "ace_st_score", "ace_lm_score", "ace_lym_score"
+      )), pmax, na.rm = TRUE),
+      ace_sys_sub = purrr::pmap_dbl(dplyr::select(., c("ace_alc_score", "ace_id_score")), pmax, na.rm = TRUE),
+      ace_sys_bod = .data$ace_obe_score
     )
 
   # Assign ACE-27, adjusting for multiple systems with moderate risk
   d <- d %>%
     dplyr::mutate(
-      ace_multi_sys = purrr::pmap_lgl(dplyr::select(., dplyr::matches("ace_sys")), purrr::lift_vd(function(x)
-        sum(x == 2, na.rm = TRUE) > 1)),
-      ace_27 = purrr::pmap_dbl(dplyr::select(., matches("_score")), pmax, na.rm = TRUE) %>%
-        ifelse(ace_multi_sys, 3, .) %>%
+      ace_multi_sys = purrr::pmap_lgl(
+        dplyr::select(., dplyr::matches("ace_sys")),
+        purrr::lift_vd(function(x) sum(x == 2, na.rm = TRUE) > 1)
+      ),
+      ace_27 = purrr::pmap_dbl(dplyr::select(., dplyr::matches("_score")), pmax, na.rm = TRUE) %>%
+        ifelse(.data$ace_multi_sys, 3, .) %>%
         factor(labels = c("None", "Mild", "Moderate", "Severe"))
     )
 

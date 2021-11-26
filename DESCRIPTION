@@ -2,15 +2,10 @@ Package: EndoTools
 Title: Endometrial Cancer Helper Tools
 Version: 0.3.2
 Date: 2021-10-21
-Authors@R: 
-    c(person(given = "Derek",
-             family = "Chiu",
-             role = c("aut", "cre"),
-             email = "dchiu@bccrc.ca"),
-      person(given = "Samuel",
-             family = "Leung",
-             role = "aut",
-             email = "Samuel.Leung@vch.ca"))
+Authors@R: c(
+    person("Derek", "Chiu", , "dchiu@bccrc.ca", role = c("aut", "cre")),
+    person("Samuel", "Leung", , "Samuel.Leung@vch.ca", role = "aut")
+  )
 Description: Helper tools such as calculation of ProMisE classifications
     and ESMO risk groups for endometrial cancers.
 License: MIT + file LICENSE
@@ -20,6 +15,8 @@ Depends:
 Imports: 
     assertthat,
     dplyr,
+    magrittr,
+    purrr,
     rlang
 Suggests: 
     covr,
