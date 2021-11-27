@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EndoTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -177,7 +177,7 @@ in the Vancouver endometrial cancer database.</p><ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='r-in'><span class='va'>emdb</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 800 × 17</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 800 × 43</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>    stage_full stage grade_rev hist_rev_gr  hist   myo   lvi   residual mmr_ihc_2</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>    </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> IA         I     grade 3   non-endomet… endom… none  <span style='color: #BB0000;'>NA</span>    no resi… intact   </span>
@@ -190,8 +190,13 @@ in the Vancouver endometrial cancer database.</p><ul>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> IA         I     grade 3   endometrioid serous 1-50% nega… no resi… deficient</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> III        III   grade 1   non-endomet… endom… 1-50% posi… no resi… intact   </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> IVB        <span style='color: #BB0000;'>NA</span>    grade 3   non-endomet… endom… &gt;50%  nega… no resi… intact   </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 790 more rows, and 8 more variables: mmr_ihc_4 &lt;fct&gt;, pole_mut &lt;fct&gt;,</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   p53 &lt;fct&gt;, p53_mut &lt;fct&gt;, msh6 &lt;fct&gt;, pms2 &lt;fct&gt;, mlh1 &lt;fct&gt;, msh2 &lt;fct&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 790 more rows, and 34 more variables: mmr_ihc_4 &lt;fct&gt;, pole_mut &lt;fct&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   p53 &lt;fct&gt;, p53_mut &lt;fct&gt;, msh6 &lt;fct&gt;, pms2 &lt;fct&gt;, mlh1 &lt;fct&gt;, msh2 &lt;fct&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   ace_mi &lt;chr&gt;, ace_cad &lt;chr&gt;, ace_chf &lt;chr&gt;, ace_arr &lt;chr&gt;, ace_htn &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   ace_vd &lt;chr&gt;, ace_pad &lt;chr&gt;, ace_res &lt;chr&gt;, ace_hep &lt;chr&gt;, ace_sto &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   ace_pan &lt;chr&gt;, ace_rd &lt;chr&gt;, ace_dm &lt;chr&gt;, ace_str &lt;chr&gt;, ace_dem &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   ace_par &lt;chr&gt;, ace_neu &lt;chr&gt;, ace_psy &lt;chr&gt;, ace_rhe &lt;chr&gt;, ace_aid &lt;chr&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   ace_st &lt;chr&gt;, ace_lm &lt;chr&gt;, ace_lym &lt;chr&gt;, ace_alc &lt;chr&gt;, ace_id &lt;chr&gt;, …</span></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
