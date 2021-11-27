@@ -5,7 +5,7 @@ library(tidyr)
 library(dplyr)
 library(usethis)
 n <- 800
-ace_prob <- c(0.01, 0.02, 0.1)
+ace_prob <- c(0.005, 0.015, 0.11)
 set.seed(2021)
 
 emdb <- tibble(
@@ -162,6 +162,8 @@ emdb <- emdb %>%
     ace_alc = simulate_ace(ACE_ALC, size = n, prob = ace_prob),
     ace_id = simulate_ace(ACE_ID, size = n, prob = ace_prob),
     ace_obe = simulate_ace(ACE_OBE, size = n, prob = sum(ace_prob))
-  )
+  ) %>%
+  mutate(across(.cols = starts_with("ace"),
+                .fns = ~ if_else(runif(length(.)) > 0.4, ., NA_character_)))
 
 use_data(emdb, overwrite = TRUE)
