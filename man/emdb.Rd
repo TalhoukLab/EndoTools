@@ -5,7 +5,7 @@
 \alias{emdb}
 \title{Simulated endometrial cancer Database}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 800 rows and 17 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 800 rows and 43 columns.
 }
 \usage{
 emdb
