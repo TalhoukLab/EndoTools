@@ -28,7 +28,7 @@ test_that("ace27 works", {
     ace_obe = emdb$ace_obe
   )
   expect_equal(sum(emdb$ace27 == "None", na.rm = TRUE), 111)
-  expect_equal(sum(emdb$ace27 == "Mild", na.rm = TRUE), 441)
-  expect_equal(sum(emdb$ace27 == "Moderate", na.rm = TRUE), 177)
+  expect_equal(sum(emdb$ace27 == ">=Mild", na.rm = TRUE), 441)
+  expect_equal(sum(emdb$ace27 == ">=Moderate", na.rm = TRUE), 177)
   expect_equal(sum(emdb$ace27 == "Severe", na.rm = TRUE), 71)
 })
