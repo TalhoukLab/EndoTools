@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://talhouklab.github.io/EndoTools/404.html</loc>
+  </url>
+  <url>
+    <loc>https://talhouklab.github.io/EndoTools/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://talhouklab.github.io/EndoTools/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://talhouklab.github.io/EndoTools/authors.html</loc>
+  </url>
+  <url>
     <loc>https://talhouklab.github.io/EndoTools/index.html</loc>
+  </url>
+  <url>
+    <loc>https://talhouklab.github.io/EndoTools/news/index.html</loc>
   </url>
   <url>
     <loc>https://talhouklab.github.io/EndoTools/reference/EndoTools-package.html</loc>
@@ -38,6 +53,9 @@
   </url>
   <url>
     <loc>https://talhouklab.github.io/EndoTools/reference/emdb.html</loc>
+  </url>
+  <url>
+    <loc>https://talhouklab.github.io/EndoTools/reference/index.html</loc>
   </url>
   <url>
     <loc>https://talhouklab.github.io/EndoTools/reference/pipe.html</loc>
