@@ -11,10 +11,15 @@
 #'
 #' Two other scoring assumptions are made. First, if there is insufficient
 #' information regarding a comorbidity then it is described as an "NOS" (not
-#' otherwise specified) case, and scored as Grade 1. Secondly, any case with
-#' multiple symptoms from different Grades is scored into the higher Grade. For
-#' example, someone with symptoms from both Grade 1 and Grade 2 is categorized
-#' as Grade 2.
+#' otherwise specified) case, and scored as Grade 1. To account for the
+#' possibility an NOS case is actually higher than Grade 1, all Grade 1/2 are
+#' relabelled with ">=". Alternatively, one can also specify `separate_nos` as
+#' `TRUE` to create a separate category of cases that _only_ have NOS ailments,
+#' with "Obesity, NOS" being the exception as it is only assigned to Grade 2.
+#'
+#' Secondly, any case with multiple symptoms from different Grades is scored
+#' into the higher Grade. For example, someone with symptoms from both Grade 1
+#' and Grade 2 is categorized as Grade 2.
 #'
 #' ## ACE comorbidities by organ systems
 #' - Cardiovascular System
@@ -78,8 +83,10 @@
 #' @param ace_alc Alcohol
 #' @param ace_id Illicit Drugs
 #' @param ace_obe Obesity
-#' @return A factor with levels "None", "Mild", "Moderate", "Severe" indicating
-#'   the overall ACE-27 score.
+#' @param separate_nos logical; if `TRUE`, cases that only have "NOS" ailments
+#'   (excluding Obesity, NOS) are separated into their own category.
+#' @return A factor with levels "None", ">=Mild", ">=Moderate", "Severe" (and
+#'   "NOS" if `separate_nos = TRUE`) indicating the overall ACE-27 score.
 #' @references Binder PS, Peipert JF, Kallogjeri D, et al. Adult Comorbidity
 #'   Evaluation 27 score as a predictor of survival in endometrial cancer
 #'   patients. Am J Obstet Gynecol. 2016;215(6):766.e1-766.e9.
@@ -91,7 +98,7 @@ assign_ace27 <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
                          ace_pad, ace_res, ace_hep, ace_sto, ace_pan, ace_rd,
                          ace_dm, ace_str, ace_dem, ace_par, ace_neu, ace_psy,
                          ace_rhe, ace_aid, ace_st, ace_lm, ace_lym, ace_alc,
-                         ace_id, ace_obe) {
+                         ace_id, ace_obe, separate_nos = FALSE) {
 
   # Recode into risk scores
   ace_mi_score <- score_ace(ace_mi, ACE_MI)
@@ -175,8 +182,29 @@ assign_ace27 <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
     ace_id_score, ace_obe_score
   ),
   pmax, na.rm = TRUE) %>%
-    ifelse(ace_multi_sys, 3, .) %>%
-    factor(labels = c("None", "Mild", "Moderate", "Severe"))
+    ifelse(ace_multi_sys, 3, .)
+
+  # NOS grouped or separated, use inequalities in labels
+  if (separate_nos) {
+    ace_only_nos <- purrr::pmap_lgl(
+      list(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
+           ace_pad, ace_res, ace_hep, ace_sto, ace_pan, ace_rd, ace_dm,
+           ace_str, ace_dem, ace_par, ace_neu, ace_psy, ace_rhe, ace_aid,
+           ace_st, ace_lm, ace_lym, ace_alc, ace_id, ace_obe
+      ),
+      purrr::lift_vd(function(x)
+        all(grepl("(?<!Obesity), NOS", x, perl = TRUE) | x == "none" | is.na(x)) &
+          !all(is.na(x) | x == "none") &
+          !any(grepl("\\+", x)))
+    )
+    ace_27 <- factor(
+      dplyr::if_else(ace_only_nos, 4, ace_27),
+      labels = c("None", ">=Mild", ">=Moderate", "Severe", "NOS")
+    )
+  } else {
+    ace_27 <-
+      factor(ace_27, labels = c("None", ">=Mild", ">=Moderate", "Severe"))
+  }
   ace_27
 }
 

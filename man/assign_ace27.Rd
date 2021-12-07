@@ -30,7 +30,8 @@ assign_ace27(
   ace_lym,
   ace_alc,
   ace_id,
-  ace_obe
+  ace_obe,
+  separate_nos = FALSE
 )
 }
 \arguments{
@@ -85,10 +86,13 @@ assign_ace27(
 \item{ace_id}{Illicit Drugs}
 
 \item{ace_obe}{Obesity}
+
+\item{separate_nos}{logical; if \code{TRUE}, cases that only have "NOS" ailments
+(excluding Obesity, NOS) are separated into their own category.}
 }
 \value{
-A factor with levels "None", "Mild", "Moderate", "Severe" indicating
-the overall ACE-27 score.
+A factor with levels "None", ">=Mild", ">=Moderate", "Severe" (and
+"NOS" if \code{separate_nos = TRUE}) indicating the overall ACE-27 score.
 }
 \description{
 Assign Adult Comorbidity Evaluation-27 index based on 26 medical
@@ -103,10 +107,15 @@ systems, then the overall score becomes Grade 3.
 
 Two other scoring assumptions are made. First, if there is insufficient
 information regarding a comorbidity then it is described as an "NOS" (not
-otherwise specified) case, and scored as Grade 1. Secondly, any case with
-multiple symptoms from different Grades is scored into the higher Grade. For
-example, someone with symptoms from both Grade 1 and Grade 2 is categorized
-as Grade 2.
+otherwise specified) case, and scored as Grade 1. To account for the
+possibility an NOS case is actually higher than Grade 1, all Grade 1/2 are
+relabelled with ">=". Alternatively, one can also specify \code{separate_nos} as
+\code{TRUE} to create a separate category of cases that \emph{only} have NOS ailments,
+with "Obesity, NOS" being the exception as it is only assigned to Grade 2.
+
+Secondly, any case with multiple symptoms from different Grades is scored
+into the higher Grade. For example, someone with symptoms from both Grade 1
+and Grade 2 is categorized as Grade 2.
 \subsection{ACE comorbidities by organ systems}{
 \itemize{
 \item Cardiovascular System
