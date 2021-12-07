@@ -1,3 +1,7 @@
+# EndoTools 0.3.4
+
+* Add parameter `separate_nos` to handle NOS cases in ACE comorbidities
+
 # EndoTools 0.3.3
 
 * Add ACE variables to `emdb`
