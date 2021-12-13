@@ -48,52 +48,54 @@ df <- emdb %>%
 
 df %>% 
   count(esmo2013)
-#> # A tibble: 3 x 2
+#> # A tibble: 4 × 2
 #>   esmo2013         n
 #>   <fct>        <int>
-#> 1 low            168
-#> 2 intermediate   187
-#> 3 high           445
+#> 1 low             89
+#> 2 intermediate   117
+#> 3 high           425
+#> 4 <NA>           169
 
 df %>% 
   count(esmo2016)
-#> # A tibble: 6 x 2
+#> # A tibble: 7 × 2
 #>   esmo2016              n
 #>   <fct>             <int>
-#> 1 low                  88
-#> 2 intermediate         56
-#> 3 high-intermediate   174
-#> 4 high                464
+#> 1 low                  36
+#> 2 intermediate         21
+#> 3 high-intermediate    99
+#> 4 high                421
 #> 5 advanced             12
 #> 6 metastatic            6
+#> 7 <NA>                205
 
 df %>% 
   count(esmo2020)
-#> # A tibble: 7 x 2
+#> # A tibble: 7 × 2
 #>   esmo2020              n
 #>   <fct>             <int>
-#> 1 low                 132
-#> 2 intermediate        105
-#> 3 high-intermediate   133
-#> 4 high                335
-#> 5 advanced             20
+#> 1 low                  75
+#> 2 intermediate         51
+#> 3 high-intermediate    81
+#> 4 high                223
+#> 5 advanced             32
 #> 6 metastatic            6
-#> 7 <NA>                 69
+#> 7 <NA>                332
 
 df %>% 
   count(esmo2013, esmo2016, esmo2020)
-#> # A tibble: 40 x 4
+#> # A tibble: 54 × 4
 #>    esmo2013 esmo2016          esmo2020              n
 #>    <fct>    <fct>             <fct>             <int>
-#>  1 low      low               low                  53
-#>  2 low      low               intermediate          2
-#>  3 low      low               high                  6
-#>  4 low      low               <NA>                  4
-#>  5 low      intermediate      low                  39
-#>  6 low      intermediate      high                  7
-#>  7 low      intermediate      <NA>                  2
-#>  8 low      high-intermediate low                   6
-#>  9 low      high-intermediate intermediate          3
-#> 10 low      high-intermediate high-intermediate    37
-#> # ... with 30 more rows
+#>  1 low      low               low                  19
+#>  2 low      low               intermediate          1
+#>  3 low      low               <NA>                  6
+#>  4 low      intermediate      low                  14
+#>  5 low      intermediate      <NA>                  2
+#>  6 low      high-intermediate low                   3
+#>  7 low      high-intermediate intermediate          2
+#>  8 low      high-intermediate high-intermediate    18
+#>  9 low      high-intermediate high                  1
+#> 10 low      high-intermediate <NA>                  6
+#> # … with 44 more rows
 ```
