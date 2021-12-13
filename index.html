@@ -105,54 +105,56 @@
 
 <span class="va">df</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">esmo2013</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 x 2</span>
+<span class="co">#&gt; # A tibble: 4 × 2</span>
 <span class="co">#&gt;   esmo2013         n</span>
 <span class="co">#&gt;   &lt;fct&gt;        &lt;int&gt;</span>
-<span class="co">#&gt; 1 low            168</span>
-<span class="co">#&gt; 2 intermediate   187</span>
-<span class="co">#&gt; 3 high           445</span>
+<span class="co">#&gt; 1 low             89</span>
+<span class="co">#&gt; 2 intermediate   117</span>
+<span class="co">#&gt; 3 high           425</span>
+<span class="co">#&gt; 4 &lt;NA&gt;           169</span>
 
 <span class="va">df</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">esmo2016</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="co">#&gt; # A tibble: 7 × 2</span>
 <span class="co">#&gt;   esmo2016              n</span>
 <span class="co">#&gt;   &lt;fct&gt;             &lt;int&gt;</span>
-<span class="co">#&gt; 1 low                  88</span>
-<span class="co">#&gt; 2 intermediate         56</span>
-<span class="co">#&gt; 3 high-intermediate   174</span>
-<span class="co">#&gt; 4 high                464</span>
+<span class="co">#&gt; 1 low                  36</span>
+<span class="co">#&gt; 2 intermediate         21</span>
+<span class="co">#&gt; 3 high-intermediate    99</span>
+<span class="co">#&gt; 4 high                421</span>
 <span class="co">#&gt; 5 advanced             12</span>
 <span class="co">#&gt; 6 metastatic            6</span>
+<span class="co">#&gt; 7 &lt;NA&gt;                205</span>
 
 <span class="va">df</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">esmo2020</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 7 x 2</span>
+<span class="co">#&gt; # A tibble: 7 × 2</span>
 <span class="co">#&gt;   esmo2020              n</span>
 <span class="co">#&gt;   &lt;fct&gt;             &lt;int&gt;</span>
-<span class="co">#&gt; 1 low                 132</span>
-<span class="co">#&gt; 2 intermediate        105</span>
-<span class="co">#&gt; 3 high-intermediate   133</span>
-<span class="co">#&gt; 4 high                335</span>
-<span class="co">#&gt; 5 advanced             20</span>
+<span class="co">#&gt; 1 low                  75</span>
+<span class="co">#&gt; 2 intermediate         51</span>
+<span class="co">#&gt; 3 high-intermediate    81</span>
+<span class="co">#&gt; 4 high                223</span>
+<span class="co">#&gt; 5 advanced             32</span>
 <span class="co">#&gt; 6 metastatic            6</span>
-<span class="co">#&gt; 7 &lt;NA&gt;                 69</span>
+<span class="co">#&gt; 7 &lt;NA&gt;                332</span>
 
 <span class="va">df</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">esmo2013</span>, <span class="va">esmo2016</span>, <span class="va">esmo2020</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 40 x 4</span>
+<span class="co">#&gt; # A tibble: 54 × 4</span>
 <span class="co">#&gt;    esmo2013 esmo2016          esmo2020              n</span>
 <span class="co">#&gt;    &lt;fct&gt;    &lt;fct&gt;             &lt;fct&gt;             &lt;int&gt;</span>
-<span class="co">#&gt;  1 low      low               low                  53</span>
-<span class="co">#&gt;  2 low      low               intermediate          2</span>
-<span class="co">#&gt;  3 low      low               high                  6</span>
-<span class="co">#&gt;  4 low      low               &lt;NA&gt;                  4</span>
-<span class="co">#&gt;  5 low      intermediate      low                  39</span>
-<span class="co">#&gt;  6 low      intermediate      high                  7</span>
-<span class="co">#&gt;  7 low      intermediate      &lt;NA&gt;                  2</span>
-<span class="co">#&gt;  8 low      high-intermediate low                   6</span>
-<span class="co">#&gt;  9 low      high-intermediate intermediate          3</span>
-<span class="co">#&gt; 10 low      high-intermediate high-intermediate    37</span>
-<span class="co">#&gt; # ... with 30 more rows</span></code></pre></div>
+<span class="co">#&gt;  1 low      low               low                  19</span>
+<span class="co">#&gt;  2 low      low               intermediate          1</span>
+<span class="co">#&gt;  3 low      low               &lt;NA&gt;                  6</span>
+<span class="co">#&gt;  4 low      intermediate      low                  14</span>
+<span class="co">#&gt;  5 low      intermediate      &lt;NA&gt;                  2</span>
+<span class="co">#&gt;  6 low      high-intermediate low                   3</span>
+<span class="co">#&gt;  7 low      high-intermediate intermediate          2</span>
+<span class="co">#&gt;  8 low      high-intermediate high-intermediate    18</span>
+<span class="co">#&gt;  9 low      high-intermediate high                  1</span>
+<span class="co">#&gt; 10 low      high-intermediate &lt;NA&gt;                  6</span>
+<span class="co">#&gt; # … with 44 more rows</span></code></pre></div>
 </div>
 </div>
   </div>
