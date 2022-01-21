@@ -24,7 +24,7 @@
 #' check_input(emdb$stage_full, STAGE_STD)
 check_input <- function(param, codelist) {
   param <- rlang::enquo(param)
-  lvls <- levels(rlang::eval_tidy(param))
+  lvls <- levels(factor(rlang::eval_tidy(param)))
   valid <- lvls %in% codelist
   invalids <- paste(dQuote(lvls[!valid], q = FALSE), collapse = ", ")
   param_name <- rlang::as_label(param)
