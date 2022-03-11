@@ -105,6 +105,16 @@ according to the highest ranked individual comorbidity recorded. However, if
 there are two or more Grade 2 comorbidities occuring in different organ
 systems, then the overall score becomes Grade 3.
 
+When there is insufficient information regarding a comorbidity, then it is
+described as an "NOS" (not otherwise specified) case. There are two ways to
+handle these two cases. First, we can set \code{separate_nos = TRUE} to create a
+separate category of cases that \emph{only} have NOS ailments, with "Obesity, NOS"
+being the exception as it is only assigned to Grade 2. Or, we can set
+\code{separate_nos = FALSE} and have the NOS cases be categorized with the lowest
+risk group based on information we have on all the ACE variables. Thus,
+we relabel "Mild" and "Moderate" to ">=Mild" and ">=Moderate" respectively
+to reflect the risk uncertainty.
+
 Two other scoring assumptions are made. First, if there is insufficient
 information regarding a comorbidity then it is described as an "NOS" (not
 otherwise specified) case, and scored as Grade 1. To account for the
@@ -113,7 +123,7 @@ relabelled with ">=". Alternatively, one can also specify \code{separate_nos} as
 \code{TRUE} to create a separate category of cases that \emph{only} have NOS ailments,
 with "Obesity, NOS" being the exception as it is only assigned to Grade 2.
 
-Secondly, any case with multiple symptoms from different Grades is scored
+Any case with multiple symptoms from different Grades is scored
 into the higher Grade. For example, someone with symptoms from both Grade 1
 and Grade 2 is categorized as Grade 2.
 \subsection{ACE comorbidities by organ systems}{

@@ -64,8 +64,8 @@ test_that("NOS can be separated", {
     separate_nos = TRUE
   )
   expect_equal(sum(emdb$ace27 == "None", na.rm = TRUE), 111)
-  expect_equal(sum(emdb$ace27 == ">=Mild", na.rm = TRUE), 331)
-  expect_equal(sum(emdb$ace27 == ">=Moderate", na.rm = TRUE), 177)
+  expect_equal(sum(emdb$ace27 == "Mild", na.rm = TRUE), 331)
+  expect_equal(sum(emdb$ace27 == "Moderate", na.rm = TRUE), 177)
   expect_equal(sum(emdb$ace27 == "Severe", na.rm = TRUE), 71)
   expect_equal(sum(emdb$ace27 == "NOS", na.rm = TRUE), 110)
 })
