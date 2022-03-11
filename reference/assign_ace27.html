@@ -18,7 +18,7 @@ comorbidities."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EndoTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.6</span>
       </span>
     </div>
 
@@ -156,6 +156,15 @@ Mild, 2 = Moderate, and 3 = Severe. The ACE-27 overall score is assigned
 according to the highest ranked individual comorbidity recorded. However, if
 there are two or more Grade 2 comorbidities occuring in different organ
 systems, then the overall score becomes Grade 3.</p>
+<p>When there is insufficient information regarding a comorbidity, then it is
+described as an "NOS" (not otherwise specified) case. There are two ways to
+handle these two cases. First, we can set <code>separate_nos = TRUE</code> to create a
+separate category of cases that <em>only</em> have NOS ailments, with "Obesity, NOS"
+being the exception as it is only assigned to Grade 2. Or, we can set
+<code>separate_nos = FALSE</code> and have the NOS cases be categorized with the lowest
+risk group based on information we have on all the ACE variables. Thus,
+we relabel "Mild" and "Moderate" to "&gt;=Mild" and "&gt;=Moderate" respectively
+to reflect the risk uncertainty.</p>
 <p>Two other scoring assumptions are made. First, if there is insufficient
 information regarding a comorbidity then it is described as an "NOS" (not
 otherwise specified) case, and scored as Grade 1. To account for the
@@ -163,7 +172,7 @@ possibility an NOS case is actually higher than Grade 1, all Grade 1/2 are
 relabelled with "&gt;=". Alternatively, one can also specify <code>separate_nos</code> as
 <code>TRUE</code> to create a separate category of cases that <em>only</em> have NOS ailments,
 with "Obesity, NOS" being the exception as it is only assigned to Grade 2.</p>
-<p>Secondly, any case with multiple symptoms from different Grades is scored
+<p>Any case with multiple symptoms from different Grades is scored
 into the higher Grade. For example, someone with symptoms from both Grade 1
 and Grade 2 is categorized as Grade 2.</p><div class="section">
 <h3 id="ace-comorbidities-by-organ-systems">ACE comorbidities by organ systems<a class="anchor" aria-label="anchor" href="#ace-comorbidities-by-organ-systems"></a></h3>
