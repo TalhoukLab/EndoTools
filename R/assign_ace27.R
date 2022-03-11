@@ -218,6 +218,76 @@ assign_ace27 <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
   ace_27
 }
 
+#' Assign ACE variables into numeric scores
+#'
+#' Each ACE variable is assigned into numeric scores ranging from 0 to 3.
+#'
+#' @inheritParams assign_ace27
+#' @export
+assign_ace_vars <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
+                            ace_pad, ace_res, ace_hep, ace_sto, ace_pan, ace_rd,
+                            ace_dm, ace_str, ace_dem, ace_par, ace_neu, ace_psy,
+                            ace_rhe, ace_aid, ace_st, ace_lm, ace_lym, ace_alc,
+                            ace_id, ace_obe) {
+  # Recode into risk scores
+  ace_mi_score <- score_ace(ace_mi, ACE_MI)
+  ace_cad_score <- score_ace(ace_cad, ACE_CAD)
+  ace_chf_score <- score_ace(ace_chf, ACE_CHF)
+  ace_arr_score <- score_ace(ace_arr, ACE_ARR)
+  ace_htn_score <- score_ace(ace_htn, ACE_HTN)
+  ace_vd_score <- score_ace(ace_vd, ACE_VD)
+  ace_pad_score <- score_ace(ace_pad, ACE_PAD)
+  ace_res_score <- score_ace(ace_res, ACE_RES)
+  ace_hep_score <- score_ace(ace_hep, ACE_HEP)
+  ace_sto_score <- score_ace(ace_sto, ACE_STO)
+  ace_pan_score <- score_ace(ace_pan, ACE_PAN)
+  ace_rd_score <- score_ace(ace_rd, ACE_RD)
+  ace_dm_score <- score_ace(ace_dm, ACE_DM)
+  ace_str_score <- score_ace(ace_str, ACE_STR)
+  ace_dem_score <- score_ace(ace_dem, ACE_DEM)
+  ace_par_score <- score_ace(ace_par, ACE_PAR)
+  ace_neu_score <- score_ace(ace_neu, ACE_NEU)
+  ace_psy_score <- score_ace(ace_psy, ACE_PSY)
+  ace_rhe_score <- score_ace(ace_rhe, ACE_RHE)
+  ace_aid_score <- score_ace(ace_aid, ACE_AID)
+  ace_st_score <- score_ace(ace_st, ACE_ST)
+  ace_lm_score <- score_ace(ace_lm, ACE_LM)
+  ace_lym_score <- score_ace(ace_lym, ACE_LYM)
+  ace_alc_score <- score_ace(ace_alc, ACE_ALC)
+  ace_id_score <- score_ace(ace_id, ACE_ID)
+  ace_obe_score <- score_ace(ace_obe, ACE_OBE)
+
+  rlang::dots_list(
+    ace_mi_score,
+    ace_cad_score,
+    ace_chf_score,
+    ace_arr_score,
+    ace_htn_score,
+    ace_vd_score,
+    ace_pad_score,
+    ace_res_score,
+    ace_hep_score,
+    ace_sto_score,
+    ace_pan_score,
+    ace_rd_score,
+    ace_dm_score,
+    ace_str_score,
+    ace_dem_score,
+    ace_par_score,
+    ace_neu_score,
+    ace_psy_score,
+    ace_rhe_score,
+    ace_aid_score,
+    ace_st_score,
+    ace_lm_score,
+    ace_lym_score,
+    ace_alc_score,
+    ace_id_score,
+    ace_obe_score,
+    .named = TRUE
+  )
+}
+
 #' Score ACE variables based on highest grade from standard symptoms list
 #' @noRd
 score_ace <- function(ace, symptoms) {

@@ -2,6 +2,7 @@
 
 export("%>%")
 export(assign_ace27)
+export(assign_ace_vars)
 export(assign_esmo2013)
 export(assign_esmo2016)
 export(assign_esmo2020)
