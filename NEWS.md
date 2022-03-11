@@ -1,3 +1,8 @@
+# EndoTools 0.3.6
+
+* Add `assign_ace_vars()` to get numeric scores assigned for each ACE variable
+* Rename ACE-27 score labels depending on `separate_nos` condition
+
 # EndoTools 0.3.5
 
 * Fix internal input validation function
