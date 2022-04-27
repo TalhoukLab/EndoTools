@@ -1,3 +1,7 @@
+# EndoTools 0.3.7
+
+* In `assign_esmo2013()` and `assign_esmo2016()`, relax non-endometrioid condition to allow for "non-endometrioid or mixed". Histotype variables combined from different data sources sometimes gets labelled as the latter.
+
 # EndoTools 0.3.6
 
 * Add `assign_ace_vars()` to get numeric scores assigned for each ACE variable

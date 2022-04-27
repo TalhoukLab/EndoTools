@@ -1,7 +1,7 @@
 Package: EndoTools
 Title: Endometrial Cancer Helper Tools
-Version: 0.3.6
-Date: 2022-03-10
+Version: 0.3.7
+Date: 2022-04-27
 Authors@R: c(
     person("Derek", "Chiu", , "dchiu@bccrc.ca", role = c("aut", "cre")),
     person("Samuel", "Leung", , "Samuel.Leung@vch.ca", role = "aut")
