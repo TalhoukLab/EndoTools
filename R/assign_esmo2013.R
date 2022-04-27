@@ -36,7 +36,7 @@ assign_esmo2013 <- function(stage_full, grade, hist_gr) {
   # Assign risk groups
   esmo2013 <- dplyr::case_when(
     # high
-    (hist_gr == "non-endometrioid") |
+    (grepl("non-endometrioid", hist_gr)) |
       (grepl("^(IB|IC)", stage_full) &
          grade == "grade 3" & hist_gr == "endometrioid") |
       (grepl("^(II|III|IV)[A-C]?[1-2]?$", stage_full)) ~ VC.HIGH,
