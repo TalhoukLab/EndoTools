@@ -36,7 +36,8 @@ GRADE_STD <- c(
 
 HIST_STD <- c(
   "endometrioid",
-  "non-endometrioid"
+  "non-endometrioid",
+  "non-endometrioid or mixed"
 )
 
 MYO_STD <- c(
