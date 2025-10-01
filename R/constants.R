@@ -8,6 +8,7 @@ VC.HIGH.INTERM <- "high-intermediate"
 VC.HIGH <- "high"
 VC.ADVANCED <- "advanced"
 VC.METASTATIC <- "metastatic"
+VC.ADVANCED.METASTATIC <- "advanced/metastatic"
 
 STAGE_STD <- c(
   "I",
