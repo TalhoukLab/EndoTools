@@ -67,7 +67,7 @@ assign_esmo2016 <- function(stage_full, grade, hist_gr, myo, lvi,
     stage_full == "IVA" ~ VC.ADVANCED,
 
     # advanced/metastatic - stage IV with no substage available
-    stage_full == "IV" ~ VC.ADVANCED.METASTATIC
+    stage_full == "IV" ~ VC.ADVANCED.METASTATIC,
 
     if (!no_residual) {
       stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2") &
