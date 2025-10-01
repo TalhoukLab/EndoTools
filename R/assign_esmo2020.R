@@ -1,5 +1,8 @@
 #' Assign ESMO 2020
 #'
+#' ref: https://doi.org/10.1136/ijgc-2020-002230
+#' Concin et al. ESGO/ESTRO/ESP guidelines for the management of patients with endometrial carcinoma. International Journal of Gynecological Cancer 2021
+#' 
 #' Assign ESMO 2020 based on stage, grade, histological subtype group,
 #' myometrial invasion, and LVSI. Molecular classification and residual disease
 #' can be used if available.
@@ -126,17 +129,20 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
         (stage_full %in% c("II", "IIA", "IIB") & hist_gr == "endometrioid") ~ VC.HIGH.INTERM,
 
       # high
-      (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid" & rd_no) |
+      (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IVA") & hist_gr == "endometrioid" & rd_no) |
         (stage_full == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo != "none" & rd_no_or_miss) |
         (((stage_full %in% c("I", "IB", "IC", "IC", "II", "IIA", "IIB") & rd_no_or_miss) |
-            (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & rd_no)
+            (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IVA") & rd_no)
         ) & grepl("non-endometrioid|mixed", hist_gr)) ~ VC.HIGH,
 
       # advanced
-      stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & rd_yes ~ VC.ADVANCED,
+      stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IVA") & rd_yes ~ VC.ADVANCED,
 
       # metastatic
       stage_full == "IVB" ~ VC.METASTATIC,
+
+      # advanced/metastatic - stage IV with no substage available
+      stage_full == "IV" ~ VC.ADVANCED.METASTATIC,
 
       # unassignable
       TRUE ~ NA_character_
@@ -168,21 +174,24 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
         (stage_full %in% c("II", "IIA", "IIB") & hist_gr == "endometrioid" & eclass %in% c("MMRd", "NSMP/p53wt")) ~ VC.HIGH.INTERM,
 
       # high
-      (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & hist_gr == "endometrioid" & eclass %in% c("MMRd", "NSMP/p53wt") & rd_no) |
+      (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IVA") & hist_gr == "endometrioid" & eclass %in% c("MMRd", "NSMP/p53wt") & rd_no) |
         (((grepl("^(I|II)[A-C]?$", stage_full) & rd_no_or_miss) |
-            (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & rd_no)
+            (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IVA") & rd_no)
         ) & myo != "none" & eclass == "p53abn") |
         (stage_full == "IA" & grepl("non-endometrioid|mixed", hist_gr) & myo != "none" & eclass %in% c("MMRd", "NSMP/p53wt") & rd_no_or_miss) |
         (((stage_full %in% c("I", "IB", "IC", "IC", "II", "IIA", "IIB") & rd_no_or_miss) |
             (stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & rd_no)
         ) & grepl("non-endometrioid|mixed", hist_gr) & eclass %in% c("MMRd", "NSMP/p53wt")) |
-        (stage_full %in% c("I", "IB", "II", "IIA", "IIB", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & eclass %in% c("MMRd", "NSMP/p53wt") & rd_no) ~ VC.HIGH,
+        (stage_full %in% c("I", "IB", "II", "IIA", "IIB", "III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IVA") & grepl("non-endometrioid|mixed", hist_gr) & eclass %in% c("MMRd", "NSMP/p53wt") & rd_no) ~ VC.HIGH,
 
       # advanced
-      stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IV", "IVA") & rd_yes ~ VC.ADVANCED,
+      stage_full %in% c("III", "IIIA", "IIIB", "IIIC", "IIIC1", "IIIC2", "IVA") & rd_yes ~ VC.ADVANCED,
 
       # metastatic
       stage_full == "IVB" ~ VC.METASTATIC,
+
+      # advanced/metastatic - stage IV with no substage available
+      stage_full == "IV" ~ VC.ADVANCED.METASTATIC,
 
       # unassignable
       TRUE ~ NA_character_
@@ -190,5 +199,5 @@ assign_esmo2020 <- function(stage_full, grade, hist_gr, myo, lvi,
   }
 
   # Set factor level order
-  factor(esmo2020, levels = c(VC.LOW, VC.INTERM, VC.HIGH.INTERM, VC.HIGH, VC.ADVANCED, VC.METASTATIC))
+  factor(esmo2020, levels = c(VC.LOW, VC.INTERM, VC.HIGH.INTERM, VC.HIGH, VC.ADVANCED.METASTATIC, VC.ADVANCED, VC.METASTATIC))
 }
