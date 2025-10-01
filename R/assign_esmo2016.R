@@ -114,5 +114,5 @@ assign_esmo2016 <- function(stage_full, grade, hist_gr, myo, lvi,
   )
 
   # Set factor level order
-  factor(esmo2016, levels = c(VC.LOW, VC.INTERM, VC.HIGH.INTERM, VC.HIGH, VC.ADVANCED, VC.METASTATIC))
+  factor(esmo2016, levels = c(VC.LOW, VC.INTERM, VC.HIGH.INTERM, VC.HIGH, VC.ADVANCED.METASTATIC, VC.ADVANCED, VC.METASTATIC))
 }
