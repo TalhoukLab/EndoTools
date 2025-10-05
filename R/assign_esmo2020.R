@@ -20,7 +20,7 @@
 #' * intermediate:
 #'   * stage IB, grade 1/2, endometrioid, LVSI negative or focal, MMRd/NSMP
 #'   * stage IA, grade 3, endometrioid, LVSI negative or focal, MMRd/NSMP
-#'   * stage IA, no myometrial invasion, (non-endometrioid or p53abn)
+#'   * stage IA, no myometrial invasion, (non-endometrioid or mixed subtype or p53abn)
 #' * high-intermediate:
 #'   * stage IA/IB, endometrioid, LVSI positive or extensive, MMRd/NSMP
 #'   * stage IB, grade 3, endometrioid, MMRd/NSMP
@@ -44,7 +44,7 @@
 #' * intermediate:
 #'   * stage IB, grade 1/2, endometrioid, LVSI negative or focal
 #'   * stage IA, grade 3, endometrioid, LVSI negative or focal
-#'   * stage IA, non-endometrioid, no myometrial invasion
+#'   * stage IA, non-endometrioid or mixed subtype, no myometrial invasion
 #' * high-intermediate:
 #'   * stage IA/IB, endometrioid, LVSI positive or extensive
 #'   * stage IB, grade 3, endometrioid
