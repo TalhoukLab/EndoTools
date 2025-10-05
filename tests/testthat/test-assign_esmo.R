@@ -19,7 +19,7 @@ test_that("esmo2016 works", {
     myo = emdb$myo,
     lvi = emdb$lvi
   )
-  expect_equal(sum(emdb$esmo2016 == "low", na.rm = TRUE), 36)
+  expect_equal(sum(emdb$esmo2016 == "low", na.rm = TRUE), 46)
   expect_equal(sum(emdb$esmo2016 == "intermediate", na.rm = TRUE), 21)
   expect_equal(sum(emdb$esmo2016 == "high-intermediate", na.rm = TRUE), 99)
   expect_equal(sum(emdb$esmo2016 == "high", na.rm = TRUE), 370)
@@ -37,7 +37,7 @@ test_that("esmo2016 with residual works", {
     lvi = emdb$lvi,
     residual = emdb$residual
   )
-  expect_equal(sum(emdb$esmo2016 == "low", na.rm = TRUE), 36)
+  expect_equal(sum(emdb$esmo2016 == "low", na.rm = TRUE), 46)
   expect_equal(sum(emdb$esmo2016 == "intermediate", na.rm = TRUE), 21)
   expect_equal(sum(emdb$esmo2016 == "high-intermediate", na.rm = TRUE), 99)
   expect_equal(sum(emdb$esmo2016 == "high", na.rm = TRUE), 347)

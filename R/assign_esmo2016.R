@@ -103,11 +103,14 @@ assign_esmo2016 <- function(stage_full, grade, hist_gr, myo, lvi,
       grade %in% c("grade 1", "grade 2") &
       myo == ">50%" & lvi == VC.NEGATIVE ~ VC.INTERM,
 
-    # low
-    grepl("^I[A-C]?$", stage_full) &
+    # low - stage I, grade 1/2, endometrioid, <50% myometrial invasion, LVSI negative
+    (
+      (grepl("^I[A-C]?$", stage_full) & myo %in% c(VC.NONE, "1-50%")) | 
+      (stage_full=="IA") # stage IA must be myo <50%
+      ) & 
       hist_gr == "endometrioid" &
       grade %in% c("grade 1", "grade 2") &
-      myo %in% c(VC.NONE, "1-50%") & lvi == VC.NEGATIVE ~ VC.LOW,
+      lvi == VC.NEGATIVE ~ VC.LOW,
 
     # unassignable
     TRUE ~ NA_character_
