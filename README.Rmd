@@ -45,7 +45,7 @@ This is a basic example which shows you how to assign and compare different ESMO
 library(EndoTools)
 library(dplyr)
 
-df <- emdb %>%
+df <- emdb |>
   mutate(
     eclass2 = assign_promise2019(mmr_ihc_2, pole_mut, p53),
     esmo2013 = assign_esmo2013(stage_full, grade_rev, hist_rev_gr),
@@ -54,15 +54,15 @@ df <- emdb %>%
                                residual)
   )
 
-df %>% 
+df |> 
   count(esmo2013)
 
-df %>% 
+df |> 
   count(esmo2016)
 
-df %>% 
+df |> 
   count(esmo2020)
 
-df %>% 
+df |> 
   count(esmo2013, esmo2016, esmo2020)
 ```

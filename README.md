@@ -13,9 +13,9 @@ coverage](https://codecov.io/gh/TalhoukLab/EndoTools/branch/master/graph/badge.s
 The goal of EndoTools is to provide helper tools for calculating
 commonly used variables in endometrial cancer projects such as:
 
--   MMR
--   ProMisE
--   ESMO
+- MMR
+- ProMisE
+- ESMO
 
 There are different versions for each molecular variable.
 
@@ -37,7 +37,7 @@ different ESMO risk groups:
 library(EndoTools)
 library(dplyr)
 
-df <- emdb %>%
+df <- emdb |>
   mutate(
     eclass2 = assign_promise2019(mmr_ihc_2, pole_mut, p53),
     esmo2013 = assign_esmo2013(stage_full, grade_rev, hist_rev_gr),
@@ -46,7 +46,7 @@ df <- emdb %>%
                                residual)
   )
 
-df %>% 
+df |> 
   count(esmo2013)
 #> # A tibble: 4 × 2
 #>   esmo2013         n
@@ -56,40 +56,42 @@ df %>%
 #> 3 high           425
 #> 4 <NA>           169
 
-df %>% 
+df |> 
   count(esmo2016)
-#> # A tibble: 7 × 2
-#>   esmo2016              n
-#>   <fct>             <int>
-#> 1 low                  36
-#> 2 intermediate         21
-#> 3 high-intermediate    99
-#> 4 high                421
-#> 5 advanced             12
-#> 6 metastatic            6
-#> 7 <NA>                205
+#> # A tibble: 8 × 2
+#>   esmo2016                n
+#>   <fct>               <int>
+#> 1 low                    46
+#> 2 intermediate           21
+#> 3 high-intermediate      99
+#> 4 high                  370
+#> 5 advanced/metastatic    51
+#> 6 advanced               12
+#> 7 metastatic              6
+#> 8 <NA>                  195
 
-df %>% 
+df |> 
   count(esmo2020)
-#> # A tibble: 7 × 2
-#>   esmo2020              n
-#>   <fct>             <int>
-#> 1 low                  75
-#> 2 intermediate         51
-#> 3 high-intermediate    81
-#> 4 high                223
-#> 5 advanced             32
-#> 6 metastatic            6
-#> 7 <NA>                332
+#> # A tibble: 8 × 2
+#>   esmo2020                n
+#>   <fct>               <int>
+#> 1 low                    75
+#> 2 intermediate           60
+#> 3 high-intermediate      81
+#> 4 high                  201
+#> 5 advanced/metastatic    37
+#> 6 advanced               25
+#> 7 metastatic              6
+#> 8 <NA>                  315
 
-df %>% 
+df |> 
   count(esmo2013, esmo2016, esmo2020)
-#> # A tibble: 54 × 4
+#> # A tibble: 56 × 4
 #>    esmo2013 esmo2016          esmo2020              n
 #>    <fct>    <fct>             <fct>             <int>
-#>  1 low      low               low                  19
+#>  1 low      low               low                  24
 #>  2 low      low               intermediate          1
-#>  3 low      low               <NA>                  6
+#>  3 low      low               <NA>                 11
 #>  4 low      intermediate      low                  14
 #>  5 low      intermediate      <NA>                  2
 #>  6 low      high-intermediate low                   3
@@ -97,5 +99,5 @@ df %>%
 #>  8 low      high-intermediate high-intermediate    18
 #>  9 low      high-intermediate high                  1
 #> 10 low      high-intermediate <NA>                  6
-#> # … with 44 more rows
+#> # ℹ 46 more rows
 ```
