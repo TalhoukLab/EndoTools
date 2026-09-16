@@ -20,6 +20,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Derek Chiu \email{dchiu@bccrc.ca}
   \item Samuel Leung \email{Samuel.Leung@vch.ca}
 }
 

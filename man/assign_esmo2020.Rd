@@ -37,11 +37,14 @@ ESMO 2020 assigned into "low", "intermediate", "high-intermediate",
 "high", "advanced", or "metastatic". Unassignable cases are \code{NA}.
 }
 \description{
+ref: https://doi.org/10.1136/ijgc-2020-002230
+Concin et al. ESGO/ESTRO/ESP guidelines for the management of patients with endometrial carcinoma. International Journal of Gynecological Cancer 2021
+}
+\details{
 Assign ESMO 2020 based on stage, grade, histological subtype group,
 myometrial invasion, and LVSI. Molecular classification and residual disease
 can be used if available.
-}
-\details{
+
 ESMO 2020 is assigned using stage, grade, histological subtype group,
 myometrial invasion, and LVSI into low, intermediate, high-intermediate,
 high, advanced, and metastatic risk based on the following criteria with and
@@ -61,7 +64,7 @@ without molecular classification/residual disease:
 \itemize{
 \item stage IB, grade 1/2, endometrioid, LVSI negative or focal, MMRd/NSMP
 \item stage IA, grade 3, endometrioid, LVSI negative or focal, MMRd/NSMP
-\item stage IA, no myometrial invasion, p53abn
+\item stage IA, no myometrial invasion, (non-endometrioid or mixed subtype or p53abn)
 }
 \item high-intermediate:
 \itemize{
@@ -105,7 +108,7 @@ without molecular classification/residual disease:
 \itemize{
 \item stage IB, grade 1/2, endometrioid, LVSI negative or focal
 \item stage IA, grade 3, endometrioid, LVSI negative or focal
-\item stage IA, no myometrial invasion
+\item stage IA, non-endometrioid or mixed subtype, no myometrial invasion
 }
 \item high-intermediate:
 \itemize{
