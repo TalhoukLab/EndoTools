@@ -11,11 +11,10 @@ Description: Helper tools such as calculation of ProMisE classifications
 License: MIT + file LICENSE
 URL: https://talhouklab.github.io/EndoTools
 Depends: 
-    R (>= 3.6)
+    R (>= 4.2)
 Imports: 
     assertthat,
     dplyr,
-    magrittr,
     purrr,
     rlang
 Suggests: 

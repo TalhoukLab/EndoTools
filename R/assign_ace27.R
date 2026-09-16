@@ -191,8 +191,8 @@ assign_ace27 <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
     ace_st_score, ace_lm_score, ace_lym_score, ace_alc_score,
     ace_id_score, ace_obe_score
   ),
-  pmax, na.rm = TRUE) %>%
-    ifelse(ace_multi_sys, 3, .)
+  pmax, na.rm = TRUE) |>
+    ifelse(test = ace_multi_sys, yes = 3, no = _)
 
   # NOS grouped or separated, use inequalities in labels
   if (separate_nos) {
@@ -291,11 +291,11 @@ assign_ace_vars <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
 #' Score ACE variables based on highest grade from standard symptoms list
 #' @noRd
 score_ace <- function(ace, symptoms) {
-  symptoms %>%
-    purrr::map(~ gsub("\\(", "\\\\(", .) %>%
-                 gsub("\\)", "\\\\)", .) %>%
-                 paste(collapse = "|")) %>%
-    rlang::list2(!!!., `0` = "none") %>%
-    purrr::imap(~ ifelse(grepl(.x, ace), as.numeric(.y), NA_real_)) %>%
+  symptoms |>
+    purrr::map(~ gsub("\\(", "\\\\(", .x) |>
+                 gsub("\\)", "\\\\)", x = _) |>
+                 paste(collapse = "|"))  |>
+    c(list(`0` = "none")) |>
+    purrr::imap(~ ifelse(grepl(.x, ace), as.numeric(.y), NA_real_)) |>
     purrr::pmap_dbl(pmax, na.rm = TRUE)
 }
