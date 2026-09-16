@@ -180,7 +180,7 @@ assign_ace27 <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
          ace_sys_end, ace_sys_neu, ace_sys_psy, ace_sys_rhe,
          ace_sys_imm, ace_sys_mal, ace_sys_sub, ace_sys_bod
     ),
-    purrr::lift_vd(function(x) sum(x == 2, na.rm = TRUE) > 1)
+    \(...) {function(x) sum(x == 2, na.rm = TRUE) > 1}(c(...))
   )
   ace_27 <- purrr::pmap_dbl(list(
     ace_mi_score, ace_cad_score, ace_chf_score, ace_arr_score,
@@ -202,10 +202,10 @@ assign_ace27 <- function(ace_mi, ace_cad, ace_chf, ace_arr, ace_htn, ace_vd,
            ace_str, ace_dem, ace_par, ace_neu, ace_psy, ace_rhe, ace_aid,
            ace_st, ace_lm, ace_lym, ace_alc, ace_id, ace_obe
       ),
-      purrr::lift_vd(function(x)
+      \(...) {function(x)
         all(grepl("(?<!Obesity), NOS", x, perl = TRUE) | x == "none" | is.na(x)) &
           !all(is.na(x) | x == "none") &
-          !any(grepl("\\+", x)))
+          !any(grepl("\\+", x))}(c(...))
     )
     ace_27 <- factor(
       dplyr::if_else(ace_only_nos, 4, ace_27),
