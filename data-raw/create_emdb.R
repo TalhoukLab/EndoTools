@@ -129,8 +129,11 @@ emdb <- tibble(
 )
 
 set.seed(2021)
-emdb <- emdb %>%
-  mutate(across(.fns = ~ if_else(runif(length(.)) > 0.1, ., factor(NA)))) %>%
+emdb <- emdb |>
+  mutate(across(
+    .cols = everything(),
+    .fns = ~ if_else(runif(length(.)) > 0.1, ., factor(NA))
+  )) |>
   mutate(
     p53_mut = fct_collapse(
       p53,
@@ -162,7 +165,7 @@ emdb <- emdb %>%
     ace_alc = simulate_ace(ACE_ALC, size = n, prob = ace_prob),
     ace_id = simulate_ace(ACE_ID, size = n, prob = ace_prob),
     ace_obe = simulate_ace(ACE_OBE, size = n, prob = sum(ace_prob))
-  ) %>%
+  ) |>
   mutate(across(.cols = starts_with("ace"),
                 .fns = ~ if_else(runif(length(.)) > 0.4, ., NA_character_)))
 
