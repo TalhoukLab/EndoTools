@@ -5,9 +5,9 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/TalhoukLab/EndoTools/workflows/R-CMD-check/badge.svg)](https://github.com/TalhoukLab/EndoTools/actions)
+[![R-CMD-check](https://github.com/TalhoukLab/EndoTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/TalhoukLab/EndoTools/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/TalhoukLab/EndoTools/branch/master/graph/badge.svg)](https://codecov.io/gh/TalhoukLab/EndoTools?branch=master)
+coverage](https://codecov.io/gh/TalhoukLab/EndoTools/graph/badge.svg)](https://app.codecov.io/gh/TalhoukLab/EndoTools)
 <!-- badges: end -->
 
 The goal of EndoTools is to provide helper tools for calculating
