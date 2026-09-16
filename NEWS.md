@@ -1,3 +1,9 @@
+# EndoTools 0.4.0
+
+* Updated roxygen version and GitHub Actions
+* Replace magrittr pipe with native pipe
+* Remove usage of deprecated functions
+
 # EndoTools 0.3.7
 
 * In `assign_esmo2013()` and `assign_esmo2016()`, relax non-endometrioid condition to allow for "non-endometrioid or mixed". Histotype variables combined from different data sources sometimes gets labelled as the latter.
